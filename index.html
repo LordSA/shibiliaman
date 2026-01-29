@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shibili | Admin is Cooking</title>
+    <style>
+        :root {
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff00ff;
+            --dark-bg: #0a0a0a;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Matrix Background Effect */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+            margin: 50px 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+        }
+
+        .glitch {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0.05em 0 0 var(--neon-cyan), -0.05em -0.025em 0 var(--neon-pink);
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 var(--neon-cyan), -0.05em -0.025em 0 var(--neon-pink); }
+            14% { text-shadow: 0.05em 0 0 var(--neon-cyan), -0.05em -0.025em 0 var(--neon-pink); }
+            15% { text-shadow: -0.05em -0.025em 0 var(--neon-cyan), 0.025em 0.025em 0 var(--neon-pink); }
+            49% { text-shadow: -0.05em -0.025em 0 var(--neon-cyan), 0.025em 0.025em 0 var(--neon-pink); }
+            50% { text-shadow: 0.025em 0.05em 0 var(--neon-cyan), 0.05em 0 0 var(--neon-pink); }
+            99% { text-shadow: 0.025em 0.05em 0 var(--neon-cyan), 0.05em 0 0 var(--neon-pink); }
+            100% { text-shadow: -0.025em 0 0 var(--neon-cyan), -0.025em -0.025em 0 var(--neon-pink); }
+        }
+
+        .construction-banner {
+            border: 2px dashed var(--neon-pink);
+            padding: 20px;
+            margin: 20px 0;
+            color: var(--neon-pink);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .arsenal img {
+            transition: transform 0.3s, filter 0.3s;
+            margin: 10px;
+        }
+
+        .arsenal img:hover {
+            transform: scale(1.3) rotate(5deg);
+            filter: drop-shadow(0 0 8px var(--neon-cyan));
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: 0.3s;
+            background: transparent;
+        }
+
+        .btn-link:hover {
+            background: var(--neon-cyan);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        hr { border: 0; border-top: 1px solid #333; margin: 30px 0; }
+        
+        .stats-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="container">
+        <img src="https://media.giphy.com/media/T4tPJEgs2FEFq/giphy.gif?cid=ecf05e47qhbjlap43ddrrabq9fr2p627llne685nvyrb7drn&rid=giphy.gif&ct=s" width="150" alt="Cyber Icon">
+        
+        <div class="glitch">Hi, I'm Shibili 👋</div>
+        <p><i>A Useless Who Knows Something but Doesn't Know...</i></p>
+
+        <div class="construction-banner">
+            ⚠️ ACCESS RESTRICTED: PAGE UNDER CONSTRUCTION ⚠️<br>
+            (Admin is cooking something big)
+        </div>
+
+        <p><b>B.Tech CSE Student • Full-Stack Explorer • UI/UX Enthusiast</b></p>
+        
+        <div>
+            <img src="https://img.shields.io/badge/Code%20Warrior-Intermediate-brightgreen?style=for-the-badge&logo=github" />
+            <img src="https://img.shields.io/badge/Bot%20Dev-Hobby-blue?style=for-the-badge&logo=telegram" />
+            <img src="https://img.shields.io/badge/UI/UX%20Designer-Exploring-ff69b4?style=for-the-badge&logo=figma" />
+        </div>
+
+        <hr>
+
+        <h2>👨‍💻 System Log: About Me</h2>
+        <ul style="text-align: left; display: inline-block; list-style-type: '>> ';">
+            <li>Pursuing B.Tech in Computer Science</li>
+            <li>Passionate about coding, building, and problem-solving</li>
+            <li>Exploring the realms of UI/UX design</li>
+            <li>Formerly a Bot Architect (Telegram), now Full-Stack</li>
+        </ul>
+
+        <hr>
+
+        <h2>🛠️ My Tech Arsenal</h2>
+        <div class="arsenal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" width="35"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="35"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="35"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="35"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" width="35"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="35"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="35"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="35"/>
+            <img src="https://devicon-website.vercel.app/api/figma/original.svg" width="35"/>
+        </div>
+
+        <hr>
+
+        <h2>📊 Analytics</h2>
+        <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=LordSA&show_icons=true&theme=radical&hide_border=true&count_private=true" />
+        <img class="stats-img" src="https://github-readme-streak-stats.herokuapp.com?user=LordSA&theme=tokyonight&hide_border=true" />
+
+        <hr>
+
+        <h3>For more details, decrypt this link:</h3>
+        <a href="https://tinkerhub.org/@shibiliamantk" class="btn-link" target="_blank">LINK_START: TinkerHub</a>
+        
+        <p style="margin-top: 20px; color: var(--neon-pink);"><i>Additional data will be uploaded once the Admin has finished cooking.</i></p>
+
+        <div style="margin-top: 30px;">
+            <a href="https://github.com/LordSA"><img src="https://img.shields.io/badge/GitHub-222222?style=for-the-badge&logo=github&logoColor=white"/></a>
+            <a href="https://linkedin.com/in/shibili-aman-tk"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+        </div>
+
+        <p><i>“Code is like humor. When you have to explain it, it’s bad.”</i><br><b>Code and Die!</b></p>
+    </div>
+
+    <script>
+        // Matrix Background Script
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0F0";
+            ctx.font = fontSize + "px arial";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+    </script>
+</body>
+</html>
