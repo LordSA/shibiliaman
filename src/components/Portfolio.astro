@@ -1,5 +1,8 @@
 ---
-import { Github, Linkedin, Twitter, ExternalLink, Mail, MessageSquare } from '@lucide/astro';
+import { Github, Linkedin, ExternalLink, Mail, MessageSquare } from '@lucide/astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import Loader from './Loader.astro';
 
 const links = [
   { href: 'https://github.com/LordSA', icon: Github, label: 'GitHub' },
@@ -36,16 +39,8 @@ const projects = [
 ];
 ---
 
-<nav class="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-sm bg-black/50">
-  <div class="text-xl font-bold tracking-tighter uppercase transition-colors hover:text-gray-400">
-    <a href="/">Shibili Aman</a>
-  </div>
-  <div class="flex gap-8 items-center uppercase text-sm font-medium tracking-widest hidden md:flex">
-    <a href="#about" class="hover:opacity-60 transition-opacity">About</a>
-    <a href="#projects" class="hover:opacity-60 transition-opacity">Work</a>
-    <a href="#contact" class="hover:opacity-60 transition-opacity">Contact</a>
-  </div>
-</nav>
+<Loader />
+<Navbar />
 
 <main>
   <!-- Hero Section -->
@@ -188,17 +183,7 @@ const projects = [
   </section>
 </main>
 
-<footer class="p-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.5em] text-zinc-700">
-  <div class="mb-4 md:mb-0">© 2026 Shibili Aman <span class="mx-4">|</span> Based in Kerala, India</div>
-  <div class="flex gap-10">
-    <a href="https://github.com/LordSA" class="hover:text-white transition-colors">GitHub</a>
-    <a href="https://www.linkedin.com/in/shibili-aman-tk" class="hover:text-white transition-colors">LinkedIn</a>
-    <a href="https://linktr.ee/__shibiliii._" class="hover:text-white transition-colors">Connect</a>
-  </div>
-  <div class="mt-4 md:mt-0 font-medium italic opacity-40 hover:opacity-100 transition-opacity underline decoration-zinc-800">
-     "Code and Die!"
-  </div>
-</footer>
+<Footer />
 
 <style>
   @keyframes fade-in {
