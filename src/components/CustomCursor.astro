@@ -1,0 +1,115 @@
+---
+---
+<div class="custom-cursor hidden md:block">
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+</div>
+
+<script>
+  let cursorDot: HTMLElement | null;
+  let cursorOutline: HTMLElement | null;
+
+  const initCursor = () => {
+    cursorDot = document.querySelector(".cursor-dot");
+    cursorOutline = document.querySelector(".cursor-outline");
+
+    if (!cursorDot || !cursorOutline) return;
+
+    document.addEventListener("mousemove", (e: MouseEvent) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+
+      if (cursorDot) {
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+      }
+      
+      if (cursorOutline) {
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: "forwards", easing: "cubic-bezier(0.19, 1, 0.22, 1)" });
+      }
+    });
+
+    setupInteractions();
+  };
+
+  const setupInteractions = () => {
+    const interactables = document.querySelectorAll('a, button, .group, input, textarea, [role="button"]');
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', onEnter);
+      el.addEventListener('mouseleave', onLeave);
+    });
+  };
+
+  function onEnter() {
+    cursorOutline?.classList.add('cursor-hover');
+    cursorDot?.classList.add('dot-hover');
+  }
+
+  function onLeave() {
+    cursorOutline?.classList.remove('cursor-hover');
+    cursorDot?.classList.remove('dot-hover');
+  }
+
+  // Initialize immediately and on Astro page load
+  initCursor();
+  document.addEventListener('astro:page-load', initCursor);
+
+  const observer = new MutationObserver(setupInteractions);
+  observer.observe(document.body, { childList: true, subtree: true });
+</script>
+
+<style>
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+  }
+
+  .cursor-dot {
+    width: 4px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 100000;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+  }
+
+  .cursor-outline {
+    width: 25px;
+    height: 25px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 2px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: width 0.4s cubic-bezier(0.075, 0.82, 0.165, 1), height 0.4s cubic-bezier(0.075, 0.82, 0.165, 1), border-radius 0.4s, background-color 0.4s, border-color 0.4s;
+  }
+
+  .cursor-hover {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    mix-blend-mode: normal;
+  }
+
+  .dot-hover {
+    opacity: 0;
+  }
+</style>
