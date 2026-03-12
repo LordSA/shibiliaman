@@ -1,201 +1,172 @@
 "use client";
-import { useRef } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { TextPlugin } from "gsap/TextPlugin";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(TextPlugin, ScrollTrigger);
+interface CommandResponse {
+  command: string;
+  output: React.ReactNode;
 }
 
-export default function PortfolioPage() {
-  const container = useRef(null);
+export default function Home() {
+  const [input, setInput] = useState("");
+  const [history, setHistory] = useState<CommandResponse[]>([]);
+  const [isMaximized, setIsMaximized] = useState(false);
+  const container = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const commandResponses: Record<string, React.ReactNode> = {
+    help: (
+      <div className="grid grid-cols-2 gap-2 mt-1 font-mono text-sm opacity-90">
+        <span className="text-[#33ff33]">about</span> <span>- display biography</span>
+        <span className="text-[#33ff33]">projects</span> <span>- list active projects</span>
+        <span className="text-[#33ff33]">skills</span> <span>- view tech stack</span>
+        <span className="text-[#33ff33]">clear</span> <span>- clear terminal</span>
+        <span className="text-[#33ff33]">whoami</span> <span>- identity check</span>
+      </div>
+    ),
+    about: "SHIBILI AMAN TK // A Full-Stack Developer & UI/UX Architect based in India. Specializing in high-performance web systems and cinematic animations.",
+    whoami: "USER: GUEST // ROLE: VISITOR // STATUS: AUTHENTICATED",
+    projects: (
+      <div className="mt-2 space-y-2 font-mono text-sm">
+        <div>[1] <span className="text-[#33ff33]">ThinkForge</span> - Crowdfunding platform</div>
+        <div>[2] <span className="text-[#33ff33]">Travel Tribe</span> - Travel networking app</div>
+      </div>
+    ),
+    skills: "React, Next.js, Node.js, GSAP, Tailwind CSS, TypeScript, Figma",
+    clear: null,
+  };
 
   useGSAP(() => {
-    const tl = gsap.timeline();
-
-    // 1. Initial Hero Typing
-    tl.to(".cursor", { opacity: 0, repeat: -1, duration: 0.5, ease: "steps(1)" });
-    tl.from(".hero-content", { opacity: 0, duration: 1 }, 0);
-    tl.to(".line-1", { duration: 1, text: "SYSTEM.RUN(DASHBOARD_v3.0)", ease: "none" });
-    tl.to(".line-2", { duration: 1.5, text: "> LOADING_MODULES: [OK]", ease: "none" }, "+=0.3");
-
-    // 2. Scroll Animations for Bento Cards
-    const cards = gsap.utils.toArray<HTMLElement>(".bento-card");
-    cards.forEach((card) => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-        opacity: 0,
-        scale: 0.95,
-        y: 30,
-        duration: 0.6,
-        ease: "back.out(1.7)",
-      });
+    gsap.from(".window-gui", { 
+      scale: 0.8, 
+      opacity: 0, 
+      duration: 1, 
+      ease: "power3.out",
+      y: 20
     });
   }, { scope: container });
 
-  const experience = [
-    { role: "Co-Lead", company: "LucidPixls", date: "2025" },
-    { role: "Design Head", company: "CSI CEV", date: "2025" },
-    { role: "UI Designer", company: "HCTMM", date: "2025" },
-  ];
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [history]);
+
+  const handleCommand = (e: React.FormEvent) => {
+    e.preventDefault();
+    const cmd = input.toLowerCase().trim();
+    if (cmd === "") return;
+
+    if (cmd === "clear") {
+      setHistory([]);
+    } else {
+      const response = commandResponses[cmd] || `Unknown command: ${cmd}. Type 'help'.`;
+      setHistory((prev) => [...prev, { command: input, output: response }]);
+    }
+    setInput("");
+  };
+
+  const focusInput = () => {
+    inputRef.current?.focus();
+  };
 
   return (
-    <main ref={container} className="min-h-screen bg-[#0a0a0a] font-mono text-[#33ff33] p-4 lg:p-8 overflow-x-hidden">
-      {/* HUD Header */}
-      <nav className="flex flex-wrap items-center justify-between mb-8 pb-4 border-b border-[#33ff33]/20 text-[10px] tracking-[0.2em] uppercase">
-        <div className="flex gap-8">
-          <span className="text-white bg-[#33ff33]/20 px-2 py-1">TERMINAL_v3.0</span>
-          <span className="opacity-50 hidden md:block">STATUS: AUTHORIZED</span>
-        </div>
-        <div className="flex gap-6">
-          <a href="#exp" className="hover:text-white transition-colors">EXPLORER</a>
-          <a href="#skills" className="hover:text-white transition-colors">KERNEL</a>
-          <a href="#projects" className="hover:text-white transition-colors">DEPLOYS</a>
-        </div>
-      </nav>
+    <div ref={container} className="h-screen w-full bg-[#121212] flex items-center justify-center p-4 selection:bg-[#33ff33] selection:text-black">
+      
+      {/* Wallpapers / HUD Background elements can go here */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-black via-[#0a0a0a] to-black opacity-100"></div>
 
-      {/* Bento Layout Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-6 gap-4 max-w-7xl mx-auto h-auto md:h-[1200px]">
+      {/* Terminal Window GUI */}
+      <div 
+        className={`window-gui relative flex flex-col bg-black border border-white/10 rounded-xl shadow-[0_30px_100px_rgba(0,0,0,0.8)] transition-all duration-300 overflow-hidden
+        ${isMaximized ? 'w-[98vw] h-[95vh]' : 'w-full max-w-4xl h-[600px]'}
+        `}
+        onClick={focusInput}
+      >
         
-        {/* Title Block - Large */}
-        <div className="md:col-span-3 md:row-span-2 bento-card border border-[#33ff33]/30 bg-[#111] p-8 flex flex-col justify-center relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-4 opacity-10 text-8xl font-black select-none">SEE</div>
-          <div className="hero-content relative z-10">
-            <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-white mb-4 italic">
-              SEE THE <span className="text-[#33ff33]">FUTURE</span>
-            </h1>
-            <div className="flex items-center text-sm md:text-xl opacity-80">
-              <span className="mr-4">$</span>
-              <span className="line-1"></span><span className="cursor">_</span>
+        {/* GUI Header / Title Bar */}
+        <div className="h-10 bg-[#1e1e1e] flex items-center justify-between px-4 select-none">
+          <div className="flex items-center gap-6">
+            <div className="flex gap-2">
+              <div 
+                className="w-3 h-3 rounded-full bg-[#ff5f57] cursor-pointer hover:bg-[#ff7b75]" 
+                title="This does nothing"
+              ></div>
+              <div 
+                className="w-3 h-3 rounded-full bg-[#febc2e] cursor-pointer"
+                title="Minimize logic placeholder"
+              ></div>
+              <div 
+                className="w-3 h-3 rounded-full bg-[#28c840] cursor-pointer"
+                onClick={(e) => { e.stopPropagation(); setIsMaximized(!isMaximized); }}
+              ></div>
+            </div>
+            <div className="text-[11px] text-white/40 font-medium tracking-wide flex items-center gap-2">
+              <span className="opacity-60">Terminal</span> — shibili@LordSA — 80x24
             </div>
           </div>
-          <div className="absolute bottom-4 right-4 flex gap-2">
-            <div className="w-2 h-2 bg-[#33ff33] animate-pulse"></div>
-            <div className="w-2 h-2 bg-[#33ff33] opacity-40"></div>
-            <div className="w-2 h-2 bg-[#33ff33] opacity-20"></div>
+          
+          <div className="text-[10px] text-white/20 uppercase tracking-[2px]">
+             {isMaximized ? "Fullscreen Mode" : "Window Mode"}
           </div>
         </div>
 
-        {/* Current Status - Square */}
-        <div className="md:col-span-1 md:row-span-2 bento-card border border-[#33ff33]/30 bg-[#00f2ff]/5 p-6 flex flex-col justify-between hover:bg-[#00f2ff]/10 transition-colors group">
-          <div className="text-[10px] uppercase tracking-widest text-[#00f2ff]">Network_Signal</div>
-          <div className="text-4xl font-bold text-[#00f2ff] group-hover:scale-110 transition-transform origin-left">{">_"}</div>
-          <div>
-            <div className="text-xs text-white mb-2">LATENCY: 12ms</div>
-            <div className="h-1 w-full bg-[#00f2ff]/20 overflow-hidden">
-               <div className="h-full bg-[#00f2ff] w-2/3 animate-[shimmer_2s_infinite]"></div>
-            </div>
+        {/* Content Area */}
+        <div 
+          ref={scrollRef} 
+          className="flex-1 p-6 overflow-y-auto font-mono text-[#e0e0e0] bg-[#0c0c0c]/90 backdrop-blur-sm custom-scrollbar"
+        >
+          <div className="mb-4 text-[#33ff33]">
+            Welcome to LordSA-OS Terminal (GUI Version 1.0.4) <br/>
+            Last login: {new Date().toLocaleDateString()} on ttys002
           </div>
+
+          <div className="space-y-4">
+            {history.map((entry, i) => (
+              <div key={i} className="animate-in fade-in slide-in-from-left-2 duration-300">
+                <div className="flex items-center gap-2 text-white/50">
+                  <span className="text-[#33ff33]">shibili@LordSA</span>
+                  <span>:</span>
+                  <span className="text-blue-400">~</span>
+                  <span className="text-white">$ {entry.command}</span>
+                </div>
+                <div className="mt-1 pl-4 border-l border-white/5 text-sm leading-relaxed opacity-95">
+                  {entry.output}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Form / Prompt */}
+          <form onSubmit={handleCommand} className="mt-4 flex items-center gap-2">
+            <span className="text-[#33ff33] font-bold">shibili@LordSA</span>
+            <span className="text-white">:</span>
+            <span className="text-blue-400">~</span>
+            <span className="text-white">$</span>
+            <input
+              ref={inputRef}
+              autoFocus
+              className="flex-1 bg-transparent border-none outline-none text-white caret-[#33ff33]"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              autoComplete="off"
+              spellCheck="false"
+            />
+          </form>
         </div>
 
-        {/* About / Intro - Text Block */}
-        <div id="exp" className="md:col-span-2 md:row-span-2 bento-card border border-[#33ff33]/30 bg-[#111] p-8">
-          <h2 className="text-[#33ff33] text-xs uppercase tracking-[0.4em] mb-6 flex items-center gap-2">
-            <span className="w-4 h-[1px] bg-[#33ff33]"></span> THE_TERMINAL
-          </h2>
-          <p className="text-white/80 text-sm leading-relaxed mb-6">
-            SHIBILI AMAN TK // FULL-STACK DEVELOPER & UI/UX ENTHUSIAST. 
-            SPECIALIZING IN BUILDING HIGH-PERFORMANCE INTERFACES AND 
-            SCALABLE DIGITAL ECOSYSTEMS WITH A FOCUS ON MOTION DESIGN.
-          </p>
-          <div className="p-4 bg-black border-l-2 border-[#ff0055] text-[10px]">
-            <span className="text-[#ff0055] font-bold">WARNING:</span> SYSTEM_OVERRIDE_ENABLED
-          </div>
+        {/* GUI Footer */}
+        <div className="h-6 bg-[#1e1e1e]/50 border-t border-white/5 flex items-center px-4 text-[9px] text-white/20 justify-between">
+           <div className="flex gap-3">
+              <span>Main Bash Process</span>
+              <span>•</span>
+              <span>PID: 8842</span>
+           </div>
+           <div>Shibili Aman Portfolio 2026</div>
         </div>
-
-        {/* JSON Data Block - Small */}
-        <div className="md:col-span-1 md:row-span-2 bento-card border border-[#33ff33]/30 bg-black p-6 font-mono text-xs">
-          <div className="text-blue-400">{"{"}</div>
-          <div className="pl-4">
-            <span className="text-cyan-300">"VERSION"</span>: <span className="text-orange-400">"3.0.0"</span>,
-            <br />
-            <span className="text-cyan-300">"MODE"</span>: <span className="text-orange-400">"PRODUCTION"</span>,
-            <br />
-            <span className="text-cyan-300">"ACCESS"</span>: <span className="text-orange-400">"GRANTED"</span>
-          </div>
-          <div className="text-blue-400">{"}"}</div>
-          <div className="mt-8 pt-4 border-t border-white/10 opacity-30">
-             // DECRYPTED_META_DATA
-          </div>
-        </div>
-
-        {/* Skills - Square */}
-        <div id="skills" className="md:col-span-1 md:row-span-2 bento-card border border-[#33ff33]/30 bg-[#33ff33]/5 p-6 space-y-2">
-          <h3 className="text-[10px] text-white/40 uppercase mb-4">Kernel_Modules</h3>
-          {["NEXT.JS", "GSAP", "FLUTTER", "PYTHON", "NODE.JS"].map(s => (
-            <div key={s} className="flex justify-between items-center text-[10px] border-b border-[#33ff33]/10 pb-1">
-              <span>{s}</span>
-              <span className="text-white">[OK]</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Select Menu Style - Project List */}
-        <div id="projects" className="md:col-span-1 md:row-span-2 bento-card border border-[#33ff33]/30 bg-black p-6 overflow-hidden">
-          <h2 className="text-2xl font-black italic tracking-tighter text-[#33ff33] mb-8 leading-none">
-            SELECT<br/>PROJECTS
-          </h2>
-          <ul className="text-[10px] space-y-4">
-            <li className="hover:text-white cursor-pointer flex gap-2">
-              <span className="opacity-40">01.</span> THINKFORGE
-            </li>
-            <li className="hover:text-white cursor-pointer flex gap-2">
-              <span className="opacity-40">02.</span> TRAVEL_TRIBE
-            </li>
-            <li className="hover:text-white cursor-pointer flex gap-2">
-              <span className="opacity-40">03.</span> TELEMETRY
-            </li>
-          </ul>
-        </div>
-
-        {/* High Tech Metrics - Wide */}
-        <div className="md:col-span-3 md:row-span-2 bento-card border border-[#33ff33]/30 bg-[#111] p-8 flex flex-col md:flex-row gap-8 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#33ff33]/50 to-transparent"></div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold mb-4 uppercase tracking-tighter">Fixed Dimension Terminal</h3>
-            <p className="text-[10px] opacity-60 leading-relaxed uppercase">
-              Operationalizing complex datasets into intuitive terminal-inspired dashboards. 
-              The system supports multi-threaded processing and real-time visualization.
-            </p>
-            <div className="mt-8 flex gap-4">
-               <div className="w-3 h-3 bg-white"></div>
-               <div className="w-3 h-3 bg-white"></div>
-               <div className="w-3 h-3 bg-white"></div>
-            </div>
-          </div>
-          <div className="flex-1 flex items-center justify-center border-l border-[#33ff33]/20 pl-8">
-             <div className="relative w-32 h-32 rounded-full border-4 border-dashed border-[#33ff33]/20 p-4 animate-[spin_10s_linear_infinite]">
-                 <div className="w-full h-full rounded-full border-2 border-[#33ff33] border-t-white"></div>
-                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-bold">80%</div>
-             </div>
-          </div>
-        </div>
-
       </div>
-
-      <footer className="mt-16 text-center text-[8px] opacity-20 uppercase tracking-[0.5em]">
-        Signal_Detected // {new Date().getFullYear()} // LordSA_Core
-      </footer>
-
-      <style jsx global>{`
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        .bento-card {
-           transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .bento-card:hover {
-           transform: translateY(-5px);
-           border-color: rgba(51, 255, 51, 0.6);
-        }
-      `}</style>
-    </main>
+    </div>
   );
 }
