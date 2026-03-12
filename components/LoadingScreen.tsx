@@ -52,9 +52,9 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
       ref={container} 
       className="fixed inset-0 z-[100] bg-[#0a0a0a] flex flex-col items-center justify-center font-mono text-[#33ff33] p-4"
     >
-      <div className="w-full max-w-md space-y-4 text-center">
-        <div className="boot-1 h-6"></div>
-        <div className="boot-2 h-6 text-blue-400"></div>
+      <div className="w-full max-w-md space-y-4 text-center flex flex-col items-center">
+        <div className="boot-1 h-6 flex items-center justify-center w-full"></div>
+        <div className="boot-2 h-6 text-blue-400 flex items-center justify-center w-full"></div>
         
         <div className="relative w-full h-2 bg-gray-900 border border-[#33ff33]/30 overflow-hidden">
           <div 
@@ -63,9 +63,9 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
           ></div>
         </div>
         
-        <div className="flex flex-col items-center text-sm">
-          <span className="boot-3 mb-2"></span>
-          <span className="text-xl font-bold tracking-tighter">{percent}%</span>
+        <div className="flex flex-col items-center text-sm w-full">
+          <span className="boot-3 mb-2 flex items-center justify-center h-4"></span>
+          <span className="text-xl font-bold tracking-tighter tabular-nums">{percent}%</span>
         </div>
       </div>
       
