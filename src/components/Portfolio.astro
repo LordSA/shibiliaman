@@ -1,0 +1,211 @@
+---
+import { Github, Linkedin, Twitter, ExternalLink, Mail, MessageSquare } from '@lucide/astro';
+
+const links = [
+  { href: 'https://github.com/LordSA', icon: Github, label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/shibili-aman-tk', icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://tinkerhub.org/@shibiliamantk', icon: ExternalLink, label: 'TinkerHub' },
+  { href: 'https://linktr.ee/__shibiliii._', icon: MessageSquare, label: 'Linktree' },
+];
+
+const techStack = [
+  { name: 'C++', icon: 'cplusplus' },
+  { name: 'Python', icon: 'python' },
+  { name: 'JavaScript', icon: 'javascript' },
+  { name: 'HTML5', icon: 'html5' },
+  { name: 'PHP', icon: 'php' },
+  { name: 'MySQL', icon: 'mysql' },
+  { name: 'Node.js', icon: 'nodejs' },
+  { name: 'Flutter', icon: 'flutter' },
+  { name: 'Figma', icon: 'figma' },
+];
+
+const projects = [
+  {
+    title: "Telegram Bot Architect",
+    description: "Designed and implemented robust automated systems for Telegram users.",
+    category: "Automation",
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
+    title: "Full-Stack Portfolio",
+    description: "A minimalist, high-performance web experience built with Astro and Tailwind.",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1517139274687-05566c004175?auto=format&fit=crop&q=80&w=1000",
+  },
+];
+---
+
+<nav class="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-sm bg-black/50">
+  <div class="text-xl font-bold tracking-tighter uppercase transition-colors hover:text-gray-400">
+    <a href="/">Shibili Aman</a>
+  </div>
+  <div class="flex gap-8 items-center uppercase text-sm font-medium tracking-widest hidden md:flex">
+    <a href="#about" class="hover:opacity-60 transition-opacity">About</a>
+    <a href="#projects" class="hover:opacity-60 transition-opacity">Work</a>
+    <a href="#contact" class="hover:opacity-60 transition-opacity">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col justify-center px-10 md:px-24 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.03)_0%,_transparent_50%)]">
+    <div class="max-w-4xl animate-fade-in">
+       <div class="mb-4 inline-block px-3 py-1 border border-white/20 rounded-full text-[10px] uppercase tracking-[0.2em] bg-white/5 backdrop-blur-sm">
+        B.Tech CSE Student • Full-Stack Explorer
+      </div>
+      <h1 class="text-7xl md:text-[10rem] font-bold tracking-tighter leading-[0.85] mb-8 uppercase cursor-default">
+        Coding and <br/> <span class="text-zinc-800 hover:text-zinc-700 transition-colors">Building</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mb-12 leading-relaxed font-light">
+        A Full-Stack Developer and <span class="text-white">UI/UX Enthusiast</span> passionate about building scalable solutions and crafting elegant user experiences.
+      </p>
+      
+      <div class="flex flex-wrap gap-4">
+        {links.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer" class="p-4 border border-white/5 rounded-2xl hover:bg-white/5 hover:border-white/20 transition-all group backdrop-blur-sm" aria-label={link.label}>
+            <link.icon size={24} class="text-zinc-500 group-hover:text-white transition-all transform group-hover:scale-110" />
+          </a>
+        ))}
+        <a href="#contact" class="px-8 py-4 bg-zinc-900 border border-white/10 rounded-2xl text-sm uppercase tracking-widest hover:border-white/30 transition-all font-medium">
+          Contact
+        </a>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-10 left-10 text-[10px] uppercase tracking-[0.4em] text-zinc-600 font-medium">
+      01 <span class="mx-4 text-zinc-800">—</span> Explore
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-40 px-10 md:px-24 border-t border-white/5">
+    <div class="grid lg:grid-cols-12 gap-20">
+      <div class="lg:col-span-1 border-r border-white/5 hidden lg:block">
+        <div class="sticky top-40 text-[10px] uppercase tracking-[0.4em] text-zinc-600 [writing-mode:vertical-lr] rotate-180">
+          Identity / Bio
+        </div>
+      </div>
+      
+      <div class="lg:col-span-6">
+        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-12">System Log: About Me</h2>
+        <div class="space-y-8 text-xl md:text-4xl font-light leading-snug">
+          <p>
+            I am a <span class="text-white font-normal underline decoration-zinc-800 underline-offset-8">Computer Science student</span> with a deep fascination for the intersection of logic and creativity.
+          </p>
+          <p class="text-zinc-500">
+            Passionate about coding, building, and problem-solving. Exploring the realms of <span class="text-zinc-300">UI/UX design</span> to bridge the gap between functionality and aesthetics.
+          </p>
+          <div class="flex flex-wrap gap-3 pt-4">
+            <span class="px-4 py-2 bg-zinc-900/50 border border-white/10 rounded-lg text-[10px] uppercase tracking-widest text-zinc-400">Intermediate Code Warrior</span>
+            <span class="px-4 py-2 bg-zinc-900/50 border border-white/10 rounded-lg text-[10px] uppercase tracking-widest text-zinc-400">Telegram Bot Architect</span>
+            <span class="px-4 py-2 bg-zinc-900/50 border border-white/10 rounded-lg text-[10px] uppercase tracking-widest text-zinc-400">UI/UX Explorer</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="lg:col-span-5 flex flex-col justify-start">
+        <h3 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-12">Tech Arsenal</h3>
+        <div class="grid grid-cols-3 gap-4">
+           {techStack.map((tech) => (
+            <div class="aspect-square bg-zinc-950 border border-white/5 flex flex-col items-center justify-center p-6 rounded-2xl group hover:border-white/10 hover:bg-zinc-900 transition-all duration-500">
+                <img 
+                    src={tech.icon === 'figma' ? 'https://devicon-website.vercel.app/api/figma/original.svg' : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}/${tech.icon}-original.svg`} 
+                    alt={tech.name} 
+                    class="w-8 h-8 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                />
+                <span class="text-[9px] uppercase tracking-widest mt-4 opacity-0 group-hover:opacity-60 transition-opacity font-medium">{tech.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-40 px-10 md:px-24 border-t border-white/5 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-between items-end mb-24">
+        <div>
+          <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8">Selected Works</h2>
+          <h3 class="text-5xl md:text-7xl font-bold uppercase tracking-tighter">Featured <br/> <span class="text-zinc-800">Projects</span></h3>
+        </div>
+        <div class="hidden md:block text-[10px] uppercase tracking-[0.4em] text-zinc-600 italic pb-4">
+          Quality / Stability / Detail
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10">
+        {projects.map((project) => (
+          <div class="group cursor-pointer">
+            <div class="aspect-[16/10] bg-zinc-900 rounded-3xl overflow-hidden mb-8 border border-white/5 relative">
+              <img src={project.image} alt={project.title} class="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 grayscale hover:grayscale-0" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                 <span class="text-xs uppercase tracking-widest font-bold border-b border-white pb-1">View Case Study</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-start px-2">
+              <div>
+                <h4 class="text-2xl font-bold uppercase tracking-tight mb-2 group-hover:text-zinc-300 transition-colors">{project.title}</h4>
+                <p class="text-zinc-500 font-light max-w-sm">{project.description}</p>
+              </div>
+              <span class="text-[10px] uppercase tracking-widest text-zinc-600 bg-zinc-900/50 border border-white/5 px-3 py-1 rounded-full">{project.category}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact/Analytics Section -->
+  <section id="contact" class="py-40 px-10 md:px-24 border-t border-white/5 relative">
+    <div class="max-w-5xl mx-auto text-center">
+       <div class="inline-block mb-12 animate-pulse">
+          <div class="w-3 h-3 bg-white rounded-full"></div>
+       </div>
+       <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-12">Incoming Transmission</h2>
+       <p class="text-6xl md:text-9xl font-bold tracking-[ -0.05em] uppercase mb-16 italic text-balance">
+         Let's Build the <span class="text-zinc-800">Future</span> Together.
+       </p>
+       
+       <div class="flex flex-wrap justify-center gap-8 mb-32">
+         <a href="mailto:info@shibili.tech" class="px-12 py-6 bg-white text-black font-bold uppercase tracking-[0.2em] rounded-2xl hover:bg-zinc-200 transition-all transform hover:-translate-y-1 text-sm">
+           Initiate Contact
+         </a>
+         <a href="https://linkedin.com/in/shibili-aman-tk" target="_blank" class="px-12 py-6 border border-white/20 text-white font-bold uppercase tracking-[0.2em] rounded-2xl hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 text-sm bg-black/40 backdrop-blur-sm">
+           LinkedIn Profile
+         </a>
+       </div>
+
+       <div class="pt-24 border-t border-white/5 mt-20">
+          <h4 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-12">Growth Metrics / Analytics</h4>
+          <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
+             <img src="https://github-readme-stats.vercel.app/api?username=LordSA&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="Github Stats" class="h-40 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all rounded-xl" />
+             <img src="https://github-readme-streak-stats.herokuapp.com/?user=LordSA&theme=tokyonight&hide_border=true" alt="Github Streak" class="h-40 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all rounded-xl" />
+          </div>
+       </div>
+    </div>
+  </section>
+</main>
+
+<footer class="p-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.5em] text-zinc-700">
+  <div class="mb-4 md:mb-0">© 2026 Shibili Aman <span class="mx-4">|</span> Based in Kerala, India</div>
+  <div class="flex gap-10">
+    <a href="https://github.com/LordSA" class="hover:text-white transition-colors">GitHub</a>
+    <a href="https://www.linkedin.com/in/shibili-aman-tk" class="hover:text-white transition-colors">LinkedIn</a>
+    <a href="https://linktr.ee/__shibiliii._" class="hover:text-white transition-colors">Connect</a>
+  </div>
+  <div class="mt-4 md:mt-0 font-medium italic opacity-40 hover:opacity-100 transition-opacity underline decoration-zinc-800">
+     "Code and Die!"
+  </div>
+</footer>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-black: #050505;
+  --color-primary-white: #fafafa;
+  --color-accent-gray: #1a1a1a;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-primary-black);
+  color: var(--color-primary-white);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-primary-white);
+  color: var(--color-primary-black);
+}
