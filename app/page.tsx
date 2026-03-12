@@ -1,172 +1,111 @@
 "use client";
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import React from "react";
+import { motion } from "framer-motion";
 
-interface CommandResponse {
-  command: string;
-  output: React.ReactNode;
-}
+const projects = [
+  {
+    title: "ThinkForge",
+    desc: "A crowdfunding platform with real-time tracking.",
+    tech: ["Next.js", "Firebase", "Stripe"],
+    link: "#",
+    color: "bg-blue-500/10 border-blue-500/20"
+  },
+  {
+    title: "Travel Tribe",
+    desc: "Social network for global solo travelers.",
+    tech: ["React Native", "Node.js", "MongoDB"],
+    link: "#",
+    color: "bg-purple-500/10 border-purple-500/20"
+  },
+  {
+    title: "Telemetry v1",
+    desc: "IoT data visualization dashboard.",
+    tech: ["D3.js", "MQTT", "React"],
+    link: "#",
+    color: "bg-emerald-500/10 border-emerald-500/20"
+  }
+];
 
 export default function Home() {
-  const [input, setInput] = useState("");
-  const [history, setHistory] = useState<CommandResponse[]>([]);
-  const [isMaximized, setIsMaximized] = useState(false);
-  const container = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const commandResponses: Record<string, React.ReactNode> = {
-    help: (
-      <div className="grid grid-cols-2 gap-2 mt-1 font-mono text-sm opacity-90">
-        <span className="text-[#33ff33]">about</span> <span>- display biography</span>
-        <span className="text-[#33ff33]">projects</span> <span>- list active projects</span>
-        <span className="text-[#33ff33]">skills</span> <span>- view tech stack</span>
-        <span className="text-[#33ff33]">clear</span> <span>- clear terminal</span>
-        <span className="text-[#33ff33]">whoami</span> <span>- identity check</span>
-      </div>
-    ),
-    about: "SHIBILI AMAN TK // A Full-Stack Developer & UI/UX Architect based in India. Specializing in high-performance web systems and cinematic animations.",
-    whoami: "USER: GUEST // ROLE: VISITOR // STATUS: AUTHENTICATED",
-    projects: (
-      <div className="mt-2 space-y-2 font-mono text-sm">
-        <div>[1] <span className="text-[#33ff33]">ThinkForge</span> - Crowdfunding platform</div>
-        <div>[2] <span className="text-[#33ff33]">Travel Tribe</span> - Travel networking app</div>
-      </div>
-    ),
-    skills: "React, Next.js, Node.js, GSAP, Tailwind CSS, TypeScript, Figma",
-    clear: null,
-  };
-
-  useGSAP(() => {
-    gsap.from(".window-gui", { 
-      scale: 0.8, 
-      opacity: 0, 
-      duration: 1, 
-      ease: "power3.out",
-      y: 20
-    });
-  }, { scope: container });
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [history]);
-
-  const handleCommand = (e: React.FormEvent) => {
-    e.preventDefault();
-    const cmd = input.toLowerCase().trim();
-    if (cmd === "") return;
-
-    if (cmd === "clear") {
-      setHistory([]);
-    } else {
-      const response = commandResponses[cmd] || `Unknown command: ${cmd}. Type 'help'.`;
-      setHistory((prev) => [...prev, { command: input, output: response }]);
-    }
-    setInput("");
-  };
-
-  const focusInput = () => {
-    inputRef.current?.focus();
-  };
-
   return (
-    <div ref={container} className="h-screen w-full bg-[#121212] flex items-center justify-center p-4 selection:bg-[#33ff33] selection:text-black">
-      
-      {/* Wallpapers / HUD Background elements can go here */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-black via-[#0a0a0a] to-black opacity-100"></div>
+    <div className="min-h-screen bg-[#050505] text-white p-4 md:p-8 font-sans selection:bg-cyan-500 selection:text-black">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-cyan-500/10 blur-[120px] rounded-full" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-purple-500/10 blur-[120px] rounded-full" />
+      </div>
 
-      {/* Terminal Window GUI */}
-      <div 
-        className={`window-gui relative flex flex-col bg-black border border-white/10 rounded-xl shadow-[0_30px_100px_rgba(0,0,0,0.8)] transition-all duration-300 overflow-hidden
-        ${isMaximized ? 'w-[98vw] h-[95vh]' : 'w-full max-w-4xl h-[600px]'}
-        `}
-        onClick={focusInput}
-      >
-        
-        {/* GUI Header / Title Bar */}
-        <div className="h-10 bg-[#1e1e1e] flex items-center justify-between px-4 select-none">
-          <div className="flex items-center gap-6">
-            <div className="flex gap-2">
-              <div 
-                className="w-3 h-3 rounded-full bg-[#ff5f57] cursor-pointer hover:bg-[#ff7b75]" 
-                title="This does nothing"
-              ></div>
-              <div 
-                className="w-3 h-3 rounded-full bg-[#febc2e] cursor-pointer"
-                title="Minimize logic placeholder"
-              ></div>
-              <div 
-                className="w-3 h-3 rounded-full bg-[#28c840] cursor-pointer"
-                onClick={(e) => { e.stopPropagation(); setIsMaximized(!isMaximized); }}
-              ></div>
-            </div>
-            <div className="text-[11px] text-white/40 font-medium tracking-wide flex items-center gap-2">
-              <span className="opacity-60">Terminal</span> — shibili@LordSA — 80x24
-            </div>
+      <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 relative z-10">
+        <div className="md:col-span-2 md:row-span-2 bg-[#0a0a0a] border border-white/5 rounded-3xl p-8 flex flex-col justify-between group overflow-hidden relative">
+          <div>
+            <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl mb-6 shadow-lg shadow-cyan-500/20" />
+            <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-2">
+              SHIBILI<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">AMAN TK</span>
+            </h1>
+            <p className="text-white/60 text-lg max-w-md">
+              Full-Stack Developer & UI/UX Architect crafting high-performance digital experiences.
+            </p>
           </div>
-          
-          <div className="text-[10px] text-white/20 uppercase tracking-[2px]">
-             {isMaximized ? "Fullscreen Mode" : "Window Mode"}
+          <div className="mt-8 flex gap-4">
+            <a href="https://github.com/LordSA" className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors">
+              GitHub
+            </a>
+            <a href="https://linkedin.com/in/shibili-aman-tk" className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors">
+              LinkedIn
+            </a>
           </div>
         </div>
 
-        {/* Content Area */}
-        <div 
-          ref={scrollRef} 
-          className="flex-1 p-6 overflow-y-auto font-mono text-[#e0e0e0] bg-[#0c0c0c]/90 backdrop-blur-sm custom-scrollbar"
-        >
-          <div className="mb-4 text-[#33ff33]">
-            Welcome to LordSA-OS Terminal (GUI Version 1.0.4) <br/>
-            Last login: {new Date().toLocaleDateString()} on ttys002
-          </div>
+        <div className="bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 flex flex-col justify-center">
+          <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4">Currently</p>
+          <h2 className="text-xl font-bold mb-1">CSI CEV</h2>
+          <p className="text-cyan-500 text-sm font-medium">Design Head</p>
+        </div>
 
-          <div className="space-y-4">
-            {history.map((entry, i) => (
-              <div key={i} className="animate-in fade-in slide-in-from-left-2 duration-300">
-                <div className="flex items-center gap-2 text-white/50">
-                  <span className="text-[#33ff33]">shibili@LordSA</span>
-                  <span>:</span>
-                  <span className="text-blue-400">~</span>
-                  <span className="text-white">$ {entry.command}</span>
-                </div>
-                <div className="mt-1 pl-4 border-l border-white/5 text-sm leading-relaxed opacity-95">
-                  {entry.output}
-                </div>
-              </div>
+        <div className="bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 flex flex-col justify-center items-center text-center">
+          <div className="text-white/20 mb-3 text-4xl block">🌍</div>
+          <h2 className="text-lg font-bold">Kerala, India</h2>
+          <p className="text-white/40 text-xs uppercase tracking-tighter">Remote Available</p>
+        </div>
+
+        <div className="md:col-span-2 bg-[#0a0a0a] border border-white/5 rounded-3xl p-8 relative overflow-hidden group">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 bg-purple-500/20 rounded-lg text-purple-400">⌨️</div>
+            <h2 className="text-xl font-bold tracking-tight">Tech Stack</h2>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {["Next.js", "TypeScript", "GSAP", "Three.js", "Node.js", "Tailwind", "Python", "Figma"].map((skill) => (
+              <span key={skill} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm font-medium hover:border-cyan-500/50 transition-colors cursor-default">
+                {skill}
+              </span>
             ))}
           </div>
-
-          {/* Form / Prompt */}
-          <form onSubmit={handleCommand} className="mt-4 flex items-center gap-2">
-            <span className="text-[#33ff33] font-bold">shibili@LordSA</span>
-            <span className="text-white">:</span>
-            <span className="text-blue-400">~</span>
-            <span className="text-white">$</span>
-            <input
-              ref={inputRef}
-              autoFocus
-              className="flex-1 bg-transparent border-none outline-none text-white caret-[#33ff33]"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              autoComplete="off"
-              spellCheck="false"
-            />
-          </form>
         </div>
 
-        {/* GUI Footer */}
-        <div className="h-6 bg-[#1e1e1e]/50 border-t border-white/5 flex items-center px-4 text-[9px] text-white/20 justify-between">
-           <div className="flex gap-3">
-              <span>Main Bash Process</span>
-              <span>•</span>
-              <span>PID: 8842</span>
-           </div>
-           <div>Shibili Aman Portfolio 2026</div>
+        {projects.map((project, i) => (
+          <a key={i} href={project.link} className={`md:col-span-1 border rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between group ${project.color}`}>
+            <div>
+               <h3 className="font-bold text-lg mb-2">{project.title}</h3>
+               <p className="text-white/60 text-sm leading-relaxed">{project.desc}</p>
+            </div>
+            <div className="flex items-center justify-between mt-6">
+              <div className="flex gap-2">
+                {project.tech.map(t => <span key={t} className="text-[10px] opacity-40 uppercase font-bold">{t}</span>)}
+              </div>
+              <span className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-white">→</span>
+            </div>
+          </a>
+        ))}
+
+        <div className="md:col-span-1 bg-cyan-500 rounded-3xl p-6 flex flex-col justify-center items-center text-black cursor-pointer hover:bg-cyan-400 transition-colors group relative overflow-hidden">
+          <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+          <h2 className="text-2xl font-black uppercase italic relative z-10">Lets Talk</h2>
+          <span className="mt-2 relative z-10">✉️</span>
         </div>
-      </div>
+      </main>
+
+      <footer className="mt-12 text-center text-white/20 text-xs uppercase tracking-[0.5em] pb-8">
+        Designed & Built by Shibili Aman TK • © 2026
+      </footer>
     </div>
   );
 }
