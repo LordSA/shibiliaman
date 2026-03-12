@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import SmoothScroll from "../components/SmoothScroll";
+import ClientLayout from "../components/ClientLayout";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -44,13 +44,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <ClientLayout 
+        geistSans={geistSans.variable} 
+        geistMono={geistMono.variable}
       >
-        <SmoothScroll>
         {children}
-        </SmoothScroll>
-      </body>
+      </ClientLayout>
     </html>
   );
 }

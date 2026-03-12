@@ -17,10 +17,17 @@ export default function TerminalHero() {
     // 1. Initial Boot Sequence
     tl.to(".cursor", { opacity: 0, repeat: -1, duration: 0.5, ease: "steps(1)" });
     
+    // Fade in text containers
+    tl.from(".line-1, .line-2, .line-3", { 
+      opacity: 0, 
+      stagger: 0.5, 
+      duration: 0.5 
+    }, 0);
+
     // 2. Typing effect
-    tl.to(".line-1", { duration: 1, text: "system.init()", ease: "none" });
-    tl.to(".line-2", { duration: 1.5, text: "> user: SHIBILI", ease: "none" }, "+=0.5");
-    tl.to(".line-3", { duration: 2, text: "> status: BUILDING_MAGIC...", ease: "none" });
+    tl.to(".line-1", { duration: 1, text: "system.run(PORTFOLIO_v1.0)", ease: "none" });
+    tl.to(".line-2", { duration: 1.5, text: "> LOADING PROFILE: SHIBILI AMAN", ease: "none" }, "+=0.3");
+    tl.to(".line-3", { duration: 2, text: "> CONNECTED. READY TO DEPLOY...", ease: "none" }, "+=0.3");
     
     // 3. Glitch the whole container at the end
     tl.to(container.current, { 
