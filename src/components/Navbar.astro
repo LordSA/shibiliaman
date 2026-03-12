@@ -1,15 +1,46 @@
 ---
 ---
-<nav class="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-sm bg-black/50">
-  <div class="flex items-center gap-3 text-xl font-bold tracking-tighter uppercase transition-colors hover:text-gray-400">
-    <a href="/" class="flex items-center gap-4">
-      <img src="/logo.png" alt="Shibili Aman Logo" class="w-8 h-8 object-contain" />
-      <span>Shibili Aman</span>
+<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] flex items-center gap-8 md:gap-12 animate-nav-slidein transition-all duration-500 hover:border-white/20 hover:bg-black/60 group px-8">
+  <div class="flex items-center gap-3 pr-4 border-r border-white/10">
+    <a href="/" class="flex items-center gap-2 group/logo hover:opacity-80 transition-all">
+      <img src="/logo.png" alt="Shibili Aman Logo" class="w-6 h-6 object-contain grayscale group-hover/logo:grayscale-0 transition-all duration-500" />
+      <span class="text-sm font-bold tracking-tighter uppercase whitespace-nowrap hidden sm:block">Shibili Aman</span>
     </a>
   </div>
-  <div class="flex gap-8 items-center uppercase text-sm font-medium tracking-widest hidden md:flex">
-    <a href="#about" class="hover:opacity-60 transition-opacity">About</a>
-    <a href="#projects" class="hover:opacity-60 transition-opacity">Work</a>
-    <a href="#contact" class="hover:opacity-60 transition-opacity">Contact</a>
+  
+  <div class="flex gap-6 md:gap-10 items-center uppercase text-[10px] font-bold tracking-[0.2em] text-zinc-400">
+    <a href="#about" class="hover:text-white transition-colors relative group/link">
+      About
+      <span class="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover/link:w-full"></span>
+    </a>
+    <a href="#projects" class="hover:text-white transition-colors relative group/link">
+      Work
+      <span class="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover/link:w-full"></span>
+    </a>
+    <a href="#contact" class="hover:text-white transition-colors relative group/link">
+      Contact
+      <span class="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover/link:w-full"></span>
+    </a>
+  </div>
+
+  <div class="pl-4 border-l border-white/10 hidden md:block">
+    <a href="mailto:info@shibili.tech" class="text-[9px] uppercase tracking-[0.2em] py-2 px-4 bg-white text-black rounded-full font-bold hover:bg-zinc-200 transition-all active:scale-95 block">
+      Hire Me
+    </a>
   </div>
 </nav>
+
+<style>
+  @keyframes nav-slidein {
+    from { 
+      transform: translate(-50%, -30px); 
+      opacity: 0;
+      backdrop-filter: blur(0px);
+    }
+    to { 
+      transform: translate(-50%, 0); 
+      opacity: 1;
+      backdrop-filter: blur(24px);
+    }
+  }
+</style>
