@@ -4,6 +4,7 @@ import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
 import Loader from './Loader.astro';
 import CustomCursor from './CustomCursor.astro';
+import { projects } from '../data/projects';
 
 const links = [
   { href: 'https://github.com/LordSA', icon: Github, label: 'GitHub' },
@@ -19,37 +20,6 @@ const techStack = [
   { name: 'Java', icon: 'java', level: 2 },
   { name: 'Flutter', icon: 'flutter', level: 1 },
   { name: 'Figma', icon: 'figma', level: 3 },
-];
-
-const projects = [
-  {
-    title: "Eren Yeager ADV",
-    description: "A high-performance Telegram bot for advance group management and instant movie search. Built with asynchronous Python and optimized for large-scale communities with typo-tolerant search and efficient database design.",
-    category: "Python / Automation",
-    image: "https://telegra.ph/file/7226c9d57dc698158bab2.jpg",
-    link: "https://github.com/LordSA/Eren-Yeager-ADV"
-  },
-  {
-    title: "ThinKForge",
-    description: "A funding website platform built as a web application using core web technologies.",
-    category: "Web / TinkerHub",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/LordSA/ThinKForge"
-  },
-  {
-    title: "Oneman-Onevote",
-    description: "A secure voter validation system that uses IDs to prevent duplicate entries and ensure integrity.",
-    category: "Security / TypeScript",
-    image: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/LordSA/Oneman-onevote"
-  }
-  // {
-  //   title: "Shadow_Bot_Adv_1.0",
-  //   description: "A personal voice assistant designed to perform various automated tasks via voice commands.",
-  //   category: "AI / Python",
-  //   image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=1000",
-  //   link: "https://github.com/LordSA/Shadow_Bot_Adv_1.0"
-  // },
 ];
 ---
 
@@ -179,11 +149,11 @@ const projects = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
         {projects.map((project) => (
-          <a href={project.link || "#"} target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
+          <a href={`/project/${project.slug}`} class="group cursor-pointer block">
             <div class="aspect-[16/10] bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden mb-6 md:mb-8 border border-white/5 relative">
               <img src={project.image} alt={project.title} class="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 md:grayscale md:hover:grayscale-0" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                 <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-white pb-1">View Source / GitHub</span>
+                 <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-white pb-1">View Project Details</span>
               </div>
             </div>
             <div class="flex flex-col sm:flex-row justify-between items-start px-2 gap-4">
