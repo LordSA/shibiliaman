@@ -1,5 +1,7 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
+import CustomCursor from '../components/CustomCursor.astro';
 
 interface Props {
 	title?: string;
@@ -16,40 +18,108 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ClientRouter />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 	</head>
-	<body>
+	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
+		<CustomCursor />
+		<div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 		<slot />
 		<script>
 			import Lenis from 'lenis';
 			import 'lenis/dist/lenis.css';
 
-			const lenis = new Lenis({
-				duration: 2.2, // Cinematic slow duration
-				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom power-based easing
-				orientation: 'vertical',
-				smoothWheel: true,
-				wheelMultiplier: 1.1,
-			});
+			let lenis: Lenis | null = null;
 
-			function raf(time) {
-				lenis.raf(time);
+			const initLenis = () => {
+				if (lenis) {
+					lenis.destroy();
+				}
+
+				lenis = new Lenis({
+					duration: 1.2,
+					easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+					orientation: 'vertical',
+					gestureOrientation: 'vertical',
+					smoothWheel: true,
+					touchMultiplier: 2,
+					infinite: false,
+					wheelMultiplier: 1,
+				});
+
+				function raf(time: number) {
+					lenis?.raf(time);
+					requestAnimationFrame(raf);
+				}
+
 				requestAnimationFrame(raf);
-			}
+				
+				// Ensure scroll is enabled
+				lenis.start();
+			};
 
-			requestAnimationFrame(raf);
+			// Initialize on load
+			initLenis();
+
+			// Re-initialize on page navigation
+			document.addEventListener('astro:after-swap', () => {
+				initLenis();
+				// Reset scroll to top on page change
+				window.scrollTo(0, 0);
+			});
 		</script>
 	</body>
 </html>
 
-<style>
-	html,
+<style is:global>
+	html {
+		height: 100%;
+		overflow-y: auto;
+		scroll-behavior: auto !important;
+	}
+
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
-		overflow-x: hidden;
+		min-height: 100%;
+		cursor: none !important;
+		background: black;
+	}
+
+	/* Lenis specific fixes */
+	html.lenis, html.lenis body {
+		height: auto;
+	}
+
+	.lenis.lenis-smooth {
+		scroll-behavior: auto !important;
+	}
+
+	.lenis.lenis-smooth [data-lenis-prevent] {
+		overscroll-behavior: contain;
+	}
+
+	.lenis.lenis-stopped {
+		overflow: hidden;
+	}
+
+	.lenis.lenis-scrolling iframe {
+		pointer-events: none;
+	}
+
+
+	/* Force cursor none for all interactive elements on desktop only */
+	@media (hover: hover) {
+		a, button, [role="button"], input, textarea, select {
+			cursor: none !important;
+		}
+	}
+
+	@media (hover: none) and (pointer: coarse) {
+		html, body, *, a, button {
+			cursor: auto !important;
+		}
 	}
 </style>
