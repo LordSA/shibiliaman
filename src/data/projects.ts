@@ -37,5 +37,50 @@ export const projects: Project[] = [
     category: "Security / TypeScript",
     image: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80&w=1000",
     link: "https://github.com/LordSA/Oneman-onevote"
+  },
+  {
+    slug: "fluffy",
+    title: "Fluffy",
+    description:"testing",
+    category: "Discord / Automation",
+    image: "",
+    link: "https://github.com/LordSA/Fluffy"
+  },
+  {
+    slug: "lullaby-down-below",
+    title: "Lullaby Down Below",
+    description: "Java game",
+    category: "Game / Java",
+    image:"",
+    link: "https://github.com/Muhsin-603/lullaby-down-below",
+    github: "github.com/Muhsin-603/lullaby-down-below"
+  },
+  {
+    slug: "reclamation",
+    title: "Reclamation 1947",
+    description: "unity game for game jam",
+    category: "Game / Unity",
+    image: "",
+    link:"github.com/LordSA",
+    github:"github.com/LordSA"
+  },
+  {
+    slug:"sudo-clean",
+    title: "Sudo Clean",
+    description: "a declutter tool using python",
+    category: "Python / Declutter",
+    image: "",
+    link:"https://github.com/LordSA/sudo-clean",
+    github:"github.com/LordSA/sudo-clean"
+  },
+  {
+    slug:"whatsatcev",
+    title: "Whats@CEV",
+    description: "an ai based web",
+    category: "AI / Management",
+    image: "",
+    link: "https://github.com/LordSA/event-manager",
+    github: "github.com/LordSA/event-manager",
+    live: "https://whatsatcev.shibili.tech"
   }
 ];
