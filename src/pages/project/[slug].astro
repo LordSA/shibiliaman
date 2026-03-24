@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/projects';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import CustomCursor from '../../components/CustomCursor.astro';
+import { Github, ExternalLink, ArrowLeft } from '@lucide/astro';
+
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} | Shibili Aman`}>
+  <CustomCursor />
+  <Navbar />
+  <main class="bg-black min-h-screen pt-32 pb-20 px-6 sm:px-10 md:px-24">
+    <div class="max-w-4xl mx-auto">
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors mb-12 group"
+      >
+        <ArrowLeft size={20} class="transition-transform group-hover:-translate-x-1" />
+        <span class="text-sm uppercase tracking-widest">Back to Portfolio</span>
+      </a>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+        <div class="space-y-8 animate-fade-in">
+          <div>
+            <span class="text-zinc-500 text-[10px] uppercase tracking-[0.3em] mb-4 block">
+              {project.category}
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6 uppercase">
+              {project.title}
+            </h1>
+          </div>
+
+          <p class="text-lg text-zinc-400 leading-relaxed font-light">
+            {project.fullDescription || project.description}
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-4">
+            {project.live && (
+              <a 
+                href={project.live} 
+                target="_blank" 
+                class="px-8 py-4 bg-white text-black rounded-full text-[10px] uppercase tracking-widest font-bold hover:bg-zinc-200 transition-all flex items-center gap-2"
+              >
+                <ExternalLink size={16} />
+                Live Version
+              </a>
+            )}
+            {project.github && (
+              <a 
+                href={`https://${project.github}`} 
+                target="_blank" 
+                class="px-8 py-4 bg-zinc-900 text-white border border-white/10 rounded-full text-[10px] uppercase tracking-widest font-bold hover:bg-zinc-800 transition-all flex items-center gap-2"
+              >
+                <Github size={16} />
+                Source Code
+              </a>
+            )}
+          </div>
+        </div>
+
+        <div class="relative group animate-fade-in-up">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-white/5 to-transparent blur-2xl rounded-[2.5rem] opacity-50"></div>
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            class="relative z-10 w-full aspect-square md:aspect-[4/5] object-cover rounded-[2rem] grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 border border-white/10"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
