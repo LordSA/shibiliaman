@@ -62,7 +62,8 @@ export const projects: Project[] = [
     category: "Game / Unity",
     image: "",
     link:"github.com/LordSA",
-    github:"github.com/LordSA"
+    github:"github.com/LordSA",
+    fullDescription: "Developed a game prototype for Global Game Jam 2026 using the Unity game engine. Contributed to gameplay development, scene setup, and asset integration while collaborating with a team in a fast-paced 48-hour game development environment."
   },
   {
     slug:"sudo-clean",
@@ -71,7 +72,8 @@ export const projects: Project[] = [
     category: "Python / Declutter",
     image: "",
     link:"https://github.com/LordSA/sudo-clean",
-    github:"github.com/LordSA/sudo-clean"
+    github:"github.com/LordSA/sudo-clean",
+    fullDescription: "Built Sudo Clean, an intelligent desktop automation tool designed to simplify file management through natural language commands. The system allows users to organize, clean, and manage files using simple human-friendly instructions, transforming them into structured file system actions. Developed with a strong focus on usability and safety, the tool supports smart sorting, automated cleanup, and context-aware organization while maintaining transparent operations.This project reflects my interest in building practical AI-driven solutions that improve everyday productivity and digital workflows."
   },
   {
     slug:"whatsatcev",
@@ -81,6 +83,15 @@ export const projects: Project[] = [
     image: "",
     link: "https://github.com/LordSA/event-manager",
     github: "github.com/LordSA/event-manager",
-    live: "https://whatsatcev.shibili.tech"
+    live: "https://whatsatcev.shibili.tech",
+    fullDescription: "An AI-powered web platform designed to provide real-time information about events happening at CEV and streamline event management processes. The system aims to centralize event updates, announcements, schedules, and coordination tools into a single accessible interface.It enhances communication between organizers and participants while simplifying event planning, tracking, and engagement through intelligent automation and structured data management."
+  },
+  {
+    slug: "sensaflora",
+    title: "Sensaflora Online",
+    description:"an e-commerce web",
+    category: "E-commerce / Jwellery",
+    image: "",
+    link: "https://sensaflora.shibili.tech"
   }
 ];
