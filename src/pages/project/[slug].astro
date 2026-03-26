@@ -3,7 +3,6 @@ import Layout from '../../layouts/Layout.astro';
 import { projects } from '../../data/projects';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
-import CustomCursor from '../../components/CustomCursor.astro';
 import { Github, ExternalLink, ArrowLeft } from '@lucide/astro';
 
 export async function getStaticPaths() {
@@ -17,7 +16,6 @@ const { project } = Astro.props;
 ---
 
 <Layout title={`${project.title} | Shibili Aman`}>
-  <CustomCursor />
   <Navbar />
   <main class="bg-black min-h-screen pt-32 pb-20 px-6 sm:px-10 md:px-24">
     <div class="max-w-4xl mx-auto">

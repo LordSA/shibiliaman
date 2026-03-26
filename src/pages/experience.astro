@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import { experiences } from '../data/experience';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import CustomCursor from '../components/CustomCursor.astro';
 import { Briefcase, MapPin, Calendar, CheckCircle2 } from '@lucide/astro';
 
 ---
@@ -39,7 +38,6 @@ import { Briefcase, MapPin, Calendar, CheckCircle2 } from '@lucide/astro';
               <div class="relative ml-8 md:ml-10 pl-10 md:pl-16 border-l-2 border-white/5 space-y-16 md:space-y-24">
                 {exp.positions.map((pos, idx) => (
                   <div class="relative">
-                    <!-- Connector Dot -->
                     <div class="absolute -left-[51px] md:-left-[75px] top-2 w-6 h-6 rounded-full bg-black border-2 border-white/10 group-hover:border-white/30 transition-all duration-500 z-20 flex items-center justify-center">
                        <div class="w-2 h-2 rounded-full bg-zinc-900 group-hover:bg-emerald-500 transition-all duration-500 shadow-[0_0_15px_rgba(16,185,129,0)] group-hover:shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
                     </div>
