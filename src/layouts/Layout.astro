@@ -56,17 +56,13 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 
 				requestAnimationFrame(raf);
 				
-				// Ensure scroll is enabled
 				lenis.start();
 			};
 
-			// Initialize on load
 			initLenis();
 
-			// Re-initialize on page navigation
 			document.addEventListener('astro:after-swap', () => {
 				initLenis();
-				// Reset scroll to top on page change
 				window.scrollTo(0, 0);
 			});
 		</script>
@@ -88,7 +84,6 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 		background: black;
 	}
 
-	/* Lenis specific fixes */
 	html.lenis, html.lenis body {
 		height: auto;
 	}
@@ -109,8 +104,6 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 		pointer-events: none;
 	}
 
-
-	/* Force cursor none for all interactive elements on desktop only */
 	@media (hover: hover) {
 		a, button, [role="button"], input, textarea, select {
 			cursor: none !important;
