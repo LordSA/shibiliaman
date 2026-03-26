@@ -35,10 +35,6 @@ export const experiences: Experience[] = [
         period: "Oct 2025 - Present",
         description: "As the Co-Lead of LucidPixl Designs, I drive the creative vision and oversee the execution of design projects across branding, digital, and visual media. I collaborate with teams and clients to transform ideas into compelling visual experiences, ensuring high-quality output while fostering a culture of creativity, innovation, and design excellence.",
         tags: ["Design", "Visual Branding", "Creative Strategy"],
-        // achievements: [
-        //   "Delivered impactful design solutions for events, campaigns, and startup initiatives.",
-        //   "Collaborated with cross-functional teams to maintain consistent and engaging branding.",
-        // ]
       }
     ]
   },
@@ -61,20 +57,18 @@ export const experiences: Experience[] = [
     ]
   },
   {
-    slug: "ql12",
-    company: "Quasso Liberum XI",
+    slug: "csicev",
+    company: "CSI SB CEV",
     positions: [
       {
-        role: "Designer",
-        period: "Nov 2025 - Feb 2026",
-        description: "As a Designer for Quasso Liberum XI, I created visually engaging assets that shaped the event’s identity and audience experience. I contributed to branding, promotional creatives, and digital content, ensuring consistency and impact across all touchpoints while supporting the event’s outreach and engagement goals.",
-        tags: ["Techfest", "Visual Branding", "Design"],
-        // achievements: [
-        //   "Scaled TinkerHub CEV’s visibility through strategic outreach and storytelling",
-        //   "Executed impactful campaigns that amplified student innovations",
-        //   "Built and led a cohesive media & design team for consistent branding.",
-        //   "Organized workshops on modern web technologies."
-        // ]
+        role: "Design Lead",
+        period: "May 2025 - Present",
+        description: "As the Head Design Lead at CSI SB CEV, I lead the creative direction and oversee all design outputs of the chapter. I manage and mentor the design team to produce impactful visuals for events, campaigns, and communications, ensuring consistent branding while enhancing the overall engagement and identity of the community.",
+        tags: ["Design Leadership", "Branding", "Creative Direction"],
+        achievements: [
+          "Led and scaled the design team to deliver high-quality creatives across multiple initiatives.",
+          "Established consistent visual branding for events and communications.",
+        ]
       }
     ]
   },
@@ -95,18 +89,14 @@ export const experiences: Experience[] = [
     ]
   },
   {
-    slug: "letsupgrade",
-    company: "LetsUpgrade",
+    slug: "ql12",
+    company: "Quasso Liberum XI",
     positions: [
       {
-        role: "Sudent Ambassador",
-        period: "Feb 2025 - Nov 2025",
-        description: "As a Student Ambassador at Let'sUpgrade, I promote learning initiatives and empower students to upskill through workshops, programs, and community engagement. I drive outreach activities, encourage participation, and act as a bridge between the platform and the student community, helping expand its reach and impact.",
-        tags: ["Community Building", "Outreach", "Growth"],
-        achievements: [
-          "Increased student participation through targeted outreach and engagement initiatives.",
-          "Successfully promoted learning programs and workshops to expand community reach.",
-        ]
+        role: "Designer",
+        period: "Nov 2025 - Feb 2026",
+        description: "As a Designer for Quasso Liberum XI, I created visually engaging assets that shaped the event’s identity and audience experience. I contributed to branding, promotional creatives, and digital content, ensuring consistency and impact across all touchpoints while supporting the event’s outreach and engagement goals.",
+        tags: ["Techfest", "Visual Branding", "Design"],
       }
     ]
   },
@@ -127,21 +117,22 @@ export const experiences: Experience[] = [
     ]
   },
   {
-    slug: "csicev",
-    company: "CSI SB CEV",
+    slug: "letsup", 
+    company: "LetsUpgrade",
     positions: [
       {
-        role: "Design Lead",
-        period: "May 2025 - Present",
-        description: "As the Head Design Lead at CSI SB CEV, I lead the creative direction and oversee all design outputs of the chapter. I manage and mentor the design team to produce impactful visuals for events, campaigns, and communications, ensuring consistent branding while enhancing the overall engagement and identity of the community.",
-        tags: ["Design Leadership", "Branding", "Creative Direction"],
+        role: "Sudent Ambassador",
+        period: "Feb 2025 - Nov 2025",
+        description: "As a Student Ambassador at Let'sUpgrade, I promote learning initiatives and empower students to upskill through workshops, programs, and community engagement. I drive outreach activities, encourage participation, and act as a bridge between the platform and the student community, helping expand its reach and impact.",
+        tags: ["Community Building", "Outreach", "Growth"],
         achievements: [
-          "Led and scaled the design team to deliver high-quality creatives across multiple initiatives.",
-          "Established consistent visual branding for events and communications.",
+          "Increased student participation through targeted outreach and engagement initiatives.",
+          "Successfully promoted learning programs and workshops to expand community reach.",
         ]
       }
     ]
   }
+
   // {
   //   slug: "freelance-developer",
   //   company: "Freelance",
