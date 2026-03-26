@@ -17,16 +17,32 @@
 </div>
 
 <script>
-  window.addEventListener('load', () => {
+  const initLoader = () => {
     const loader = document.getElementById('loader');
     if (loader) {
-      setTimeout(() => {
-        loader.style.transform = 'scale(5)';
-        loader.style.opacity = '0';
-        loader.style.pointerEvents = 'none';
-      }, 2500);
+      // Small timeout to ensure scale(5) transition from previous page (if any) is reset
+      requestAnimationFrame(() => {
+        loader.style.transition = 'none';
+        loader.style.transform = 'scale(1)';
+        loader.style.opacity = '1';
+        loader.style.pointerEvents = 'auto';
+        
+        // Force reflow
+        loader.offsetHeight;
+        
+        loader.style.transition = 'all 1500ms cubic-bezier(0.85, 0, 0.15, 1)';
+
+        setTimeout(() => {
+          loader.style.transform = 'scale(5)';
+          loader.style.opacity = '0';
+          loader.style.pointerEvents = 'none';
+        }, 2000);
+      });
     }
-  });
+  };
+
+  // Run on page load (covers both initial load and ClientRouter navigation)
+  document.addEventListener('astro:page-load', initLoader);
 </script>
 
 <style>
