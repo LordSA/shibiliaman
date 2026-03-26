@@ -127,9 +127,9 @@ const techStack = [
       
       <div class="lg:col-span-5 flex flex-col justify-start">
         <h3 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12">Tech Arsenal</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
            {techStack.map((tech) => (
-            <div class="bg-zinc-950/50 border border-white/5 flex items-center gap-4 md:gap-6 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm">
+            <div class="bg-zinc-950/50 border border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm text-center sm:text-left">
                 <div class="relative">
                   <img 
                       src={tech.icon === 'figma' ? 'https://devicon-website.vercel.app/api/figma/original.svg' : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}/${tech.icon}-original.svg`} 
