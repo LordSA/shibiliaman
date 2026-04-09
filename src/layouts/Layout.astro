@@ -27,6 +27,21 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 		<CustomCursor />
 		<div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 		<slot />
+		<div id="cheat-menu-overlay" class="cheat-menu-overlay" aria-hidden="true">
+			<div class="cheat-menu-panel" role="dialog" aria-modal="true" aria-labelledby="cheat-menu-title">
+				<div class="cheat-menu-head">
+					<p class="cheat-menu-tag">Dev Console</p>
+					<h2 id="cheat-menu-title">Cheat Menu</h2>
+					<button id="cheat-menu-close" type="button" class="cheat-menu-close" aria-label="Close cheat menu">Close</button>
+				</div>
+				<p class="cheat-menu-note">Secret menu is active. Cheats can be added here next.</p>
+				<div class="cheat-menu-items">
+					<button type="button" class="cheat-item" data-cheat="placeholder-1">Cheat Slot 1</button>
+					<button type="button" class="cheat-item" data-cheat="placeholder-2">Cheat Slot 2</button>
+					<button type="button" class="cheat-item" data-cheat="placeholder-3">Cheat Slot 3</button>
+				</div>
+			</div>
+		</div>
 		<script>
 			import Lenis from 'lenis';
 			import 'lenis/dist/lenis.css';
@@ -64,6 +79,118 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 			document.addEventListener('astro:after-swap', () => {
 				initLenis();
 				window.scrollTo(0, 0);
+			});
+
+			type CheatMenuState = {
+				buffer: string[];
+				lastBufferAt: number;
+			};
+
+			declare global {
+				interface Window {
+					__cheatMenuInitialized?: boolean;
+					__cheatMenuState?: CheatMenuState;
+				}
+			}
+
+			const CHEAT_SEQUENCE = ['2', '2', '5', '5'];
+			const BUFFER_TIMEOUT_MS = 1800;
+
+			const getCheatElements = () => {
+				const overlay = document.getElementById('cheat-menu-overlay');
+				const closeBtn = document.getElementById('cheat-menu-close');
+				return { overlay, closeBtn };
+			};
+
+			const setMenuVisible = (visible: boolean) => {
+				const { overlay } = getCheatElements();
+				if (!overlay) return;
+
+				overlay.classList.toggle('is-open', visible);
+				overlay.setAttribute('aria-hidden', String(!visible));
+			};
+
+			const toggleMenu = () => {
+				const { overlay } = getCheatElements();
+				if (!overlay) return;
+				setMenuVisible(!overlay.classList.contains('is-open'));
+			};
+
+			const resetBuffer = () => {
+				window.__cheatMenuState = {
+					buffer: [],
+					lastBufferAt: 0,
+				};
+			};
+
+			const hasTypedSequence = () => {
+				const state = window.__cheatMenuState;
+				if (!state) return false;
+				if (state.buffer.length !== CHEAT_SEQUENCE.length) return false;
+				return state.buffer.every((value, idx) => value === CHEAT_SEQUENCE[idx]);
+			};
+
+			const onKeydown = (event: KeyboardEvent) => {
+				if (!window.__cheatMenuState) {
+					resetBuffer();
+				}
+
+				const state = window.__cheatMenuState!;
+				const now = Date.now();
+
+				if (now - state.lastBufferAt > BUFFER_TIMEOUT_MS) {
+					state.buffer = [];
+				}
+
+				if (event.key === '2' || event.key === '5') {
+					state.buffer.push(event.key);
+					if (state.buffer.length > CHEAT_SEQUENCE.length) {
+						state.buffer = state.buffer.slice(-CHEAT_SEQUENCE.length);
+					}
+					state.lastBufferAt = now;
+					return;
+				}
+
+				if (event.shiftKey && event.key.toLowerCase() === 'l' && hasTypedSequence()) {
+					toggleMenu();
+					resetBuffer();
+					return;
+				}
+
+				if (event.key === 'Escape') {
+					setMenuVisible(false);
+					return;
+				}
+
+				if (!event.shiftKey) {
+					state.buffer = [];
+				}
+			};
+
+			const wireCheatMenuActions = () => {
+				const { overlay, closeBtn } = getCheatElements();
+				if (!overlay || !closeBtn) return;
+
+				closeBtn.onclick = () => setMenuVisible(false);
+				overlay.onclick = (event) => {
+					if (event.target === overlay) {
+						setMenuVisible(false);
+					}
+				};
+			};
+
+			if (!window.__cheatMenuInitialized) {
+				window.__cheatMenuInitialized = true;
+				resetBuffer();
+				document.addEventListener('keydown', onKeydown);
+			}
+
+			wireCheatMenuActions();
+
+			document.addEventListener('astro:after-swap', () => {
+				wireCheatMenuActions();
+				setMenuVisible(false);
+				resetBuffer();
 			});
 		</script>
 	</body>
@@ -113,6 +240,103 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 	@media (hover: none) and (pointer: coarse) {
 		html, body, *, a, button {
 			cursor: auto !important;
+		}
+	}
+
+	.cheat-menu-overlay {
+		position: fixed;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		background: rgba(0, 0, 0, 0.72);
+		backdrop-filter: blur(8px);
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(0.75rem);
+		transition: opacity 0.2s ease, transform 0.2s ease;
+		z-index: 2000;
+	}
+
+	.cheat-menu-overlay.is-open {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	.cheat-menu-panel {
+		width: min(92vw, 540px);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		border-radius: 16px;
+		padding: 1rem;
+		background: linear-gradient(160deg, rgba(8, 8, 8, 0.96), rgba(24, 24, 24, 0.94));
+		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+	}
+
+	.cheat-menu-head {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 0.5rem;
+		align-items: center;
+		margin-bottom: 0.75rem;
+	}
+
+	.cheat-menu-tag {
+		grid-column: 1 / -1;
+		font-size: 0.65rem;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+		margin: 0;
+	}
+
+	.cheat-menu-head h2 {
+		margin: 0;
+		font-size: 1.35rem;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.cheat-menu-close {
+		appearance: none;
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		background: transparent;
+		color: #fff;
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.13em;
+		padding: 0.35rem 0.65rem;
+		border-radius: 999px;
+	}
+
+	.cheat-menu-note {
+		margin: 0.25rem 0 0.85rem;
+		font-size: 0.85rem;
+		color: rgba(255, 255, 255, 0.68);
+	}
+
+	.cheat-menu-items {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.6rem;
+	}
+
+	.cheat-item {
+		appearance: none;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		background: rgba(255, 255, 255, 0.03);
+		color: #fff;
+		padding: 0.65rem 0.55rem;
+		border-radius: 10px;
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	@media (max-width: 640px) {
+		.cheat-menu-items {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>
