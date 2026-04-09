@@ -26,10 +26,21 @@ export const projects: Project[] = [
     slug: "thinkforge",
     title: "ThinKForge",
     description: "A funding website platform built as a web application using core web technologies.",
-    category: "Web / TinkerHub",
+    category: "Web / Mini Project",
     image: "/projects/thinkforge.webp",
     link: "https://github.com/LordSA/ThinKForge",
     fullDescription: "Developed ThinKForge, a compact and intuitive crowdfunding web platform that enables creators and project owners to raise funds, share their ideas, and connect with supporters. Built with a focus on simplicity, transparency, and seamless user experience, the platform supports project listings, contribution flows, and campaign tracking in a lightweight web environment.Worked on both frontend and backend components to create a responsive UI and reliable payment logic, reinforcing my full-stack development capabilities and understanding of web-based financial interactions.This project highlights my passion for building tools that empower creators and democratize access to funding opportunities."
+  },
+  {
+    slug: "healthmed",
+    title: "HealthMed",
+    description: "HealthMed is a secure medical assessment platform that analyzes patient symptoms and vital signs to provide preliminary disease predictions and medication guidance. Designed as a 'digital vault' for personal health records, it offers evidence-based clinical insights and professional reports when immediate access to a doctor is unavailable, ensuring users have a reliable starting point for their healthcare journey.",
+    category: "Web App / Mini Project",
+    image: "/projects/healthmed.webp",
+    link: "https://github.com/faraayshat/med_req",
+    github: "github.com/faraayshat/med_req",
+    live: "https://medreq.vercel.app",
+    fullDescription: "Developed as a high-security medical intake infrastructure, HealthMed (originally MedReq) leverages a modern Next.js 16 and Firebase architecture to process complex clinical data. As the Prime Contributor, I engineered an asynchronous analysis engine that handles multi-stage processing jobs with automated recovery and real-time status polling. The platform features a hardened security layer including server-side session management, strict Zod schema validation, and multi-tier rate limiting to protect sensitive patient information. Beyond data entry, the system utilizes algorithms to detect physiological anomalies—such as SpO2 drops or febrile patterns—and cross-references them with authoritative sources like the CDC and NHS to generate structured PDF reports. The application is rounded out with a high-performance denormalized data model for instant dashboard access and a comprehensive testing suite utilizing Vitest and Playwright. This project exemplifies my commitment to building robust, secure, and user-centric applications that address real-world challenges in healthcare technology."
   },
   {
     slug: "oneman-onevote",
