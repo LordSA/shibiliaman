@@ -17,6 +17,38 @@ interface Props {
 }
 
 const { title = "Shibili Aman | Portfolio" } = Astro.props;
+const canonicalOrigin = Astro.url.origin;
+const personStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Shibili Aman TK',
+	alternateName: 'Shibili Aman',
+	url: canonicalOrigin,
+	image: `${canonicalOrigin}/shibili.webp`,
+	description: 'B.Tech CSE student at College of Engineering Vadakara and Full-Stack Developer building scalable solutions and developer tools.',
+	jobTitle: 'B.Tech CSE Student and Full-Stack Developer',
+	sameAs: [
+		'https://github.com/LordSA',
+		'https://www.linkedin.com/in/shibili-aman-tk',
+		'https://x.com/shibiliii_aman',
+		'https://tinkerhub.org/@shibiliamantk',
+		'https://instagram.com/__shibiliii._',
+	],
+	affiliation: {
+		'@type': 'CollegeOrUniversity',
+		name: 'College of Engineering Vadakara',
+	},
+	knowsAbout: [
+		'Python',
+		'JavaScript',
+		'TypeScript',
+		'Astro',
+		'UI/UX',
+		'Automation',
+		'Bot Development',
+		'Web Performance',
+	],
+};
 ---
 
 <!doctype html>
@@ -32,6 +64,7 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+		<script type="application/ld+json" set:html={JSON.stringify(personStructuredData)}></script>
 	</head>
 	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
 		<CustomCursor />
