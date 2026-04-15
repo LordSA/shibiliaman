@@ -34,12 +34,22 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 					<h2 id="cheat-menu-title">Cheat Menu</h2>
 					<button id="cheat-menu-close" type="button" class="cheat-menu-close" aria-label="Close cheat menu">Close</button>
 				</div>
-				<p class="cheat-menu-note">Secret menu is active. Cheats can be added here next.</p>
+				<p class="cheat-menu-note">Debug shortcuts and quick actions live here. Hooks are ready for real commands.</p>
 				<div class="cheat-menu-items">
-					<button type="button" class="cheat-item" data-cheat="placeholder-1">Cheat Slot 1</button>
-					<button type="button" class="cheat-item" data-cheat="placeholder-2">Cheat Slot 2</button>
-					<button type="button" class="cheat-item" data-cheat="placeholder-3">Cheat Slot 3</button>
+					<button type="button" class="cheat-item" data-cheat="placeholder-1">
+						<span class="cheat-item-title">Cheat Slot 1</span>
+						<span class="cheat-item-sub">Placeholder action</span>
+					</button>
+					<button type="button" class="cheat-item" data-cheat="placeholder-2">
+						<span class="cheat-item-title">Cheat Slot 2</span>
+						<span class="cheat-item-sub">Placeholder action</span>
+					</button>
+					<button type="button" class="cheat-item" data-cheat="placeholder-3">
+						<span class="cheat-item-title">Cheat Slot 3</span>
+						<span class="cheat-item-sub">Placeholder action</span>
+					</button>
 				</div>
+				<p class="cheat-menu-hint">Hint: type <kbd>2 2 5 5</kbd> then press <kbd>Shift + L</kbd></p>
 			</div>
 		</div>
 		<script>
@@ -250,93 +260,184 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 		align-items: center;
 		justify-content: center;
 		padding: 1rem;
-		background: rgba(0, 0, 0, 0.72);
-		backdrop-filter: blur(8px);
+		background:
+			radial-gradient(circle at 20% 20%, rgba(35, 190, 255, 0.14), transparent 42%),
+			radial-gradient(circle at 80% 80%, rgba(255, 116, 116, 0.1), transparent 38%),
+			rgba(0, 0, 0, 0.78);
+		backdrop-filter: blur(12px);
 		opacity: 0;
 		pointer-events: none;
-		transform: translateY(0.75rem);
-		transition: opacity 0.2s ease, transform 0.2s ease;
+		transform: translateY(0.75rem) scale(0.985);
+		transition: opacity 0.24s ease, transform 0.24s ease;
 		z-index: 2000;
 	}
 
 	.cheat-menu-overlay.is-open {
 		opacity: 1;
 		pointer-events: auto;
-		transform: translateY(0);
+		transform: translateY(0) scale(1);
 	}
 
 	.cheat-menu-panel {
-		width: min(92vw, 540px);
-		border: 1px solid rgba(255, 255, 255, 0.15);
-		border-radius: 16px;
-		padding: 1rem;
-		background: linear-gradient(160deg, rgba(8, 8, 8, 0.96), rgba(24, 24, 24, 0.94));
-		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+		position: relative;
+		overflow: hidden;
+		width: min(92vw, 560px);
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		border-radius: 20px;
+		padding: 1.1rem;
+		background: linear-gradient(160deg, rgba(10, 12, 16, 0.96), rgba(20, 20, 24, 0.94));
+		box-shadow: 0 26px 50px rgba(0, 0, 0, 0.48);
+	}
+
+	.cheat-menu-panel::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(120deg, rgba(78, 214, 255, 0.2) 0%, transparent 45%),
+			repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0, rgba(255, 255, 255, 0.045) 1px, transparent 1px, transparent 22px);
+		opacity: 0.35;
 	}
 
 	.cheat-menu-head {
+		position: relative;
+		z-index: 1;
 		display: grid;
 		grid-template-columns: 1fr auto;
-		gap: 0.5rem;
+		gap: 0.6rem;
 		align-items: center;
-		margin-bottom: 0.75rem;
+		margin-bottom: 0.95rem;
+		padding-bottom: 0.65rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 	}
 
 	.cheat-menu-tag {
 		grid-column: 1 / -1;
-		font-size: 0.65rem;
-		letter-spacing: 0.18em;
+		font-size: 0.66rem;
+		letter-spacing: 0.2em;
 		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(160, 220, 255, 0.78);
 		margin: 0;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.cheat-menu-head h2 {
 		margin: 0;
-		font-size: 1.35rem;
-		letter-spacing: 0.04em;
+		font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+		letter-spacing: 0.07em;
 		text-transform: uppercase;
+		line-height: 1.1;
 	}
 
 	.cheat-menu-close {
 		appearance: none;
-		border: 1px solid rgba(255, 255, 255, 0.24);
-		background: transparent;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: rgba(255, 255, 255, 0.04);
 		color: #fff;
-		font-size: 0.72rem;
+		font-size: 0.68rem;
+		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: 0.13em;
-		padding: 0.35rem 0.65rem;
+		letter-spacing: 0.16em;
+		padding: 0.4rem 0.72rem;
 		border-radius: 999px;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.cheat-menu-close:hover,
+	.cheat-menu-close:focus-visible {
+		border-color: rgba(161, 228, 255, 0.7);
+		background: rgba(111, 201, 255, 0.14);
+		outline: none;
 	}
 
 	.cheat-menu-note {
-		margin: 0.25rem 0 0.85rem;
-		font-size: 0.85rem;
-		color: rgba(255, 255, 255, 0.68);
+		position: relative;
+		z-index: 1;
+		margin: 0.35rem 0 0.95rem;
+		font-size: 0.88rem;
+		line-height: 1.45;
+		color: rgba(245, 247, 255, 0.78);
 	}
 
 	.cheat-menu-items {
+		position: relative;
+		z-index: 1;
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 0.6rem;
+		gap: 0.65rem;
 	}
 
 	.cheat-item {
 		appearance: none;
-		border: 1px solid rgba(255, 255, 255, 0.18);
-		background: rgba(255, 255, 255, 0.03);
+		text-align: left;
+		display: grid;
+		gap: 0.18rem;
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
 		color: #fff;
-		padding: 0.65rem 0.55rem;
-		border-radius: 10px;
+		padding: 0.72rem 0.65rem;
+		border-radius: 12px;
+		transition: transform 0.18s ease, border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.cheat-item-title {
 		font-size: 0.72rem;
 		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-weight: 700;
+	}
+
+	.cheat-item-sub {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		letter-spacing: 0.02em;
+		color: rgba(255, 255, 255, 0.56);
+	}
+
+	.cheat-item:hover,
+	.cheat-item:focus-visible {
+		transform: translateY(-2px);
+		border-color: rgba(122, 219, 255, 0.7);
+		background: linear-gradient(165deg, rgba(104, 210, 255, 0.2), rgba(255, 255, 255, 0.04));
+		outline: none;
+	}
+
+	.cheat-menu-hint {
+		position: relative;
+		z-index: 1;
+		margin: 0.85rem 0 0;
+		font-size: 0.68rem;
 		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.6);
+		font-family: 'JetBrains Mono', monospace;
+	}
+
+	.cheat-menu-hint kbd {
+		display: inline-block;
+		padding: 0.2rem 0.34rem;
+		margin-inline: 0.1rem;
+		border-radius: 6px;
+		border: 1px solid rgba(255, 255, 255, 0.25);
+		background: rgba(255, 255, 255, 0.07);
+		font-family: inherit;
+		font-size: 0.66rem;
+		letter-spacing: 0.03em;
+		text-transform: none;
 	}
 
 	@media (max-width: 640px) {
+		.cheat-menu-panel {
+			padding: 1rem 0.9rem;
+		}
+
 		.cheat-menu-items {
 			grid-template-columns: 1fr;
+		}
+
+		.cheat-menu-hint {
+			line-height: 1.7;
 		}
 	}
 </style>
