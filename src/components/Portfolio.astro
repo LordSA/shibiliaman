@@ -21,6 +21,28 @@ const techStack = [
   { name: 'Flutter', icon: 'flutter', level: 1 },
   { name: 'Figma', icon: 'figma', level: 3 },
 ];
+
+const skillLogicTags: Record<string, string> = {
+  'C++': 'c++ cpp systems performance game engine optimization',
+  Python: 'python automation backend scripting bot data ai',
+  JavaScript: 'javascript web frontend ui nextjs react astro fullstack',
+  Java: 'java game backend oop',
+  Flutter: 'flutter mobile ui app cross-platform',
+  Figma: 'figma design ui ux prototyping interface',
+};
+
+const inferProjectLogicTags = (project: (typeof projects)[number]) => {
+  const base = [project.title, project.category, project.description].join(' ').toLowerCase();
+  const inferred: string[] = [];
+
+  if (/python|automation|bot|declutter/.test(base)) inferred.push('python automation backend bot scripting');
+  if (/web|typescript|next|frontend|ui|ux|e-commerce|funding|management/.test(base)) inferred.push('javascript web frontend ui fullstack');
+  if (/java|game/.test(base)) inferred.push('java game');
+  if (/unity|game/.test(base)) inferred.push('cpp game engine performance');
+  if (/security|secure|medical|database/.test(base)) inferred.push('backend security data architecture');
+
+  return `${base} ${inferred.join(' ')}`;
+};
 ---
 
 <Loader />
@@ -119,7 +141,7 @@ const techStack = [
         <h3 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12">Tech Arsenal</h3>
         <div class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
            {techStack.map((tech) => (
-            <div class="bg-zinc-950/50 border border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm text-center sm:text-left">
+            <div class="bg-zinc-950/50 border border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm text-center sm:text-left" data-logic-skill={skillLogicTags[tech.name] ?? tech.name.toLowerCase()}>
                 <div class="relative">
                   <img 
                       src={tech.icon === 'figma' ? 'https://devicon-website.vercel.app/api/figma/original.svg' : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}/${tech.icon}-original.svg`} 
@@ -156,7 +178,7 @@ const techStack = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
         {projects.slice(0, 4).map((project) => (
-          <a href={`/project/${project.slug}`} class="group cursor-pointer block">
+          <a href={`/project/${project.slug}`} class="group cursor-pointer block" data-logic-project={inferProjectLogicTags(project)}>
             <div class="aspect-[16/10] bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden mb-6 md:mb-8 border border-white/5 relative">
               <img src={project.image || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000"} alt={project.title} class="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 md:grayscale md:hover:grayscale-0" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">

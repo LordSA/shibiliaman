@@ -1,0 +1,38 @@
+.inspect-logic-overlay {
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 1400;
+	opacity: 0;
+	transition: opacity 0.22s ease;
+}
+
+.inspect-logic-overlay.is-active {
+	opacity: 1;
+}
+
+.inspect-logic-overlay path {
+	fill: none;
+	stroke-linecap: round;
+	stroke-width: 1.6;
+	filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.55));
+	opacity: 0.88;
+	stroke-dasharray: 6 7;
+	animation: inspect-logic-flow 5.8s linear infinite;
+}
+
+.inspect-logic-overlay .node-highlight {
+	outline: 1px dashed rgba(110, 231, 183, 0.8);
+	outline-offset: 4px;
+	box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.35), 0 0 16px rgba(16, 185, 129, 0.2);
+	transition: outline-color 0.2s ease;
+}
+
+@keyframes inspect-logic-flow {
+	from {
+		stroke-dashoffset: 160;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
