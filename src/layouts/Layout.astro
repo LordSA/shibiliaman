@@ -77,7 +77,6 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 				<InspectLogicCheat />
 				<SqlInjectionCheat />
 				<ArchitectCheat />
-				<p class="cheat-menu-hint">Hint: type <kbd>2 2 5 5</kbd> then press <kbd>Shift + L</kbd></p>
 			</div>
 		</div>
 		<script>
@@ -453,30 +452,6 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 		outline: none;
 	}
 
-	.cheat-menu-hint {
-		position: relative;
-		z-index: 1;
-		margin: 0.85rem 0 0;
-		font-size: 0.68rem;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.6);
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.cheat-menu-hint kbd {
-		display: inline-block;
-		padding: 0.2rem 0.34rem;
-		margin-inline: 0.1rem;
-		border-radius: 6px;
-		border: 1px solid rgba(255, 255, 255, 0.25);
-		background: rgba(255, 255, 255, 0.07);
-		font-family: inherit;
-		font-size: 0.66rem;
-		letter-spacing: 0.03em;
-		text-transform: none;
-	}
-
 	@media (max-width: 640px) {
 		.cheat-menu-panel {
 			padding: 1rem 0.9rem;
@@ -484,10 +459,6 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 
 		.cheat-menu-items {
 			grid-template-columns: 1fr;
-		}
-
-		.cheat-menu-hint {
-			line-height: 1.7;
 		}
 	}
 </style>
