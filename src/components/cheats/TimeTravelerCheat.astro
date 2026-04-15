@@ -1,0 +1,145 @@
+<section id="cheat-time-traveler" class="time-traveler" aria-label="Time traveler mode" aria-hidden="true">
+	<div class="time-traveler-head">
+		<p class="time-traveler-title">Time Traveler Mode</p>
+		<span id="time-traveler-era" class="time-traveler-era">Modern</span>
+	</div>
+	<p class="time-traveler-note">Jump between your current interface and a 90s GeoCities-inspired version.</p>
+	<div class="time-traveler-controls">
+		<label class="time-toggle" for="time-traveler-toggle">
+			<input id="time-traveler-toggle" type="checkbox" />
+			<span class="time-toggle-track" aria-hidden="true"></span>
+			<span class="time-toggle-label">Enable retro era</span>
+		</label>
+		<label class="time-slider" for="time-traveler-intensity">
+			<span>Retro intensity</span>
+			<input id="time-traveler-intensity" type="range" min="0" max="100" value="70" />
+		</label>
+	</div>
+</section>
+
+<style>
+	.time-traveler {
+		display: none;
+		position: relative;
+		z-index: 1;
+		margin-top: 0.85rem;
+		padding: 0.75rem;
+		border-radius: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		background: linear-gradient(180deg, rgba(24, 16, 8, 0.55), rgba(7, 12, 18, 0.8));
+	}
+
+	.time-traveler.is-open {
+		display: grid;
+		gap: 0.65rem;
+	}
+
+	.time-traveler-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.time-traveler-title {
+		margin: 0;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.66rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: rgba(255, 236, 180, 0.95);
+	}
+
+	.time-traveler-era {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		padding: 0.25rem 0.42rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.time-traveler-note {
+		margin: 0;
+		font-size: 0.78rem;
+		line-height: 1.45;
+		color: rgba(255, 255, 255, 0.78);
+	}
+
+	.time-traveler-controls {
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.time-toggle {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		column-gap: 0.52rem;
+		row-gap: 0.2rem;
+	}
+
+	.time-toggle input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.time-toggle-track {
+		position: relative;
+		display: inline-block;
+		width: 38px;
+		height: 22px;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		background: rgba(255, 255, 255, 0.14);
+		transition: background 0.2s ease, border-color 0.2s ease;
+	}
+
+	.time-toggle-track::after {
+		content: '';
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: #fff;
+		transition: transform 0.2s ease;
+	}
+
+	.time-toggle input:checked + .time-toggle-track {
+		background: rgba(255, 184, 77, 0.35);
+		border-color: rgba(255, 213, 138, 0.9);
+	}
+
+	.time-toggle input:checked + .time-toggle-track::after {
+		transform: translateX(16px);
+	}
+
+	.time-toggle-label {
+		font-size: 0.76rem;
+		letter-spacing: 0.03em;
+	}
+
+	.time-slider {
+		display: grid;
+		gap: 0.3rem;
+	}
+
+	.time-slider span {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: rgba(255, 255, 255, 0.65);
+	}
+
+	.time-slider input {
+		width: 100%;
+		height: 6px;
+		accent-color: #ffbe5d;
+	}
+</style>

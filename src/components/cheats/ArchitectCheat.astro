@@ -1,0 +1,217 @@
+<section id="cheat-architect" class="architect-cheat" aria-label="The Architect" aria-hidden="true">
+	<div class="architect-head">
+		<p class="architect-title">The Architect</p>
+		<span id="architect-status" class="architect-status">Disabled</span>
+	</div>
+	<p class="architect-note">Live style editor: tune color, corner radius, scale, and spacing in real-time.</p>
+	<div class="architect-controls">
+		<label class="architect-toggle" for="architect-toggle">
+			<input id="architect-toggle" type="checkbox" />
+			<span class="architect-toggle-track" aria-hidden="true"></span>
+			<span class="architect-toggle-label">Enable Style Editor</span>
+		</label>
+		<div id="architect-panel" class="architect-panel" aria-hidden="true">
+			<label class="architect-field" for="architect-primary">
+				<span>Primary Hue</span>
+				<input id="architect-primary" type="range" min="0" max="360" value="198" />
+			</label>
+			<label class="architect-field" for="architect-radius">
+				<span>Radius</span>
+				<input id="architect-radius" type="range" min="0" max="30" value="16" />
+			</label>
+			<label class="architect-field" for="architect-scale">
+				<span>Font Scale</span>
+				<input id="architect-scale" type="range" min="90" max="120" value="100" />
+			</label>
+			<label class="architect-field" for="architect-space">
+				<span>Spacing</span>
+				<input id="architect-space" type="range" min="80" max="135" value="100" />
+			</label>
+			<div class="architect-actions">
+				<button id="architect-copy" type="button" class="architect-button">Copy Theme</button>
+				<button id="architect-reset" type="button" class="architect-button ghost">Reset</button>
+			</div>
+			<p id="architect-copy-status" class="architect-copy-status" aria-live="polite"></p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.architect-cheat {
+		display: none;
+		position: relative;
+		z-index: 1;
+		margin-top: 0.85rem;
+		padding: 0.75rem;
+		border-radius: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: linear-gradient(180deg, rgba(9, 16, 22, 0.95), rgba(9, 11, 24, 0.92));
+	}
+
+	.architect-cheat.is-open {
+		display: grid;
+		gap: 0.65rem;
+	}
+
+	.architect-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.architect-title {
+		margin: 0;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.66rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: rgba(181, 236, 255, 0.95);
+	}
+
+	.architect-status {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		padding: 0.25rem 0.42rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.architect-status.is-active {
+		border-color: rgba(125, 211, 252, 0.82);
+		background: rgba(56, 189, 248, 0.26);
+		color: rgba(231, 248, 255, 0.98);
+	}
+
+	.architect-note {
+		margin: 0;
+		font-size: 0.78rem;
+		line-height: 1.45;
+		color: rgba(255, 255, 255, 0.78);
+	}
+
+	.architect-toggle {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		gap: 0.52rem;
+	}
+
+	.architect-toggle input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.architect-toggle-track {
+		position: relative;
+		display: inline-block;
+		width: 38px;
+		height: 22px;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		background: rgba(255, 255, 255, 0.14);
+		transition: background 0.2s ease, border-color 0.2s ease;
+	}
+
+	.architect-toggle-track::after {
+		content: '';
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: #fff;
+		transition: transform 0.2s ease;
+	}
+
+	.architect-toggle input:checked + .architect-toggle-track {
+		background: rgba(56, 189, 248, 0.35);
+		border-color: rgba(125, 211, 252, 0.92);
+	}
+
+	.architect-toggle input:checked + .architect-toggle-track::after {
+		transform: translateX(16px);
+	}
+
+	.architect-toggle-label {
+		font-size: 0.76rem;
+		letter-spacing: 0.03em;
+	}
+
+	.architect-panel {
+		display: none;
+		margin-top: 0.55rem;
+		padding: 0.6rem;
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		border-radius: 10px;
+		background: rgba(0, 0, 0, 0.3);
+	}
+
+	.architect-panel.is-open {
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.architect-field {
+		display: grid;
+		gap: 0.2rem;
+	}
+
+	.architect-field span {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.74);
+	}
+
+	.architect-field input {
+		width: 100%;
+		height: 6px;
+		accent-color: #3ec4ff;
+	}
+
+	.architect-actions {
+		display: flex;
+		gap: 0.45rem;
+		margin-top: 0.25rem;
+	}
+
+	.architect-button {
+		appearance: none;
+		border: 1px solid rgba(255, 255, 255, 0.26);
+		border-radius: 8px;
+		padding: 0.35rem 0.5rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		background: rgba(255, 255, 255, 0.08);
+		color: #fff;
+		transition: background 0.2s ease, border-color 0.2s ease;
+	}
+
+	.architect-button.ghost {
+		background: rgba(255, 255, 255, 0.03);
+	}
+
+	.architect-button:hover,
+	.architect-button:focus-visible {
+		outline: none;
+		border-color: rgba(125, 211, 252, 0.92);
+		background: rgba(56, 189, 248, 0.22);
+	}
+
+	.architect-copy-status {
+		margin: 0;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		color: rgba(174, 255, 214, 0.92);
+		min-height: 1.1em;
+	}
+</style>

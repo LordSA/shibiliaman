@@ -1,0 +1,192 @@
+<section id="cheat-terminal" class="cheat-terminal" aria-label="Cheat terminal" aria-hidden="true">
+	<div class="cheat-terminal-toolbar">
+		<p class="cheat-terminal-title">Site Access Terminal</p>
+		<div class="cheat-terminal-actions">
+			<button id="cheat-terminal-reset" type="button" class="cheat-terminal-button ghost">Reset Edits</button>
+			<button id="cheat-terminal-hide" type="button" class="cheat-terminal-button">Hide</button>
+		</div>
+	</div>
+	<div id="cheat-terminal-output" class="cheat-terminal-output" role="log" aria-live="polite"></div>
+	<form id="cheat-terminal-form" class="cheat-terminal-input-row">
+		<label for="cheat-terminal-input" class="sr-only">Terminal command</label>
+		<span class="cheat-terminal-prompt">$</span>
+		<input
+			id="cheat-terminal-input"
+			name="command"
+			autocomplete="off"
+			spellcheck="false"
+			placeholder="Type help"
+			class="cheat-terminal-input"
+		/>
+		<button type="submit" class="cheat-terminal-button">Run</button>
+	</form>
+	<p class="cheat-terminal-meta">Access command: <kbd>2 2 5 5</kbd> then <kbd>Shift + L</kbd></p>
+</section>
+
+<style>
+	.cheat-terminal {
+		position: relative;
+		z-index: 1;
+		display: none;
+		margin-top: 0.9rem;
+		padding: 0.7rem;
+		border-radius: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		background: linear-gradient(180deg, rgba(8, 13, 20, 0.94), rgba(5, 8, 12, 0.92));
+	}
+
+	.cheat-terminal.is-open {
+		display: grid;
+		gap: 0.65rem;
+	}
+
+	.cheat-terminal-toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.6rem;
+	}
+
+	.cheat-terminal-title {
+		margin: 0;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.66rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: rgba(177, 236, 255, 0.92);
+	}
+
+	.cheat-terminal-actions {
+		display: flex;
+		gap: 0.4rem;
+	}
+
+	.cheat-terminal-output {
+		max-height: 200px;
+		overflow: auto;
+		border-radius: 10px;
+		padding: 0.5rem 0.55rem;
+		border: 1px solid rgba(151, 225, 255, 0.2);
+		background: rgba(0, 0, 0, 0.4);
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		line-height: 1.45;
+		color: rgba(238, 246, 255, 0.95);
+	}
+
+	.cheat-terminal-line {
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+
+	.cheat-terminal-line.is-error {
+		color: rgba(255, 172, 172, 0.96);
+	}
+
+	.cheat-terminal-line.is-success {
+		color: rgba(162, 255, 200, 0.95);
+	}
+
+	.cheat-terminal-input-row {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.cheat-terminal-prompt {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.78rem;
+		color: rgba(162, 255, 200, 0.95);
+	}
+
+	.cheat-terminal-input {
+		width: 100%;
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: rgba(255, 255, 255, 0.06);
+		color: #fff;
+		padding: 0.42rem 0.5rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.72rem;
+	}
+
+	.cheat-terminal-input:focus-visible {
+		outline: none;
+		border-color: rgba(145, 225, 255, 0.85);
+	}
+
+	.cheat-terminal-button {
+		appearance: none;
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		border-radius: 8px;
+		padding: 0.38rem 0.52rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		background: rgba(255, 255, 255, 0.08);
+		color: #fff;
+		transition: background 0.2s ease, border-color 0.2s ease;
+	}
+
+	.cheat-terminal-button.ghost {
+		background: rgba(255, 255, 255, 0.03);
+	}
+
+	.cheat-terminal-button:hover,
+	.cheat-terminal-button:focus-visible {
+		outline: none;
+		border-color: rgba(149, 231, 255, 0.9);
+		background: rgba(95, 196, 255, 0.18);
+	}
+
+	.cheat-terminal-meta {
+		margin: 0;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.62rem;
+		letter-spacing: 0.05em;
+		color: rgba(205, 230, 245, 0.75);
+	}
+
+	.cheat-terminal-meta kbd {
+		display: inline-block;
+		padding: 0.14rem 0.28rem;
+		margin-inline: 0.1rem;
+		border-radius: 6px;
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		background: rgba(255, 255, 255, 0.08);
+		font-family: inherit;
+		font-size: 0.62rem;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+
+	@media (max-width: 640px) {
+		.cheat-terminal {
+			padding: 0.6rem;
+		}
+
+		.cheat-terminal-toolbar {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.cheat-terminal-actions {
+			width: 100%;
+		}
+
+		.cheat-terminal-button {
+			flex: 1;
+		}
+	}
+</style>

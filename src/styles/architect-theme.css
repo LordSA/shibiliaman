@@ -1,0 +1,56 @@
+:root {
+	--architect-primary-hue: 198;
+	--architect-radius: 16px;
+	--architect-font-scale: 100%;
+	--architect-space-scale: 100%;
+}
+
+html[data-architect='on'] {
+	font-size: var(--architect-font-scale);
+}
+
+html[data-architect='on'] body {
+	--architect-accent: hsl(var(--architect-primary-hue) 92% 60%);
+	--architect-accent-soft: color-mix(in oklab, var(--architect-accent) 24%, transparent);
+	--architect-accent-border: color-mix(in oklab, var(--architect-accent) 60%, #fff 15%);
+}
+
+html[data-architect='on'] button,
+html[data-architect='on'] [role='button'],
+html[data-architect='on'] a {
+	border-radius: var(--architect-radius) !important;
+}
+
+html[data-architect='on'] section,
+html[data-architect='on'] article,
+html[data-architect='on'] [class*='card'],
+html[data-architect='on'] [class*='panel'] {
+	border-radius: calc(var(--architect-radius) * 0.9) !important;
+}
+
+html[data-architect='on'] button,
+html[data-architect='on'] [role='button'] {
+	box-shadow: 0 0 0 1px var(--architect-accent-soft), 0 10px 24px rgba(0, 0, 0, 0.22);
+	border-color: var(--architect-accent-border) !important;
+}
+
+html[data-architect='on'] a:hover,
+html[data-architect='on'] button:hover,
+html[data-architect='on'] [role='button']:hover {
+	filter: saturate(1.12);
+}
+
+html[data-architect='on'] main {
+	padding-bottom: calc(1.5rem * (var(--architect-space-scale) / 100));
+}
+
+html[data-architect='on'] section {
+	padding-top: calc(var(--section-top, 3rem) * (var(--architect-space-scale) / 100));
+	padding-bottom: calc(var(--section-bottom, 3rem) * (var(--architect-space-scale) / 100));
+}
+
+@media (max-width: 768px) {
+	html[data-architect='on'] {
+		font-size: clamp(14px, var(--architect-font-scale), 18px);
+	}
+}
