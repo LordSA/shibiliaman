@@ -3,12 +3,14 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import '../styles/time-traveler.css';
 import '../styles/inspect-logic.css';
+import '../styles/architect-theme.css';
 import CustomCursor from '../components/CustomCursor.astro';
 import TerminalCheat from '../components/cheats/TerminalCheat.astro';
 import TimeTravelerCheat from '../components/cheats/TimeTravelerCheat.astro';
 import ChaosCheat from '../components/cheats/ChaosCheat.astro';
 import InspectLogicCheat from '../components/cheats/InspectLogicCheat.astro';
 import SqlInjectionCheat from '../components/cheats/SqlInjectionCheat.astro';
+import ArchitectCheat from '../components/cheats/ArchitectCheat.astro';
 
 interface Props {
 	title?: string;
@@ -64,12 +66,17 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 						<span class="cheat-item-title">SQL Injection Sim</span>
 						<span class="cheat-item-sub">Unlock secret projects</span>
 					</button>
+					<button id="cheat-open-architect" type="button" class="cheat-item" data-cheat="architect-mode">
+						<span class="cheat-item-title">The Architect</span>
+						<span class="cheat-item-sub">Live style editor</span>
+					</button>
 				</div>
 				<TerminalCheat />
 				<TimeTravelerCheat />
 				<ChaosCheat />
 				<InspectLogicCheat />
 				<SqlInjectionCheat />
+				<ArchitectCheat />
 				<p class="cheat-menu-hint">Hint: type <kbd>2 2 5 5</kbd> then press <kbd>Shift + L</kbd></p>
 			</div>
 		</div>
@@ -81,6 +88,7 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 			import { destroyChaosCheat, initChaosCheat } from '../cheats/chaosCheat';
 			import { destroyInspectLogicCheat, initInspectLogicCheat } from '../cheats/inspectLogicCheat';
 			import { destroySqlInjectionCheat, initSqlInjectionCheat } from '../cheats/sqlInjectionCheat';
+			import { destroyArchitectCheat, initArchitectCheat } from '../cheats/architectCheat';
 
 			let lenis: Lenis | null = null;
 
@@ -227,17 +235,20 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 			initChaosCheat();
 			initInspectLogicCheat();
 			initSqlInjectionCheat();
+			initArchitectCheat();
 
 			document.addEventListener('astro:after-swap', () => {
 				destroyChaosCheat();
 				destroyInspectLogicCheat();
 				destroySqlInjectionCheat();
+				destroyArchitectCheat();
 				wireCheatMenuActions();
 				initTerminalCheat();
 				initTimeTravelerCheat();
 				initChaosCheat();
 				initInspectLogicCheat();
 				initSqlInjectionCheat();
+				initArchitectCheat();
 				setMenuVisible(false);
 				resetBuffer();
 			});
