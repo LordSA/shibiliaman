@@ -11,6 +11,7 @@ type ChaosElements = {
 type ChaosItem = {
 	element: HTMLElement;
 	body: Matter.Body;
+	chaosId: string;
 	baseTransform: string;
 	baseTransition: string;
 	baseWillChange: string;
@@ -25,6 +26,8 @@ type ChaosRuntime = {
 	walls: Matter.Body[];
 	activePointerId: number | null;
 	draggingBody: Matter.Body | null;
+	dragOffsetX: number;
+	dragOffsetY: number;
 	renderFrameId: number | null;
 	onPointerDown: (event: PointerEvent) => void;
 	onPointerMove: (event: PointerEvent) => void;
@@ -33,22 +36,13 @@ type ChaosRuntime = {
 };
 
 const ROOT_EXCLUDE_SELECTOR = '#cheat-menu-overlay, #cheat-chaos';
-const ITEM_SELECTOR = [
-	'main h1',
-	'main h2',
-	'main h3',
-	'main p',
-	'main a',
-	'main button',
-	'main li',
-	'main article',
-	'main [class*="card"]',
-	'nav a',
-].join(', ');
+const ITEM_SELECTOR = ['main *', 'nav *', 'footer *'].join(', ');
 
-const MAX_BODIES = 70;
-const MIN_AREA = 900;
-const MAX_AREA = 180000;
+const MIN_AREA = 64;
+const MAX_AREA = 360000;
+const CHAOS_COLLISION_GROUP = -998;
+
+const getMaxBodies = () => (window.innerWidth < 768 ? 170 : 320);
 
 let runtime: ChaosRuntime | null = null;
 
@@ -79,34 +73,45 @@ const createWalls = (width: number, height: number): Matter.Body[] => {
 
 const isEligible = (element: HTMLElement) => {
 	if (element.closest(ROOT_EXCLUDE_SELECTOR)) return false;
-	if (element.tagName.toLowerCase() === 'main') return false;
+	if (element.id === 'cheat-menu-overlay') return false;
+	const tag = element.tagName.toLowerCase();
+	if (['script', 'style', 'noscript', 'meta', 'link', 'head', 'title'].includes(tag)) return false;
 	const styles = window.getComputedStyle(element);
+	if (styles.display === 'none' || styles.visibility === 'hidden') return false;
 	if (styles.position === 'fixed' || styles.position === 'sticky') return false;
 	const rect = element.getBoundingClientRect();
 	const area = rect.width * rect.height;
 	if (area < MIN_AREA || area > MAX_AREA) return false;
-	if (rect.width < 20 || rect.height < 16) return false;
-	if (rect.bottom < 0 || rect.top > window.innerHeight) return false;
+	if (rect.width < 6 || rect.height < 6) return false;
+	if (rect.right < 0 || rect.left > window.innerWidth) return false;
 	return true;
 };
 
 const buildItems = (engine: Matter.Engine): ChaosItem[] => {
 	const allNodes = Array.from(document.querySelectorAll<HTMLElement>(ITEM_SELECTOR));
-	const eligible = allNodes.filter(isEligible).slice(0, MAX_BODIES);
+	const eligible = allNodes.filter(isEligible).slice(0, getMaxBodies());
 
 	const items: ChaosItem[] = [];
+	let nextId = 1;
 	for (const element of eligible) {
 		const rect = element.getBoundingClientRect();
+		const chaosId = `c${nextId++}`;
+		element.dataset.chaosId = chaosId;
 		const body = Matter.Bodies.rectangle(rect.left + rect.width / 2, rect.top + rect.height / 2, rect.width, rect.height, {
 			restitution: 0.72,
 			friction: 0.025,
 			frictionAir: 0.015,
 			density: 0.0016,
+			inertia: Infinity,
+			collisionFilter: {
+				group: CHAOS_COLLISION_GROUP,
+			},
 		});
 
 		items.push({
 			element,
 			body,
+			chaosId,
 			baseTransform: element.style.transform,
 			baseTransition: element.style.transition,
 			baseWillChange: element.style.willChange,
@@ -140,6 +145,7 @@ const stopRenderLoop = (state: ChaosRuntime) => {
 
 const restoreItems = (items: ChaosItem[]) => {
 	for (const item of items) {
+		delete item.element.dataset.chaosId;
 		item.element.style.transform = item.baseTransform;
 		item.element.style.transition = item.baseTransition;
 		item.element.style.willChange = item.baseWillChange;
@@ -152,6 +158,19 @@ const findBodyAtPoint = (items: ChaosItem[], x: number, y: number) => {
 		if (Matter.Bounds.contains(candidate.bounds, { x, y })) {
 			return candidate;
 		}
+	}
+	return null;
+};
+
+const findBodyFromElement = (items: ChaosItem[], x: number, y: number) => {
+	let node = document.elementFromPoint(x, y) as HTMLElement | null;
+	while (node) {
+		const id = node.dataset.chaosId;
+		if (id) {
+			const matched = items.find((item) => item.chaosId === id);
+			if (matched) return matched.body;
+		}
+		node = node.parentElement;
 	}
 	return null;
 };
@@ -214,6 +233,8 @@ const enableChaos = (status: HTMLElement) => {
 		walls,
 		activePointerId: null,
 		draggingBody: null,
+		dragOffsetX: 0,
+		dragOffsetY: 0,
 		renderFrameId: null,
 		onPointerDown: () => {},
 		onPointerMove: () => {},
@@ -223,12 +244,21 @@ const enableChaos = (status: HTMLElement) => {
 
 	state.onPointerDown = (event: PointerEvent) => {
 		state.activePointerId = event.pointerId;
-		state.draggingBody = findBodyAtPoint(state.items, event.clientX, event.clientY);
+		state.draggingBody = findBodyFromElement(state.items, event.clientX, event.clientY)
+			?? findBodyAtPoint(state.items, event.clientX, event.clientY);
+		if (!state.draggingBody) return;
+
+		state.dragOffsetX = event.clientX - state.draggingBody.position.x;
+		state.dragOffsetY = event.clientY - state.draggingBody.position.y;
+		Matter.Body.setVelocity(state.draggingBody, { x: 0, y: 0 });
 	};
 
 	state.onPointerMove = (event: PointerEvent) => {
 		if (state.activePointerId !== event.pointerId || !state.draggingBody) return;
-		Matter.Body.setPosition(state.draggingBody, { x: event.clientX, y: event.clientY });
+		Matter.Body.setPosition(state.draggingBody, {
+			x: event.clientX - state.dragOffsetX,
+			y: event.clientY - state.dragOffsetY,
+		});
 		Matter.Body.setVelocity(state.draggingBody, { x: 0, y: 0 });
 	};
 
@@ -236,6 +266,8 @@ const enableChaos = (status: HTMLElement) => {
 		if (state.activePointerId !== event.pointerId) return;
 		state.activePointerId = null;
 		state.draggingBody = null;
+		state.dragOffsetX = 0;
+		state.dragOffsetY = 0;
 	};
 
 	state.onResize = () => {
