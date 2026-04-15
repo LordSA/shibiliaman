@@ -8,6 +8,7 @@ import TerminalCheat from '../components/cheats/TerminalCheat.astro';
 import TimeTravelerCheat from '../components/cheats/TimeTravelerCheat.astro';
 import ChaosCheat from '../components/cheats/ChaosCheat.astro';
 import InspectLogicCheat from '../components/cheats/InspectLogicCheat.astro';
+import SqlInjectionCheat from '../components/cheats/SqlInjectionCheat.astro';
 
 interface Props {
 	title?: string;
@@ -59,11 +60,16 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 						<span class="cheat-item-title">Inspect Logic</span>
 						<span class="cheat-item-sub">Skill to project flow map</span>
 					</button>
+					<button id="cheat-open-sql-sim" type="button" class="cheat-item" data-cheat="sql-simulator-mode">
+						<span class="cheat-item-title">SQL Injection Sim</span>
+						<span class="cheat-item-sub">Unlock secret projects</span>
+					</button>
 				</div>
 				<TerminalCheat />
 				<TimeTravelerCheat />
 				<ChaosCheat />
 				<InspectLogicCheat />
+				<SqlInjectionCheat />
 				<p class="cheat-menu-hint">Hint: type <kbd>2 2 5 5</kbd> then press <kbd>Shift + L</kbd></p>
 			</div>
 		</div>
@@ -74,6 +80,7 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 			import { initTimeTravelerCheat } from '../cheats/timeTravelerCheat';
 			import { destroyChaosCheat, initChaosCheat } from '../cheats/chaosCheat';
 			import { destroyInspectLogicCheat, initInspectLogicCheat } from '../cheats/inspectLogicCheat';
+			import { destroySqlInjectionCheat, initSqlInjectionCheat } from '../cheats/sqlInjectionCheat';
 
 			let lenis: Lenis | null = null;
 
@@ -219,15 +226,18 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 			initTimeTravelerCheat();
 			initChaosCheat();
 			initInspectLogicCheat();
+			initSqlInjectionCheat();
 
 			document.addEventListener('astro:after-swap', () => {
 				destroyChaosCheat();
 				destroyInspectLogicCheat();
+				destroySqlInjectionCheat();
 				wireCheatMenuActions();
 				initTerminalCheat();
 				initTimeTravelerCheat();
 				initChaosCheat();
 				initInspectLogicCheat();
+				initSqlInjectionCheat();
 				setMenuVisible(false);
 				resetBuffer();
 			});
