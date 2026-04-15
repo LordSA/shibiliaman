@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import CustomCursor from '../components/CustomCursor.astro';
+import TerminalCheat from '../components/cheats/TerminalCheat.astro';
 
 interface Props {
 	title?: string;
@@ -36,9 +37,9 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 				</div>
 				<p class="cheat-menu-note">Debug shortcuts and quick actions live here. Hooks are ready for real commands.</p>
 				<div class="cheat-menu-items">
-					<button type="button" class="cheat-item" data-cheat="placeholder-1">
-						<span class="cheat-item-title">Cheat Slot 1</span>
-						<span class="cheat-item-sub">Placeholder action</span>
+					<button id="cheat-open-terminal" type="button" class="cheat-item" data-cheat="terminal-access">
+						<span class="cheat-item-title">Terminal Access</span>
+						<span class="cheat-item-sub">Live temporary site edits</span>
 					</button>
 					<button type="button" class="cheat-item" data-cheat="placeholder-2">
 						<span class="cheat-item-title">Cheat Slot 2</span>
@@ -49,12 +50,14 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 						<span class="cheat-item-sub">Placeholder action</span>
 					</button>
 				</div>
+				<TerminalCheat />
 				<p class="cheat-menu-hint">Hint: type <kbd>2 2 5 5</kbd> then press <kbd>Shift + L</kbd></p>
 			</div>
 		</div>
 		<script>
 			import Lenis from 'lenis';
 			import 'lenis/dist/lenis.css';
+			import { initTerminalCheat } from '../cheats/terminalCheat';
 
 			let lenis: Lenis | null = null;
 
@@ -196,9 +199,11 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 			}
 
 			wireCheatMenuActions();
+			initTerminalCheat();
 
 			document.addEventListener('astro:after-swap', () => {
 				wireCheatMenuActions();
+				initTerminalCheat();
 				setMenuVisible(false);
 				resetBuffer();
 			});
