@@ -1,0 +1,92 @@
+:root {
+	--retro-intensity: 70;
+}
+
+html[data-time-travel-era='retro'] {
+	font-size: clamp(14px, 1.02rem, 18px);
+}
+
+html[data-time-travel-era='retro'] body {
+	background:
+		repeating-linear-gradient(0deg, rgba(10, 5, 0, 0.2) 0, rgba(10, 5, 0, 0.2) 2px, transparent 2px, transparent 4px),
+		radial-gradient(circle at 12% 10%, rgba(255, 247, 158, 0.22), transparent 32%),
+		linear-gradient(180deg, #0f1a42, #281245 45%, #4a1b2f 74%, #1a112a);
+	color: #f8ffd3;
+	font-family: 'VT323', 'Courier New', monospace !important;
+}
+
+html[data-time-travel-era='retro'] .custom-cursor,
+html[data-time-travel-era='retro'] .cursor-dot,
+html[data-time-travel-era='retro'] .cursor-outline {
+	display: none !important;
+}
+
+html[data-time-travel-era='retro'] *,
+html[data-time-travel-era='retro'] *::before,
+html[data-time-travel-era='retro'] *::after {
+	text-shadow:
+		0 0 calc(0.4px + (var(--retro-intensity) / 160) * 1px) rgba(167, 255, 162, 0.7),
+		0 0 calc(0.7px + (var(--retro-intensity) / 130) * 1px) rgba(255, 181, 96, 0.45);
+	transition-duration: 120ms !important;
+}
+
+html[data-time-travel-era='retro'] h1,
+html[data-time-travel-era='retro'] h2,
+html[data-time-travel-era='retro'] h3,
+html[data-time-travel-era='retro'] nav a,
+html[data-time-travel-era='retro'] button {
+	font-family: 'Press Start 2P', 'VT323', monospace !important;
+	letter-spacing: 0.04em;
+}
+
+html[data-time-travel-era='retro'] section,
+html[data-time-travel-era='retro'] article,
+html[data-time-travel-era='retro'] nav,
+html[data-time-travel-era='retro'] header,
+html[data-time-travel-era='retro'] footer,
+html[data-time-travel-era='retro'] main,
+html[data-time-travel-era='retro'] [class*='card'],
+html[data-time-travel-era='retro'] [class*='panel'] {
+	border-radius: 0 !important;
+	border: 1px solid rgba(255, 243, 162, 0.36) !important;
+	box-shadow:
+		0 0 calc(3px + (var(--retro-intensity) / 100) * 5px) rgba(255, 214, 106, 0.45),
+		inset 0 0 0 1px rgba(112, 255, 172, 0.25) !important;
+	background-color: rgba(12, 14, 28, 0.64) !important;
+}
+
+html[data-time-travel-era='retro'] a,
+html[data-time-travel-era='retro'] button {
+	color: #ffe775 !important;
+	text-decoration-thickness: 2px;
+}
+
+html[data-time-travel-era='retro'] button,
+html[data-time-travel-era='retro'] [role='button'] {
+	background: linear-gradient(180deg, rgba(60, 37, 0, 0.75), rgba(18, 15, 38, 0.8)) !important;
+	border: 1px solid rgba(255, 211, 111, 0.62) !important;
+}
+
+html[data-time-travel-era='retro'] img,
+html[data-time-travel-era='retro'] video {
+	filter: saturate(calc(1 + (var(--retro-intensity) / 100) * 0.35)) contrast(1.08);
+	image-rendering: pixelated;
+}
+
+html[data-time-travel-era='retro']::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 9998;
+	opacity: calc(0.06 + (var(--retro-intensity) / 100) * 0.08);
+	background:
+		repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(255, 255, 255, 0.1) 3px, transparent 4px),
+		repeating-linear-gradient(90deg, rgba(255, 128, 0, 0.08) 0px, transparent 2px, rgba(0, 255, 204, 0.08) 4px, transparent 6px);
+}
+
+@media (max-width: 640px) {
+	html[data-time-travel-era='retro'] {
+		font-size: 14px;
+	}
+}

@@ -1,8 +1,10 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
+import '../styles/time-traveler.css';
 import CustomCursor from '../components/CustomCursor.astro';
 import TerminalCheat from '../components/cheats/TerminalCheat.astro';
+import TimeTravelerCheat from '../components/cheats/TimeTravelerCheat.astro';
 
 interface Props {
 	title?: string;
@@ -23,6 +25,7 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 	</head>
 	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
 		<CustomCursor />
@@ -41,9 +44,9 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 						<span class="cheat-item-title">Terminal Access</span>
 						<span class="cheat-item-sub">Live temporary site edits</span>
 					</button>
-					<button type="button" class="cheat-item" data-cheat="placeholder-2">
-						<span class="cheat-item-title">Cheat Slot 2</span>
-						<span class="cheat-item-sub">Placeholder action</span>
+					<button id="cheat-open-time-traveler" type="button" class="cheat-item" data-cheat="time-traveler-mode">
+						<span class="cheat-item-title">Time Traveler Mode</span>
+						<span class="cheat-item-sub">Modern to 90s retro UI</span>
 					</button>
 					<button type="button" class="cheat-item" data-cheat="placeholder-3">
 						<span class="cheat-item-title">Cheat Slot 3</span>
@@ -51,6 +54,7 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 					</button>
 				</div>
 				<TerminalCheat />
+				<TimeTravelerCheat />
 				<p class="cheat-menu-hint">Hint: type <kbd>2 2 5 5</kbd> then press <kbd>Shift + L</kbd></p>
 			</div>
 		</div>
@@ -58,6 +62,7 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 			import Lenis from 'lenis';
 			import 'lenis/dist/lenis.css';
 			import { initTerminalCheat } from '../cheats/terminalCheat';
+			import { initTimeTravelerCheat } from '../cheats/timeTravelerCheat';
 
 			let lenis: Lenis | null = null;
 
@@ -200,10 +205,12 @@ const { title = "Shibili Aman | Portfolio" } = Astro.props;
 
 			wireCheatMenuActions();
 			initTerminalCheat();
+			initTimeTravelerCheat();
 
 			document.addEventListener('astro:after-swap', () => {
 				wireCheatMenuActions();
 				initTerminalCheat();
+				initTimeTravelerCheat();
 				setMenuVisible(false);
 				resetBuffer();
 			});
