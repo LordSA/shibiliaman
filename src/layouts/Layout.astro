@@ -2,13 +2,11 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import '../styles/time-traveler.css';
-import '../styles/inspect-logic.css';
 import '../styles/architect-theme.css';
 import CustomCursor from '../components/CustomCursor.astro';
 import TerminalCheat from '../components/cheats/TerminalCheat.astro';
 import TimeTravelerCheat from '../components/cheats/TimeTravelerCheat.astro';
 import ChaosCheat from '../components/cheats/ChaosCheat.astro';
-import InspectLogicCheat from '../components/cheats/InspectLogicCheat.astro';
 import SqlInjectionCheat from '../components/cheats/SqlInjectionCheat.astro';
 import ArchitectCheat from '../components/cheats/ArchitectCheat.astro';
 
@@ -92,10 +90,6 @@ const personStructuredData = {
 						<span class="cheat-item-title">Chaos Mode</span>
 						<span class="cheat-item-sub">Physics drag playground</span>
 					</button>
-					<button id="cheat-open-inspect-logic" type="button" class="cheat-item" data-cheat="inspect-logic-mode">
-						<span class="cheat-item-title">Inspect Logic</span>
-						<span class="cheat-item-sub">Skill to project flow map</span>
-					</button>
 					<button id="cheat-open-sql-sim" type="button" class="cheat-item" data-cheat="sql-simulator-mode">
 						<span class="cheat-item-title">SQL Injection Sim</span>
 						<span class="cheat-item-sub">Unlock secret projects</span>
@@ -108,7 +102,6 @@ const personStructuredData = {
 				<TerminalCheat />
 				<TimeTravelerCheat />
 				<ChaosCheat />
-				<InspectLogicCheat />
 				<SqlInjectionCheat />
 				<ArchitectCheat />
 			</div>
@@ -119,7 +112,6 @@ const personStructuredData = {
 			import { initTerminalCheat } from '../cheats/terminalCheat';
 			import { initTimeTravelerCheat } from '../cheats/timeTravelerCheat';
 			import { destroyChaosCheat, initChaosCheat } from '../cheats/chaosCheat';
-			import { destroyInspectLogicCheat, initInspectLogicCheat } from '../cheats/inspectLogicCheat';
 			import { destroySqlInjectionCheat, initSqlInjectionCheat } from '../cheats/sqlInjectionCheat';
 			import { destroyArchitectCheat, initArchitectCheat } from '../cheats/architectCheat';
 
@@ -266,20 +258,17 @@ const personStructuredData = {
 			initTerminalCheat();
 			initTimeTravelerCheat();
 			initChaosCheat();
-			initInspectLogicCheat();
 			initSqlInjectionCheat();
 			initArchitectCheat();
 
 			document.addEventListener('astro:after-swap', () => {
 				destroyChaosCheat();
-				destroyInspectLogicCheat();
 				destroySqlInjectionCheat();
 				destroyArchitectCheat();
 				wireCheatMenuActions();
 				initTerminalCheat();
 				initTimeTravelerCheat();
 				initChaosCheat();
-				initInspectLogicCheat();
 				initSqlInjectionCheat();
 				initArchitectCheat();
 				setMenuVisible(false);
