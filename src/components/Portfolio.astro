@@ -4,6 +4,7 @@ import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
 import Loader from './Loader.astro';
 import CustomCursor from './CustomCursor.astro';
+import Canvas3D from './Canvas3D.tsx';
 import { projects } from '../data/projects';
 
 const links = [
@@ -50,16 +51,17 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 <main class="overflow-x-hidden">
   <Navbar />
   <section class="min-h-screen flex flex-col lg:flex-row justify-center items-center px-6 sm:px-10 md:px-24 pt-10 md:pt-20 lg:pt-24 text-left bg-[radial-gradient(circle_at_20%_50%,_rgba(255,255,255,0.03)_0%,_transparent_50%)] sticky top-0 bg-black -z-0 overflow-hidden font-mono">
+    <Canvas3D client:load />
     
-    <div class="max-w-4xl animate-fade-in flex flex-col items-start py-2 z-10 w-full order-2 lg:order-1">
-       <div class="mb-4 md:mb-8 inline-block px-3 md:px-4 py-1 md:py-1.5 border border-white/10 rounded-full text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] bg-white/5 backdrop-blur-md shadow-2xl">
+    <div class="max-w-4xl flex flex-col items-start py-2 z-10 w-full order-2 lg:order-1 relative">
+       <div class="mb-4 md:mb-8 inline-block px-3 md:px-4 py-1 md:py-1.5 border border-white/10 rounded-full text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] bg-white/5 backdrop-blur-md shadow-2xl gsap-hero-stagger opacity-0 translate-y-4">
         B.Tech CSE Student • Full-Stack Explorer
       </div>
-      <h2 class="text-base md:text-2xl font-light tracking-[0.3em] md:tracking-[0.4em] text-zinc-500 mb-2 md:mb-4 uppercase">SHIBILI AMAN TK</h2>
-      <h1 class="text-5xl xs:text-6xl sm:text-6xl md:text-[7rem] font-bold tracking-tighter leading-[0.9] mb-6 md:mb-10 uppercase cursor-default select-none transition-all duration-700 hover:tracking-tight">
+      <h2 class="text-base md:text-2xl font-light tracking-[0.3em] md:tracking-[0.4em] text-zinc-500 mb-2 md:mb-4 uppercase gsap-hero-stagger opacity-0 translate-y-4">SHIBILI AMAN TK</h2>
+      <h1 class="text-5xl xs:text-6xl sm:text-6xl md:text-[7rem] font-bold tracking-tighter leading-[0.9] mb-6 md:mb-10 uppercase cursor-default select-none transition-all duration-700 hover:tracking-tight gsap-hero-title opacity-0 translate-y-8">
         Coding and <br/> <span class="text-zinc-800 hover:text-white transition-all duration-1000">Building</span>
       </h1>
-      <p class="text-xs xs:text-sm md:text-2xl text-zinc-400 max-w-2xl mb-8 md:mb-14 leading-relaxed font-light text-balance font-sans">
+      <p class="text-xs xs:text-sm md:text-2xl text-zinc-400 max-w-2xl mb-8 md:mb-14 leading-relaxed font-light text-balance font-sans gsap-hero-stagger opacity-0 translate-y-4">
         A<span class="text-white font-medium"> Full-Stack Developer</span> and UI/UX Enthusiast passionate about building scalable solutions and crafting elegant user experiences.
       </p>
       
@@ -78,7 +80,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
           </div>
       </div>
 
-      <div class="flex flex-col lg:flex-row justify-start items-center gap-4 md:gap-6 z-20 w-full lg:w-auto mt-12 xs:mt-4">
+      <div class="flex flex-col lg:flex-row justify-start items-center gap-4 md:gap-6 z-20 w-full lg:w-auto mt-12 xs:mt-4 gsap-hero-stagger opacity-0 translate-y-4">
         <a href="https://instagram.com/__shibiliii._" class="group relative w-full lg:w-48 text-center px-8 lg:px-6 py-5 bg-white text-black rounded-full text-[11px] md:text-xs uppercase tracking-[0.2em] transition-all font-bold shadow-[0_0_40px_rgba(255,255,255,0.1)] active:scale-95 overflow-hidden cursor-pointer whitespace-nowrap">
           <span class="relative z-10 transition-colors duration-500 group-hover:text-white">
             Let's Develop
@@ -141,7 +143,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
         <h3 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12">Tech Arsenal</h3>
         <div class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
            {techStack.map((tech) => (
-            <div class="bg-zinc-950/50 border border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm text-center sm:text-left" data-logic-skill={skillLogicTags[tech.name] ?? tech.name.toLowerCase()}>
+            <div class="bg-zinc-950/50 border border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm text-center sm:text-left gsap-tech-item opacity-0 translate-y-8" data-logic-skill={skillLogicTags[tech.name] ?? tech.name.toLowerCase()}>
                 <div class="relative">
                   <img 
                       src={tech.icon === 'figma' ? 'https://devicon-website.vercel.app/api/figma/original.svg' : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}/${tech.icon}-original.svg`} 
@@ -178,8 +180,8 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
         {projects.slice(0, 4).map((project) => (
-          <a href={`/project/${project.slug}`} class="group cursor-pointer block" data-logic-project={inferProjectLogicTags(project)}>
-            <div class="aspect-[16/10] bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden mb-6 md:mb-8 border border-white/5 relative">
+          <a href={`/project/${project.slug}`} class="group cursor-pointer block gsap-project-card opacity-0 translate-y-12" data-logic-project={inferProjectLogicTags(project)}>
+            <div class="aspect-[16/10] bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden mb-6 md:mb-8 border border-white/5 relative project-img-container">
               <img src={project.image || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000"} alt={project.title} class="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 md:grayscale md:hover:grayscale-0" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                  <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-white pb-1">View Project Details</span>
@@ -273,6 +275,80 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 </main>
 
 <Footer />
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAnimations = () => {
+    // Wait for loader
+    setTimeout(() => {
+      // Hero animations
+      gsap.to('.gsap-hero-title', {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+      });
+
+      gsap.to('.gsap-hero-stagger', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.1,
+        delay: 0.2
+      });
+    }, 1500); // 1.5s is the loader time
+
+    // Tech stack scroll animation
+    gsap.to('.gsap-tech-item', {
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top 70%',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.05,
+      ease: 'back.out(1.5)'
+    });
+
+    // Projects scroll animation
+    gsap.to('.gsap-project-card', {
+      scrollTrigger: {
+        trigger: '#projects',
+        start: 'top 60%',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out'
+    });
+
+    // Project image parallax
+    gsap.utils.toArray('.project-img-container img').forEach((img: any) => {
+      gsap.fromTo(img, 
+        { y: '-10%', scale: 1.1 },
+        {
+          scrollTrigger: {
+            trigger: img.parentElement,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+          y: '10%',
+          ease: 'none'
+        }
+      );
+    });
+  };
+
+  document.addEventListener('astro:page-load', initAnimations);
+</script>
 
 <style>
   @keyframes fade-in {
