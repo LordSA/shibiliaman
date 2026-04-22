@@ -1,8 +1,8 @@
 ---
 ---
 
-<div id="loader" class="fixed inset-0 z-[100] bg-black flex items-center justify-center transition-all duration-[1500ms] ease-[cubic-bezier(0.85,0,0.15,1)] origin-center">
-  <div class="flex flex-col items-center">
+<div id="loader" class="fixed inset-0 z-[100] bg-black flex items-center justify-center origin-center w-full h-screen">
+  <div class="loader-content flex flex-col items-center">
      <div class="relative mb-8 animate-logo-intro">
         <img src="/logo.png" alt="Logo" class="w-32 h-32 md:w-48 md:h-48 object-contain" />
         <div class="absolute inset-0 bg-white/10 blur-3xl rounded-full -z-10 animate-glow"></div>
@@ -11,30 +11,36 @@
         <div class="absolute inset-0 bg-white animate-progress-fast"></div>
      </div>
      <div class="mt-6 text-[11px] uppercase tracking-[0.6em] text-zinc-500 font-medium font-sans animate-pulse">
-       \/\/Loading\/\/
+       SYSTEM BOOT SEQUENCE...
      </div>
   </div>
 </div>
 
 <script>
+  import gsap from 'gsap';
+
   const initLoader = () => {
     const loader = document.getElementById('loader');
     if (loader) {
-      requestAnimationFrame(() => {
-        loader.style.transition = 'none';
-        loader.style.transform = 'scale(1)';
-        loader.style.opacity = '1';
-        loader.style.pointerEvents = 'auto';
-        
-        loader.offsetHeight;
-        
-        loader.style.transition = 'all 1500ms cubic-bezier(0.85, 0, 0.15, 1)';
-
-        setTimeout(() => {
-          loader.style.transform = 'scale(5)';
-          loader.style.opacity = '0';
+      const tl = gsap.timeline();
+      
+      tl.to('.loader-content', { 
+        opacity: 0, 
+        scale: 0.9, 
+        duration: 0.6, 
+        delay: 1.2, 
+        ease: 'power3.in' 
+      })
+      .to(loader, { 
+        opacity: 0,
+        scale: 1.1,
+        filter: 'blur(10px)',
+        duration: 1.2, 
+        ease: 'power3.out',
+        onComplete: () => {
           loader.style.pointerEvents = 'none';
-        }, 2000);
+          loader.style.display = 'none';
+        }
       });
     }
   };

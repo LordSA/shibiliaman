@@ -4,7 +4,6 @@ import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
 import Loader from './Loader.astro';
 import CustomCursor from './CustomCursor.astro';
-import Canvas3D from './Canvas3D.tsx';
 import { projects } from '../data/projects';
 
 const links = [
@@ -50,8 +49,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 
 <main class="overflow-x-hidden">
   <Navbar />
-  <section class="min-h-screen flex flex-col lg:flex-row justify-center items-center px-6 sm:px-10 md:px-24 pt-10 md:pt-20 lg:pt-24 text-left bg-[radial-gradient(circle_at_20%_50%,_rgba(255,255,255,0.03)_0%,_transparent_50%)] sticky top-0 bg-black -z-0 overflow-hidden font-mono">
-    <Canvas3D client:load />
+  <section class="min-h-screen flex flex-col lg:flex-row justify-center items-center px-6 sm:px-10 md:px-24 pt-10 md:pt-20 lg:pt-24 text-left bg-transparent sticky top-0 -z-0 overflow-hidden font-mono">
     
     <div class="max-w-4xl flex flex-col items-start py-2 z-10 w-full order-2 lg:order-1 relative">
        <div class="mb-4 md:mb-8 inline-block px-3 md:px-4 py-1 md:py-1.5 border border-white/10 rounded-full text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] bg-white/5 backdrop-blur-md shadow-2xl gsap-hero-stagger opacity-0 translate-y-4">
@@ -114,7 +112,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
     
   </section>
 
-  <section id="about" class="py-20 md:py-40 px-6 sm:px-10 md:px-24 border-t border-white/5 bg-black z-10 relative">
+  <section id="about" class="py-20 md:py-40 px-6 sm:px-10 md:px-24 bg-transparent z-10 relative">
     <div class="grid lg:grid-cols-12 gap-12 md:gap-20">
       <div class="lg:col-span-1 border-r border-white/5 hidden lg:block">
         <div class="sticky top-40 text-[10px] uppercase tracking-[0.4em] text-zinc-600 [writing-mode:vertical-lr] rotate-180">
@@ -123,7 +121,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
       </div>
       
       <div class="lg:col-span-6">
-        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12">System Log: About Me</h2>
+        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12 scramble-text" data-text="System Log: About Me">System Log: About Me</h2>
         <div class="space-y-6 md:space-y-8 text-xl md:text-4xl font-light leading-snug">
           <p>
             I am a <span class="text-white font-normal underline decoration-zinc-800 underline-offset-8">Computer Science student</span> with a deep fascination for the intersection of logic and creativity.
@@ -166,11 +164,11 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
     </div>
   </section>
 
-  <section id="projects" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 border-t border-white/5 relative overflow-hidden bg-black z-10">
+  <section id="projects" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 relative overflow-hidden bg-transparent z-10">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-24 gap-6">
         <div>
-          <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-4 md:mb-8">Selected Works</h2>
+          <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-4 md:mb-8 scramble-text" data-text="Selected Works">Selected Works</h2>
           <h3 class="text-3xl xs:text-5xl md:text-7xl font-bold uppercase tracking-tighter">Featured <br/> <span class="text-zinc-800">Projects</span></h3>
         </div>
         <div class="hidden md:block text-[10px] uppercase tracking-[0.4em] text-zinc-600 italic pb-4">
@@ -206,7 +204,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
     </div>
   </section>
 
-  <section id="secret-projects-vault" aria-hidden="true" inert class="secret-vault-section px-4 xs:px-6 sm:px-10 md:px-24 bg-black">
+  <section id="secret-projects-vault" aria-hidden="true" inert class="secret-vault-section px-4 xs:px-6 sm:px-10 md:px-24 bg-transparent">
     <div class="secret-vault-shell max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-8 md:mb-10">
         <div>
@@ -241,12 +239,12 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
     </div>
   </section>
 
-  <section id="contact" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 border-t border-white/5 relative bg-black z-10">
+  <section id="contact" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 relative bg-transparent z-10">
     <div class="max-w-5xl mx-auto text-center">
        <div class="inline-block mb-8 md:mb-12 animate-pulse">
           <div class="w-3 h-3 bg-white rounded-full"></div>
        </div>
-       <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-6 md:mb-12">Incoming Transmission</h2>
+       <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-6 md:mb-12 scramble-text" data-text="Incoming Transmission">Incoming Transmission</h2>
        <p class="text-3xl xs:text-5xl md:text-9xl font-bold tracking-tight md:tracking-[ -0.05em] uppercase mb-10 md:mb-16 italic text-balance">
          Let's Build the <span class="text-zinc-800">Future</span> Together.
        </p>
@@ -344,6 +342,60 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
           ease: 'none'
         }
       );
+    });
+
+    // Text Scramble Effect
+    const chars = '!<>-_\\/[]{}—=+*^?#________';
+    gsap.utils.toArray('.scramble-text').forEach((el: any) => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        onEnter: () => {
+          const originalText = el.dataset.text;
+          let iteration = 0;
+          gsap.to({}, {
+            duration: 1.5,
+            onUpdate: () => {
+              iteration += 1;
+              el.innerText = originalText.split('').map((letter: string, index: number) => {
+                if (index < iteration / 2) return originalText[index];
+                return chars[Math.floor(Math.random() * chars.length)];
+              }).join('');
+            }
+          });
+        },
+        once: true
+      });
+    });
+
+    // 3D Tilt on Project Cards
+    document.querySelectorAll('.gsap-project-card').forEach((card: any) => {
+      card.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+        
+        gsap.to(card, {
+          rotateX,
+          rotateY,
+          transformPerspective: 1000,
+          ease: "power2.out",
+          duration: 0.5
+        });
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotateX: 0,
+          rotateY: 0,
+          ease: "power2.out",
+          duration: 0.5
+        });
+      });
     });
   };
 

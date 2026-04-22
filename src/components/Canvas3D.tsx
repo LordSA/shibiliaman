@@ -1,7 +1,11 @@
 import React, { useRef, useMemo, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function ParticleSwarm() {
   const ref = useRef<THREE.Points>(null);
@@ -65,11 +69,47 @@ function ParticleSwarm() {
   );
 }
 
+function CameraController() {
+  const { camera } = useThree();
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(camera.position, {
+        z: 1,
+        y: -1.5,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+        }
+      });
+      
+      gsap.to(camera.rotation, {
+        x: Math.PI / 12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+        }
+      });
+    });
+
+    return () => ctx.revert();
+  }, [camera]);
+
+  return null;
+}
+
 export default function Canvas3D() {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none h-screen w-full overflow-hidden opacity-50 mix-blend-screen transition-opacity duration-1000 animate-in fade-in">
+    <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full overflow-hidden opacity-50 mix-blend-screen transition-opacity duration-1000 animate-in fade-in">
       <Canvas camera={{ position: [0, 0, 5], fov: 60 }} dpr={[1, 2]}>
         <ParticleSwarm />
+        <CameraController />
       </Canvas>
     </div>
   );
