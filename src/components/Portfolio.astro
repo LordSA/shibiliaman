@@ -1,258 +1,336 @@
 ---
-import { Github, Linkedin, ExternalLink, Mail, MessageSquare, Twitter } from '@lucide/astro';
 import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
 import Loader from './Loader.astro';
-import CustomCursor from './CustomCursor.astro';
 import { projects } from '../data/projects';
+import { Github, Linkedin, Twitter } from '@lucide/astro';
 
-const links = [
-  { href: 'https://github.com/LordSA', icon: Github, label: 'GitHub' },
-  { href: 'https://www.linkedin.com/in/shibili-aman-tk', icon: Linkedin, label: 'LinkedIn' },
-  { href: 'https://tinkerhub.org/@shibiliamantk', icon: ExternalLink, label: 'TinkerHub' },
-  { href: 'https://x.com/shibiliii_aman', icon: Twitter, label: 'Twitter' },
-];
+const featuredProjects = projects.filter(p => p.image).slice(0, 4);
 
 const techStack = [
-  { name: 'C++', icon: 'cplusplus', level: 2 },
-  { name: 'Python', icon: 'python', level: 3 },
-  { name: 'JavaScript', icon: 'javascript', level: 2 },
-  { name: 'Java', icon: 'java', level: 2 },
-  { name: 'Flutter', icon: 'flutter', level: 1 },
-  { name: 'Figma', icon: 'figma', level: 3 },
+  { name: 'Python',     color: '#3b82f6', icon: '🐍' },
+  { name: 'JavaScript', color: '#f59e0b', icon: '⚡' },
+  { name: 'TypeScript', color: '#60a5fa', icon: '🔷' },
+  { name: 'C++',        color: '#a78bfa', icon: '⚙️' },
+  { name: 'Java',       color: '#f97316', icon: '☕' },
+  { name: 'Flutter',    color: '#38bdf8', icon: '📱' },
+  { name: 'Next.js',    color: '#ffffff', icon: '▲' },
+  { name: 'Figma',      color: '#fb923c', icon: '🎨' },
 ];
 
-const skillLogicTags: Record<string, string> = {
-  'C++': 'c++ cpp systems performance game engine optimization',
-  Python: 'python automation backend scripting bot data ai',
-  JavaScript: 'javascript web frontend ui nextjs react astro fullstack',
-  Java: 'java game backend oop',
-  Flutter: 'flutter mobile ui app cross-platform',
-  Figma: 'figma design ui ux prototyping interface',
-};
-
-const inferProjectLogicTags = (project: (typeof projects)[number]) => {
-  const base = [project.title, project.category, project.description].join(' ').toLowerCase();
-  const inferred: string[] = [];
-
-  if (/python|automation|bot|declutter/.test(base)) inferred.push('python automation backend bot scripting');
-  if (/web|typescript|next|frontend|ui|ux|e-commerce|funding|management/.test(base)) inferred.push('javascript web frontend ui fullstack');
-  if (/java|game/.test(base)) inferred.push('java game');
-  if (/unity|game/.test(base)) inferred.push('cpp game engine performance');
-  if (/security|secure|medical|database/.test(base)) inferred.push('backend security data architecture');
-
-  return `${base} ${inferred.join(' ')}`;
-};
+const stats = [
+  { num: '15+', label: 'repos', key: 'projects' },
+  { num: '2+',  label: 'years', key: 'experience' },
+  { num: '8',   label: 'langs', key: 'languages' },
+  { num: '∞',   label: 'bugs_fixed', key: 'bugs' },
+];
 ---
 
 <Loader />
 
-<main class="overflow-x-hidden">
+<main id="main-content" class="relative z-10 text-white overflow-x-hidden font-mono">
   <Navbar />
-  <section class="min-h-screen flex flex-col justify-center items-center px-4 md:px-12 text-center bg-transparent sticky top-0 -z-0 overflow-hidden font-mono relative">
-    
-    <div class="absolute inset-0 border border-white/5 pointer-events-none opacity-20 grid grid-cols-4 md:grid-cols-12 divide-x divide-white/5">
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-      <div class="hidden md:block h-full"></div>
-    </div>
 
-    <!-- HUD Elements -->
-    <div class="absolute top-10 left-8 text-[9px] uppercase tracking-[0.4em] text-zinc-600 font-mono hidden md:block">
-      SYS.LOG // ONLINE
-    </div>
-    <div class="absolute bottom-10 right-8 text-[9px] uppercase tracking-[0.4em] text-zinc-600 font-mono hidden md:block">
-      LAT: 11.2588 / LON: 75.7804
-    </div>
+  <!-- ═══ HERO: Terminal Window ═══ -->
+  <section id="hero" class="relative min-h-screen flex flex-col justify-center bg-transparent overflow-hidden">
 
-    <div class="z-10 w-full flex flex-col items-center justify-center pointer-events-none mt-10 md:mt-0">
-      <h1 class="text-[5rem] xs:text-[6rem] sm:text-[9rem] md:text-[14rem] lg:text-[18rem] font-black tracking-tighter leading-[0.8] uppercase text-white mix-blend-exclusion gsap-hero-title opacity-0 scale-95 origin-bottom">
-        SHIBILI
-      </h1>
-      <h1 class="text-[5rem] xs:text-[6rem] sm:text-[9rem] md:text-[14rem] lg:text-[18rem] font-black tracking-tighter leading-[0.8] uppercase text-transparent mix-blend-exclusion gsap-hero-title opacity-0 scale-95 origin-top" style="-webkit-text-stroke: 1px rgba(255,255,255,0.8);">
-        AMAN
-      </h1>
-    </div>
+    <!-- Top HUD line -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-green-500/20"></div>
 
-    <div class="absolute bottom-12 z-20 flex flex-col items-center gap-6 gsap-hero-stagger opacity-0 translate-y-4">
-      <div class="flex gap-6 pointer-events-auto">
-        <a href="https://github.com/LordSA" target="_blank" class="text-[10px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">GitHub</a>
-        <a href="https://linkedin.com/in/shibili-aman-tk" target="_blank" class="text-[10px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">LinkedIn</a>
-        <a href="https://x.com/shibiliii_aman" target="_blank" class="text-[10px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Twitter</a>
-      </div>
-      <p class="text-[9px] uppercase tracking-[0.4em] text-zinc-600 font-mono bg-black/50 px-4 py-2 border border-white/5 rounded-full backdrop-blur-md">
-        Scroll sequence
-      </p>
-    </div>
-  </section>
+    <div class="px-4 sm:px-8 md:px-16 pt-28 pb-16 relative z-10 max-w-7xl mx-auto w-full">
 
-  <section id="about" class="py-20 md:py-40 px-6 sm:px-10 md:px-24 bg-transparent z-10 relative">
-    <div class="grid lg:grid-cols-12 gap-12 md:gap-20 bg-black/30 backdrop-blur-lg p-8 md:p-16 border border-white/5 rounded-[2rem] relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.02),transparent_50%)] pointer-events-none"></div>
-      <div class="lg:col-span-1 border-r border-white/5 hidden lg:block">
-        <div class="sticky top-40 text-[10px] uppercase tracking-[0.4em] text-zinc-600 [writing-mode:vertical-lr] rotate-180">
-          Identity / Bio
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+        <!-- LEFT: Terminal intro -->
+        <div class="lg:col-span-7">
+          <!-- Terminal window chrome -->
+          <div class="terminal-window mb-8 hero-anim opacity-0">
+            <div class="terminal-bar">
+              <div class="flex gap-1.5">
+                <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
+              </div>
+              <span class="text-[10px] text-white/30 tracking-widest">bash — ~/shibili-aman</span>
+              <div></div>
+            </div>
+            <div class="terminal-body">
+              <div class="term-line">
+                <span class="text-green-400">shibili@dev</span><span class="text-white/40">:</span><span class="text-blue-400">~</span><span class="text-white/40">$</span>
+                <span class="text-white ml-2">whoami</span>
+              </div>
+              <div class="term-line mt-2 text-green-300">Shibili Aman TK</div>
+
+              <div class="term-line mt-3">
+                <span class="text-green-400">shibili@dev</span><span class="text-white/40">:</span><span class="text-blue-400">~</span><span class="text-white/40">$</span>
+                <span class="text-white ml-2">cat profile.json</span>
+              </div>
+              <div class="term-output mt-2">
+                <span class="text-white/60">{"{"}</span><br/>
+                <span class="pl-4"><span class="text-blue-300">"role"</span><span class="text-white/60">:</span> <span class="text-green-300">"Full-Stack Developer"</span><span class="text-white/60">,</span></span><br/>
+                <span class="pl-4"><span class="text-blue-300">"status"</span><span class="text-white/60">:</span> <span class="text-green-300">"B.Tech CSE @ CEV"</span><span class="text-white/60">,</span></span><br/>
+                <span class="pl-4"><span class="text-blue-300">"available"</span><span class="text-white/60">:</span> <span class="text-yellow-300">true</span><span class="text-white/60">,</span></span><br/>
+                <span class="pl-4"><span class="text-blue-300">"building"</span><span class="text-white/60">:</span> <span class="text-green-300">"things that matter"</span></span><br/>
+                <span class="text-white/60">{"}"}</span>
+              </div>
+
+              <div class="term-line mt-3">
+                <span class="text-green-400">shibili@dev</span><span class="text-white/40">:</span><span class="text-blue-400">~</span><span class="text-white/40">$</span>
+                <span class="cursor-blink ml-2">█</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Big name -->
+          <div class="hero-anim opacity-0">
+            <h1 class="text-[3.5rem] sm:text-[5rem] md:text-[7rem] font-black tracking-tighter leading-[0.85] uppercase">
+              <span class="text-green-400">&lt;</span>Shibili<span class="text-green-400">/&gt;</span>
+            </h1>
+            <p class="text-zinc-400 text-base md:text-lg mt-4 leading-relaxed max-w-lg">
+              Building scalable apps, automations, and UI experiences.<br/>
+              <span class="text-green-400">// Open to internships &amp; collabs</span>
+            </p>
+          </div>
+
+          <!-- Social links -->
+          <div class="flex gap-4 mt-8 hero-anim opacity-0">
+            <a href="https://github.com/LordSA" target="_blank"
+               class="dev-btn group flex items-center gap-2 border border-green-500/30 px-4 py-2 hover:border-green-400 hover:bg-green-400/5 transition-all duration-300">
+              <Github size={14} class="text-green-400" />
+              <span class="text-[11px] tracking-widest text-green-400">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/shibili-aman-tk" target="_blank"
+               class="dev-btn group flex items-center gap-2 border border-blue-500/30 px-4 py-2 hover:border-blue-400 hover:bg-blue-400/5 transition-all duration-300">
+              <Linkedin size={14} class="text-blue-400" />
+              <span class="text-[11px] tracking-widest text-blue-400">LinkedIn</span>
+            </a>
+            <a href="https://x.com/shibiliii_aman" target="_blank"
+               class="dev-btn group flex items-center gap-2 border border-white/20 px-4 py-2 hover:border-white/60 hover:bg-white/5 transition-all duration-300">
+              <Twitter size={14} class="text-white/60" />
+              <span class="text-[11px] tracking-widest text-white/60">Twitter</span>
+            </a>
+          </div>
         </div>
-      </div>
-      
-      <div class="lg:col-span-6">
-        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12 scramble-text" data-text="System Log: About Me">System Log: About Me</h2>
-        <div class="space-y-6 md:space-y-8 text-xl md:text-4xl font-light leading-snug">
-          <p>
-            I am a <span class="text-white font-normal underline decoration-zinc-800 underline-offset-8">Computer Science student</span> with a deep fascination for the intersection of logic and creativity.
-          </p>
-          <p class="text-zinc-500">
-            Passionate about coding, building, and <span class="text-zinc-300">problem-solving</span>. Exploring the realms of UI/UX design to bridge the gap between functionality and aesthetics.
-          </p>
-          <div class="flex flex-wrap gap-2 md:gap-3 pt-4">
-            <span class="px-3 md:px-4 py-1.5 md:py-2 bg-zinc-900/50 border border-white/10 rounded-lg text-[9px] md:text-[10px] uppercase tracking-widest text-zinc-400">Intermediate Code Warrior</span>
-            <span class="px-3 md:px-4 py-1.5 md:py-2 bg-zinc-900/50 border border-white/10 rounded-lg text-[9px] md:text-[10px] uppercase tracking-widest text-zinc-400">Telegram Bot Architect</span>
-            <span class="px-3 md:px-4 py-1.5 md:py-2 bg-zinc-900/50 border border-white/10 rounded-lg text-[9px] md:text-[10px] uppercase tracking-widest text-zinc-400">UI/UX Explorer</span>
+
+        <!-- RIGHT: Photo + status badge -->
+        <div class="lg:col-span-5 flex flex-col items-center gap-6 hero-anim opacity-0">
+          <div class="relative">
+            <!-- Scanline green glow -->
+            <div class="absolute inset-0 bg-green-500/10 blur-3xl rounded-full scale-150"></div>
+            <!-- Photo in hex/square clip -->
+            <div class="relative w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border border-green-500/20">
+              <img src="/shibili.webp" alt="Shibili Aman TK"
+                   class="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-700" />
+              <!-- Green scan overlay -->
+              <div class="absolute inset-0 bg-gradient-to-b from-green-900/20 via-transparent to-green-900/40 pointer-events-none"></div>
+            </div>
+            <!-- Corner brackets -->
+            <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-green-400/60"></div>
+            <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-green-400/60"></div>
+            <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-green-400/60"></div>
+            <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-green-400/60"></div>
+          </div>
+
+          <!-- Status bar -->
+          <div class="w-full max-w-xs bg-black border border-green-500/20 px-4 py-3 rounded">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+              <span class="text-[10px] text-green-400 tracking-widest uppercase">Status: Available</span>
+            </div>
+            <div class="text-[10px] text-white/40 leading-relaxed">
+              <span class="text-white/60">location:</span> Kerala, India<br/>
+              <span class="text-white/60">commit:</span> <span class="text-green-300">3f9a21b</span> — "add coffee, ship code"
+            </div>
           </div>
         </div>
       </div>
-      
-      <div class="lg:col-span-5 flex flex-col justify-start">
-        <h3 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12">Tech Arsenal</h3>
-        <div class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
-           {techStack.map((tech) => (
-            <div class="bg-zinc-950/50 border border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm text-center sm:text-left gsap-tech-item opacity-0 translate-y-8" data-logic-skill={skillLogicTags[tech.name] ?? tech.name.toLowerCase()}>
-                <div class="relative">
-                  <img 
-                      src={tech.icon === 'figma' ? 'https://devicon-website.vercel.app/api/figma/original.svg' : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}/${tech.icon}-original.svg`} 
-                      alt={tech.name} 
-                      class="w-10 h-10 opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 brightness-125"
-                  />
-                </div>
-                <div class="flex-1">
-                  <span class="text-[10px] uppercase tracking-widest block mb-2 opacity-60 font-medium group-hover:opacity-100 transition-opacity">{tech.name}</span>
-                  <div class="flex gap-1.5">
-                    {[1, 2, 3].map((dot) => (
-                      <div class={`w-2 h-2 rounded-full transition-all duration-700 ${dot <= tech.level ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)] scale-110' : 'bg-zinc-800 opacity-30 shadow-none'}`}></div>
-                    ))}
-                  </div>
-                </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="absolute bottom-0 left-0 right-0 bg-black/80 border-t border-green-500/10 px-6 py-3 grid grid-cols-4 gap-4 max-w-4xl">
+      {stats.map(s => (
+        <div class="text-center">
+          <div class="text-green-400 font-black text-xl tracking-tighter">{s.num}</div>
+          <div class="text-[9px] text-white/30 tracking-widest uppercase">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT: Code Comment Style ═══ -->
+  <section id="about" class="py-32 px-4 sm:px-8 md:px-16 bg-black border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="reveal-block opacity-0 mb-16">
+        <div class="text-[10px] text-green-500/60 tracking-widest mb-2">// section_01.about</div>
+        <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">
+          <span class="text-green-400">def</span> who_am_i<span class="text-white/40">()</span>:
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+        <!-- Bio as docstring -->
+        <div class="reveal-block opacity-0">
+          <div class="code-block">
+            <div class="code-block-bar">
+              <span class="text-[10px] text-white/40">about.py</span>
             </div>
-          ))}
+            <div class="code-body">
+              <div class="code-line"><span class="text-white/30 select-none mr-4">1</span><span class="text-purple-400">"""</span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">2</span><span class="text-zinc-300">CS student at College of Engineering</span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">3</span><span class="text-zinc-300">Vadakara. Passionate about building</span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">4</span><span class="text-zinc-300">scalable solutions, clean UIs, and</span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">5</span><span class="text-zinc-300">automation tools that actually work.</span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">6</span><span class="text-purple-400">"""</span></div>
+              <div class="code-line mt-2"><span class="text-white/30 select-none mr-4">7</span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">8</span><span class="text-blue-400">return</span> <span class="text-white">{`{`}</span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">9</span><span class="pl-4 text-zinc-300"><span class="text-green-300">"focus"</span>: <span class="text-yellow-300">[</span><span class="text-green-300">"Web"</span>, <span class="text-green-300">"Bots"</span>, <span class="text-green-300">"UI"</span><span class="text-yellow-300">]</span>,</span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">10</span><span class="pl-4 text-zinc-300"><span class="text-green-300">"mode"</span>: <span class="text-green-300">"build → ship → iterate"</span></span></div>
+              <div class="code-line"><span class="text-white/30 select-none mr-4">11</span><span class="text-white">{`}`}</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech stack as import statements -->
+        <div class="reveal-block opacity-0">
+          <div class="code-block">
+            <div class="code-block-bar">
+              <span class="text-[10px] text-white/40">stack.ts</span>
+            </div>
+            <div class="code-body">
+              {techStack.map((t, i) => (
+                <div class="code-line group cursor-default">
+                  <span class="text-white/30 select-none mr-4 text-[11px]">{(i+1).toString().padStart(2,'0')}</span>
+                  <span class="text-purple-400">import</span>
+                  <span class="text-white/80 mx-1" style={`color: ${t.color}`}> {t.name} </span>
+                  <span class="text-purple-400">from</span>
+                  <span class="text-green-300 ml-1">'{t.name.toLowerCase()}'</span>
+                  <span class="text-white/20 ml-2 text-[10px] group-hover:text-white/50 transition-colors">{t.icon}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 relative overflow-hidden bg-transparent z-10">
-    <div class="max-w-7xl mx-auto bg-black/30 backdrop-blur-lg p-8 md:p-16 border border-white/5 rounded-[2rem] relative">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-24 gap-6">
-        <div>
-          <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-4 md:mb-8 scramble-text" data-text="Selected Works">Selected Works</h2>
-          <h3 class="text-3xl xs:text-5xl md:text-7xl font-bold uppercase tracking-tighter">Featured <br/> <span class="text-zinc-800">Projects</span></h3>
-        </div>
-        <div class="hidden md:block text-[10px] uppercase tracking-[0.4em] text-zinc-600 italic pb-4">
-          Quality / Stability / Detail
-        </div>
+  <!-- ═══ PROJECTS: File Explorer Style ═══ -->
+  <section id="projects" class="py-32 px-4 sm:px-8 md:px-16 bg-black border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="reveal-block opacity-0 mb-16">
+        <div class="text-[10px] text-green-500/60 tracking-widest mb-2">// section_02.projects</div>
+        <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">
+          <span class="text-blue-400">git</span> log <span class="text-white/30">--oneline</span>
+        </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-        {projects.slice(0, 4).map((project) => (
-          <a href={`/project/${project.slug}`} class="group cursor-pointer block gsap-project-card opacity-0 translate-y-12" data-logic-project={inferProjectLogicTags(project)}>
-            <div class="aspect-[16/10] bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden mb-6 md:mb-8 border border-white/5 relative project-img-container">
-              <img src={project.image || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000"} alt={project.title} class="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 md:grayscale md:hover:grayscale-0" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                 <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-white pb-1">View Project Details</span>
-              </div>
+      <!-- Project cards as IDE tabs / file cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {featuredProjects.map((project, i) => (
+          <a href={`/project/${project.slug}`} class="project-card reveal-block opacity-0 group block border border-white/5 hover:border-green-500/30 transition-all duration-500 bg-zinc-950/50 overflow-hidden">
+
+            <!-- File tab bar -->
+            <div class="flex items-center gap-3 px-4 py-2.5 border-b border-white/5 bg-black/50">
+              <div class="w-2 h-2 rounded-full bg-green-400/60 group-hover:bg-green-400 transition-colors"></div>
+              <span class="text-[10px] text-white/40 group-hover:text-white/70 transition-colors tracking-widest">
+                {project.slug}.{project.category.includes('Python') ? 'py' : project.category.includes('Game') ? 'java' : 'ts'}
+              </span>
+              <span class="ml-auto text-[9px] text-white/20 group-hover:text-green-400/60 transition-colors">0{i+1}</span>
             </div>
-            <div class="flex flex-col sm:flex-row justify-between items-start px-2 gap-4">
-              <div>
-                <h4 class="text-xl md:text-2xl font-bold uppercase tracking-tight mb-2 group-hover:text-zinc-300 transition-colors">{project.title}</h4>
-                <p class="text-zinc-500 text-sm md:text-base font-light max-w-sm">{project.description}</p>
+
+            <!-- Project image -->
+            <div class="aspect-[16/9] overflow-hidden relative bg-zinc-900">
+              <img src={project.image} alt={project.title}
+                   class="w-full h-full object-cover opacity-60 grayscale group-hover:opacity-90 group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            </div>
+
+            <!-- Code-style info block -->
+            <div class="p-5">
+              <div class="text-[10px] text-green-500/60 tracking-widest mb-1"># {project.category}</div>
+              <h3 class="text-xl md:text-2xl font-bold uppercase tracking-tighter text-white mb-2 group-hover:text-green-300 transition-colors">{project.title}</h3>
+              <p class="text-sm text-zinc-500 group-hover:text-zinc-300 transition-colors leading-relaxed line-clamp-2">{project.description}</p>
+              <div class="mt-4 flex items-center gap-2 text-[10px] text-green-400/50 group-hover:text-green-400 transition-colors tracking-widest">
+                <span>→ view_project()</span>
               </div>
-              <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-zinc-600 bg-zinc-900/50 border border-white/5 px-3 py-1 rounded-full whitespace-nowrap">{project.category}</span>
             </div>
           </a>
         ))}
       </div>
 
-      <div class="mt-8 md:mt-12 text-center">
-        <a href="/projects" class="inline-flex items-center gap-2 px-8 py-4 md:px-10 md:py-5 bg-white text-black rounded-full text-[9px] md:text-[10px] uppercase tracking-widest font-bold hover:bg-zinc-200 transition-all transform hover:-translate-y-1">
-          Explore All Works
+      <div class="mt-12 reveal-block opacity-0">
+        <a href="/projects" class="inline-flex items-center gap-3 border border-white/10 hover:border-green-500/40 hover:bg-green-400/5 px-6 py-3 transition-all duration-300 group">
+          <span class="text-[11px] tracking-widest text-white/50 group-hover:text-green-400 transition-colors">ls ./projects --all</span>
+          <span class="text-green-400 group-hover:translate-x-1 transition-transform">→</span>
         </a>
       </div>
     </div>
   </section>
 
-  <section id="secret-projects-vault" aria-hidden="true" inert class="secret-vault-section px-4 xs:px-6 sm:px-10 md:px-24 bg-transparent pb-20">
-    <div class="secret-vault-shell max-w-7xl mx-auto bg-black/30 backdrop-blur-lg p-8 md:p-16 border border-white/5 rounded-[2rem] relative">
-      <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-8 md:mb-10">
-        <div>
-          <p class="text-[9px] md:text-[10px] uppercase tracking-[0.34em] text-amber-300/70 mb-3">Top Secret / Unreleased</p>
-          <h3 class="text-2xl xs:text-4xl md:text-6xl font-bold uppercase tracking-tight">Hidden <span class="text-zinc-700">Experiments</span></h3>
+  <!-- ═══ CONTACT: Git Commit Style ═══ -->
+  <section id="contact" class="py-32 px-4 sm:px-8 md:px-16 bg-black border-t border-white/5">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="reveal-block opacity-0 mb-16">
+        <div class="text-[10px] text-green-500/60 tracking-widest mb-2">// section_03.contact</div>
+        <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter">
+          <span class="text-yellow-400">git commit</span><br/>
+          <span class="text-green-300">-m "hire me"</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 reveal-block opacity-0">
+        <!-- Left: terminal contact -->
+        <div class="terminal-window">
+          <div class="terminal-bar">
+            <div class="flex gap-1.5">
+              <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
+            </div>
+            <span class="text-[10px] text-white/30">contact.sh</span>
+            <div></div>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line text-white/50">$ <span class="text-white">send_message --to shibili</span></div>
+            <div class="mt-3 space-y-2">
+              <div class="term-line"><span class="text-white/40">Email: </span><a href="mailto:shibili.dev@gmail.com" class="text-green-300 hover:text-green-200 transition-colors">shibili.dev@gmail.com</a></div>
+              <div class="term-line"><span class="text-white/40">GitHub: </span><a href="https://github.com/LordSA" target="_blank" class="text-blue-300 hover:text-blue-200 transition-colors">@LordSA</a></div>
+              <div class="term-line"><span class="text-white/40">LinkedIn: </span><a href="https://linkedin.com/in/shibili-aman-tk" target="_blank" class="text-blue-300 hover:text-blue-200 transition-colors">shibili-aman-tk</a></div>
+              <div class="term-line"><span class="text-white/40">Twitter: </span><a href="https://x.com/shibiliii_aman" target="_blank" class="text-blue-300 hover:text-blue-200 transition-colors">@shibiliii_aman</a></div>
+            </div>
+            <div class="mt-4 term-line">
+              <span class="text-green-400">✓</span> <span class="text-white/50">Message queued. Will respond within 24h.</span>
+            </div>
+            <div class="term-line mt-1">
+              <span class="text-green-400">shibili@dev</span><span class="text-white/40">:~$</span>
+              <span class="cursor-blink ml-1">█</span>
+            </div>
+          </div>
         </div>
-        <p class="text-xs md:text-sm text-zinc-400 max-w-md">Unlocked via SQL simulator. These are concept tracks, internal prototypes, and unapologetically weird ideas.</p>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-        <article class="secret-vault-card">
-          <p class="secret-vault-tag">Prototype / AI Ops</p>
-          <h4>Ghost Deploy</h4>
-          <p>CLI + dashboard that previews CI breakage probability before merge using commit patterns and flaky-test fingerprints.</p>
-          <pre><code>pipeline.predictRisk(commitDiff, flakyHistory)</code></pre>
-        </article>
-
-        <article class="secret-vault-card">
-          <p class="secret-vault-tag">Prototype / UX Data</p>
-          <h4>PulseMap</h4>
-          <p>Heatmap timeline that correlates feature usage drops with release notes to pinpoint friction in under 60 seconds.</p>
-          <pre><code>SELECT * FROM interactions WHERE churn_signal = 1;</code></pre>
-        </article>
-
-        <article class="secret-vault-card">
-          <p class="secret-vault-tag">Prototype / Security</p>
-          <h4>HoneyRoute</h4>
-          <p>Adaptive decoy endpoint framework that tags suspicious sessions and reroutes scanners into instrumented sandboxes.</p>
-          <pre><code>if (threatScore > 0.9) reroute('/sandbox')</code></pre>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 relative bg-transparent z-10">
-    <div class="max-w-5xl mx-auto text-center bg-black/30 backdrop-blur-lg p-12 md:p-24 border border-white/5 rounded-[3rem] relative overflow-hidden">
-       <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_60%)] pointer-events-none"></div>
-       <div class="inline-block mb-8 md:mb-12 animate-pulse relative z-10">
-          <div class="w-3 h-3 bg-white rounded-full"></div>
-       </div>
-       <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-6 md:mb-12 scramble-text" data-text="Incoming Transmission">Incoming Transmission</h2>
-       <p class="text-3xl xs:text-5xl md:text-9xl font-bold tracking-tight md:tracking-[ -0.05em] uppercase mb-10 md:mb-16 italic text-balance">
-         Let's Build the <span class="text-zinc-800">Future</span> Together.
-       </p>
-       
-       <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-8 mb-16 md:mb-32">
-         <a href="/contact" class="px-8 md:px-12 py-4 md:py-6 bg-white text-black font-bold uppercase tracking-[0.2em] rounded-full hover:bg-zinc-200 transition-all transform hover:-translate-y-1 text-xs md:text-sm">
-           Initiate Contact
-         </a>
-         <a href="https://linkedin.com/in/shibili-aman-tk" target="_blank" class="px-8 md:px-12 py-4 md:py-6 border border-white/20 text-white font-bold uppercase tracking-[0.2em] rounded-full hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 text-xs md:text-sm bg-black/40 backdrop-blur-sm">
-           LinkedIn Profile
-         </a>
-       </div>
-
-       <div class="pt-12 md:pt-24 border-t border-white/5 mt-12 md:mt-20">
-          <h4 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-8 md:mb-12">Growth Metrics / Analytics</h4>
-          <div class="flex flex-col lg:flex-row gap-6 md:gap-8 justify-center items-center">
-             <!-- <img src="https://github-readme-stats.vercel.app/api?username=LordSA&show_icons=true&theme=radical&hide_border=true&include_all_commits=true&count_private=true" alt="Github Stats" class="h-44 md:h-52 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all rounded-xl w-full max-w-lg object-contain" /> -->
-             <img src="https://github-readme-streak-stats.herokuapp.com/?user=LordSA&theme=tokyonight&hide_border=true" alt="Github Streak" class="h-44 md:h-52 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all rounded-xl w-full max-w-lg object-contain" />
+        <!-- Right: CTA -->
+        <div class="flex flex-col justify-center gap-8">
+          <div>
+            <div class="text-[10px] text-white/30 tracking-widest mb-4">// open_to</div>
+            <div class="space-y-3">
+              {['Internships', 'Freelance Projects', 'Open Source Collabs', 'Full-time Roles (2026)'].map(item => (
+                <div class="flex items-center gap-3 text-sm text-zinc-300">
+                  <span class="text-green-400 text-xs">✓</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div class="mt-8 flex justify-center">
-             <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=LordSA&theme=radical" alt="GitHub Participation" class="w-full max-w-4xl grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all rounded-xl hidden md:block" />
-          </div>
-       </div>
+          <a href="/contact" class="group inline-flex items-center justify-center gap-3 bg-green-400 text-black font-bold text-xs uppercase tracking-widest px-8 py-4 hover:bg-green-300 transition-all duration-300">
+            <span>Initialize Contact</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -265,232 +343,114 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const initAnimations = () => {
-    // Wait for loader
+  const init = () => {
+    // Hero animations
     setTimeout(() => {
-      // Hero animations
-      gsap.to('.gsap-hero-title', {
+      gsap.to('.hero-anim', {
         opacity: 1,
         y: 0,
-        duration: 1.2,
+        duration: 0.8,
         ease: 'power3.out',
+        stagger: 0.15,
       });
+    }, 1500);
 
-      gsap.to('.gsap-hero-stagger', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        stagger: 0.1,
-        delay: 0.2
-      });
-    }, 1500); // 1.5s is the loader time
-
-    // Tech stack scroll animation
-    gsap.to('.gsap-tech-item', {
-      scrollTrigger: {
-        trigger: '#about',
-        start: 'top 70%',
-      },
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: 0.05,
-      ease: 'back.out(1.5)'
-    });
-
-    // Projects scroll animation
-    gsap.to('.gsap-project-card', {
-      scrollTrigger: {
-        trigger: '#projects',
-        start: 'top 60%',
-      },
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: 'power3.out'
-    });
-
-    // Project image parallax
-    gsap.utils.toArray('.project-img-container img').forEach((img: any) => {
-      gsap.fromTo(img, 
-        { y: '-10%', scale: 1.1 },
+    // Scroll reveals
+    document.querySelectorAll('.reveal-block').forEach((el: any) => {
+      gsap.fromTo(el,
+        { y: 40, opacity: 0 },
         {
-          scrollTrigger: {
-            trigger: img.parentElement,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-          y: '10%',
-          ease: 'none'
+          scrollTrigger: { trigger: el, start: 'top 88%' },
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
         }
       );
     });
 
-    // Text Scramble Effect
-    const chars = '!<>-_\\/[]{}—=+*^?#________';
-    gsap.utils.toArray('.scramble-text').forEach((el: any) => {
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 85%',
-        onEnter: () => {
-          const originalText = el.dataset.text;
-          let iteration = 0;
-          gsap.to({}, {
-            duration: 1.5,
-            onUpdate: () => {
-              iteration += 1;
-              el.innerText = originalText.split('').map((letter: string, index: number) => {
-                if (index < iteration / 2) return originalText[index];
-                return chars[Math.floor(Math.random() * chars.length)];
-              }).join('');
-            }
-          });
-        },
-        once: true
-      });
-    });
-
-    // 3D Tilt on Project Cards
-    document.querySelectorAll('.gsap-project-card').forEach((card: any) => {
-      card.addEventListener('mousemove', (e: MouseEvent) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -10;
-        const rotateY = ((x - centerX) / centerX) * 10;
-        
-        gsap.to(card, {
-          rotateX,
-          rotateY,
-          transformPerspective: 1000,
-          ease: "power2.out",
-          duration: 0.5
-        });
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          rotateX: 0,
-          rotateY: 0,
-          ease: "power2.out",
-          duration: 0.5
-        });
-      });
+    // Typing cursor blink
+    gsap.to('.cursor-blink', {
+      opacity: 0,
+      repeat: -1,
+      yoyo: true,
+      duration: 0.5,
+      ease: 'steps(1)',
     });
   };
 
-  document.addEventListener('astro:page-load', initAnimations);
+  document.addEventListener('astro:page-load', init);
 </script>
 
 <style>
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .animate-fade-in {
-    animation: fade-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-10px); }
-  }
-  .animate-float {
-    animation: float 3s ease-in-out infinite alternate;
-  }
-
-  .secret-vault-section {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(26px);
-    transition: max-height 0.65s ease, opacity 0.45s ease, transform 0.45s ease, padding-top 0.45s ease, padding-bottom 0.45s ease;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .secret-vault-section.is-open {
-    max-height: 960px;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
-    border-top-color: rgba(255, 255, 255, 0.08);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
-
-  .secret-vault-shell {
-    background: linear-gradient(180deg, rgba(33, 18, 8, 0.38), rgba(8, 10, 16, 0.8));
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 20px;
-    padding: 1.1rem;
-  }
-
-  .secret-vault-card {
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 14px;
-    padding: 0.85rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  }
-
-  .secret-vault-card h4 {
-    margin: 0 0 0.4rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 1rem;
-  }
-
-  .secret-vault-card p {
-    margin: 0;
-    font-size: 0.82rem;
-    line-height: 1.5;
-    color: rgba(236, 236, 236, 0.84);
-  }
-
-  .secret-vault-tag {
-    margin: 0 0 0.45rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.62rem;
-    color: rgba(251, 191, 36, 0.9);
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .secret-vault-card pre {
-    margin: 0.65rem 0 0;
-    padding: 0.5rem;
+  /* Terminal window */
+  .terminal-window {
+    background: #0a0a0a;
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 8px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    overflow-x: auto;
+    overflow: hidden;
+  }
+  .terminal-bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 1rem;
+    background: #111;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .terminal-body {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.78rem;
+    line-height: 1.7;
+  }
+  .term-line {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .term-output {
+    font-size: 0.75rem;
+    line-height: 1.8;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(74, 222, 128, 0.2);
   }
 
-  .secret-vault-card code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: rgba(255, 226, 178, 0.95);
+  /* Code block */
+  .code-block {
+    background: #0a0a0a;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .code-block-bar {
+    padding: 0.5rem 1rem;
+    background: #111;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .code-body {
+    padding: 1rem;
+    font-size: 0.75rem;
+    line-height: 1.8;
+  }
+  .code-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
   }
 
-  @media (max-width: 640px) {
-    .secret-vault-section.is-open {
-      max-height: 1400px;
-      padding-top: 1.2rem;
-      padding-bottom: 1.2rem;
-    }
+  /* Project card */
+  .project-card {
+    border-radius: 4px;
+  }
 
-    .secret-vault-shell {
-      padding: 0.9rem;
-    }
+  /* Dev button */
+  .dev-btn {
+    border-radius: 2px;
+  }
+
+  /* Hero anim starts below */
+  .hero-anim {
+    transform: translateY(20px);
   }
 </style>
