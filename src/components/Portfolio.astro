@@ -49,17 +49,17 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 
 <main class="overflow-x-hidden">
   <Navbar />
-  <section class="min-h-screen flex flex-col lg:flex-row justify-center items-center px-6 sm:px-10 md:px-24 pt-10 md:pt-20 lg:pt-24 text-left bg-[radial-gradient(circle_at_20%_50%,_rgba(255,255,255,0.03)_0%,_transparent_50%)] sticky top-0 bg-black -z-0 overflow-hidden font-mono">
+  <section class="min-h-screen flex flex-col lg:flex-row justify-center items-center px-6 sm:px-10 md:px-24 pt-10 md:pt-20 lg:pt-24 text-left bg-transparent sticky top-0 -z-0 overflow-hidden font-mono">
     
-    <div class="max-w-4xl animate-fade-in flex flex-col items-start py-2 z-10 w-full order-2 lg:order-1">
-       <div class="mb-4 md:mb-8 inline-block px-3 md:px-4 py-1 md:py-1.5 border border-white/10 rounded-full text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] bg-white/5 backdrop-blur-md shadow-2xl">
+    <div class="max-w-4xl flex flex-col items-start py-2 z-10 w-full order-2 lg:order-1 relative">
+       <div class="mb-4 md:mb-8 inline-block px-3 md:px-4 py-1 md:py-1.5 border border-white/10 rounded-full text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] bg-white/5 backdrop-blur-md shadow-2xl gsap-hero-stagger opacity-0 translate-y-4">
         B.Tech CSE Student • Full-Stack Explorer
       </div>
-      <h2 class="text-base md:text-2xl font-light tracking-[0.3em] md:tracking-[0.4em] text-zinc-500 mb-2 md:mb-4 uppercase">SHIBILI AMAN TK</h2>
-      <h1 class="text-5xl xs:text-6xl sm:text-6xl md:text-[7rem] font-bold tracking-tighter leading-[0.9] mb-6 md:mb-10 uppercase cursor-default select-none transition-all duration-700 hover:tracking-tight">
+      <h2 class="text-base md:text-2xl font-light tracking-[0.3em] md:tracking-[0.4em] text-zinc-500 mb-2 md:mb-4 uppercase gsap-hero-stagger opacity-0 translate-y-4">SHIBILI AMAN TK</h2>
+      <h1 class="text-5xl xs:text-6xl sm:text-6xl md:text-[7rem] font-bold tracking-tighter leading-[0.9] mb-6 md:mb-10 uppercase cursor-default select-none transition-all duration-700 hover:tracking-tight gsap-hero-title opacity-0 translate-y-8">
         Coding and <br/> <span class="text-zinc-800 hover:text-white transition-all duration-1000">Building</span>
       </h1>
-      <p class="text-xs xs:text-sm md:text-2xl text-zinc-400 max-w-2xl mb-8 md:mb-14 leading-relaxed font-light text-balance font-sans">
+      <p class="text-xs xs:text-sm md:text-2xl text-zinc-400 max-w-2xl mb-8 md:mb-14 leading-relaxed font-light text-balance font-sans gsap-hero-stagger opacity-0 translate-y-4">
         A<span class="text-white font-medium"> Full-Stack Developer</span> and UI/UX Enthusiast passionate about building scalable solutions and crafting elegant user experiences.
       </p>
       
@@ -78,7 +78,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
           </div>
       </div>
 
-      <div class="flex flex-col lg:flex-row justify-start items-center gap-4 md:gap-6 z-20 w-full lg:w-auto mt-12 xs:mt-4">
+      <div class="flex flex-col lg:flex-row justify-start items-center gap-4 md:gap-6 z-20 w-full lg:w-auto mt-12 xs:mt-4 gsap-hero-stagger opacity-0 translate-y-4">
         <a href="https://instagram.com/__shibiliii._" class="group relative w-full lg:w-48 text-center px-8 lg:px-6 py-5 bg-white text-black rounded-full text-[11px] md:text-xs uppercase tracking-[0.2em] transition-all font-bold shadow-[0_0_40px_rgba(255,255,255,0.1)] active:scale-95 overflow-hidden cursor-pointer whitespace-nowrap">
           <span class="relative z-10 transition-colors duration-500 group-hover:text-white">
             Let's Develop
@@ -112,7 +112,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
     
   </section>
 
-  <section id="about" class="py-20 md:py-40 px-6 sm:px-10 md:px-24 border-t border-white/5 bg-black z-10 relative">
+  <section id="about" class="py-20 md:py-40 px-6 sm:px-10 md:px-24 bg-transparent z-10 relative">
     <div class="grid lg:grid-cols-12 gap-12 md:gap-20">
       <div class="lg:col-span-1 border-r border-white/5 hidden lg:block">
         <div class="sticky top-40 text-[10px] uppercase tracking-[0.4em] text-zinc-600 [writing-mode:vertical-lr] rotate-180">
@@ -121,7 +121,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
       </div>
       
       <div class="lg:col-span-6">
-        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12">System Log: About Me</h2>
+        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12 scramble-text" data-text="System Log: About Me">System Log: About Me</h2>
         <div class="space-y-6 md:space-y-8 text-xl md:text-4xl font-light leading-snug">
           <p>
             I am a <span class="text-white font-normal underline decoration-zinc-800 underline-offset-8">Computer Science student</span> with a deep fascination for the intersection of logic and creativity.
@@ -141,7 +141,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
         <h3 class="text-[10px] uppercase tracking-[0.4em] text-zinc-600 mb-8 md:mb-12">Tech Arsenal</h3>
         <div class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
            {techStack.map((tech) => (
-            <div class="bg-zinc-950/50 border border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm text-center sm:text-left" data-logic-skill={skillLogicTags[tech.name] ?? tech.name.toLowerCase()}>
+            <div class="bg-zinc-950/50 border border-white/5 flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl group hover:border-white/10 hover:bg-zinc-900/50 transition-all duration-500 backdrop-blur-sm text-center sm:text-left gsap-tech-item opacity-0 translate-y-8" data-logic-skill={skillLogicTags[tech.name] ?? tech.name.toLowerCase()}>
                 <div class="relative">
                   <img 
                       src={tech.icon === 'figma' ? 'https://devicon-website.vercel.app/api/figma/original.svg' : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}/${tech.icon}-original.svg`} 
@@ -164,11 +164,11 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
     </div>
   </section>
 
-  <section id="projects" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 border-t border-white/5 relative overflow-hidden bg-black z-10">
+  <section id="projects" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 relative overflow-hidden bg-transparent z-10">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-24 gap-6">
         <div>
-          <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-4 md:mb-8">Selected Works</h2>
+          <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-4 md:mb-8 scramble-text" data-text="Selected Works">Selected Works</h2>
           <h3 class="text-3xl xs:text-5xl md:text-7xl font-bold uppercase tracking-tighter">Featured <br/> <span class="text-zinc-800">Projects</span></h3>
         </div>
         <div class="hidden md:block text-[10px] uppercase tracking-[0.4em] text-zinc-600 italic pb-4">
@@ -178,8 +178,8 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
         {projects.slice(0, 4).map((project) => (
-          <a href={`/project/${project.slug}`} class="group cursor-pointer block" data-logic-project={inferProjectLogicTags(project)}>
-            <div class="aspect-[16/10] bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden mb-6 md:mb-8 border border-white/5 relative">
+          <a href={`/project/${project.slug}`} class="group cursor-pointer block gsap-project-card opacity-0 translate-y-12" data-logic-project={inferProjectLogicTags(project)}>
+            <div class="aspect-[16/10] bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden mb-6 md:mb-8 border border-white/5 relative project-img-container">
               <img src={project.image || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000"} alt={project.title} class="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 md:grayscale md:hover:grayscale-0" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                  <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-white pb-1">View Project Details</span>
@@ -204,7 +204,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
     </div>
   </section>
 
-  <section id="secret-projects-vault" aria-hidden="true" inert class="secret-vault-section px-4 xs:px-6 sm:px-10 md:px-24 bg-black">
+  <section id="secret-projects-vault" aria-hidden="true" inert class="secret-vault-section px-4 xs:px-6 sm:px-10 md:px-24 bg-transparent">
     <div class="secret-vault-shell max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-8 md:mb-10">
         <div>
@@ -239,12 +239,12 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
     </div>
   </section>
 
-  <section id="contact" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 border-t border-white/5 relative bg-black z-10">
+  <section id="contact" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 relative bg-transparent z-10">
     <div class="max-w-5xl mx-auto text-center">
        <div class="inline-block mb-8 md:mb-12 animate-pulse">
           <div class="w-3 h-3 bg-white rounded-full"></div>
        </div>
-       <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-6 md:mb-12">Incoming Transmission</h2>
+       <h2 class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-600 mb-6 md:mb-12 scramble-text" data-text="Incoming Transmission">Incoming Transmission</h2>
        <p class="text-3xl xs:text-5xl md:text-9xl font-bold tracking-tight md:tracking-[ -0.05em] uppercase mb-10 md:mb-16 italic text-balance">
          Let's Build the <span class="text-zinc-800">Future</span> Together.
        </p>
@@ -273,6 +273,134 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 </main>
 
 <Footer />
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAnimations = () => {
+    // Wait for loader
+    setTimeout(() => {
+      // Hero animations
+      gsap.to('.gsap-hero-title', {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+      });
+
+      gsap.to('.gsap-hero-stagger', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.1,
+        delay: 0.2
+      });
+    }, 1500); // 1.5s is the loader time
+
+    // Tech stack scroll animation
+    gsap.to('.gsap-tech-item', {
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top 70%',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.05,
+      ease: 'back.out(1.5)'
+    });
+
+    // Projects scroll animation
+    gsap.to('.gsap-project-card', {
+      scrollTrigger: {
+        trigger: '#projects',
+        start: 'top 60%',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out'
+    });
+
+    // Project image parallax
+    gsap.utils.toArray('.project-img-container img').forEach((img: any) => {
+      gsap.fromTo(img, 
+        { y: '-10%', scale: 1.1 },
+        {
+          scrollTrigger: {
+            trigger: img.parentElement,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+          y: '10%',
+          ease: 'none'
+        }
+      );
+    });
+
+    // Text Scramble Effect
+    const chars = '!<>-_\\/[]{}—=+*^?#________';
+    gsap.utils.toArray('.scramble-text').forEach((el: any) => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        onEnter: () => {
+          const originalText = el.dataset.text;
+          let iteration = 0;
+          gsap.to({}, {
+            duration: 1.5,
+            onUpdate: () => {
+              iteration += 1;
+              el.innerText = originalText.split('').map((letter: string, index: number) => {
+                if (index < iteration / 2) return originalText[index];
+                return chars[Math.floor(Math.random() * chars.length)];
+              }).join('');
+            }
+          });
+        },
+        once: true
+      });
+    });
+
+    // 3D Tilt on Project Cards
+    document.querySelectorAll('.gsap-project-card').forEach((card: any) => {
+      card.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+        
+        gsap.to(card, {
+          rotateX,
+          rotateY,
+          transformPerspective: 1000,
+          ease: "power2.out",
+          duration: 0.5
+        });
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotateX: 0,
+          rotateY: 0,
+          ease: "power2.out",
+          duration: 0.5
+        });
+      });
+    });
+  };
+
+  document.addEventListener('astro:page-load', initAnimations);
+</script>
 
 <style>
   @keyframes fade-in {

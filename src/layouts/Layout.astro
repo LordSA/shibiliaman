@@ -4,6 +4,7 @@ import '../styles/global.css';
 import '../styles/time-traveler.css';
 import '../styles/architect-theme.css';
 import CustomCursor from '../components/CustomCursor.astro';
+import Canvas3D from '../components/Canvas3D.tsx';
 import TerminalCheat from '../components/cheats/TerminalCheat.astro';
 import TimeTravelerCheat from '../components/cheats/TimeTravelerCheat.astro';
 import ChaosCheat from '../components/cheats/ChaosCheat.astro';
@@ -67,6 +68,7 @@ const personStructuredData = {
 	</head>
 	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
 		<CustomCursor />
+		<Canvas3D client:load />
 		<div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 		<slot />
 		<div id="cheat-menu-overlay" class="cheat-menu-overlay" aria-hidden="true">
