@@ -1,14 +1,15 @@
-import React, { useRef, useMemo, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
+import { MeshDistortMaterial } from '@react-three/drei';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function ParticleSwarm() {
-  const ref = useRef<THREE.Points>(null);
+function CenterPiece() {
+  const meshRef = useRef<THREE.Mesh>(null);
   const mouse = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -20,52 +21,33 @@ function ParticleSwarm() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const [positions] = useMemo(() => {
-    const count = 6000;
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      const theta = Math.random() * 2 * Math.PI;
-      const phi = Math.acos((Math.random() * 2) - 1);
-      const r = 1.8 + Math.random() * 1.5;
-      
-      const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta);
-      const z = r * Math.cos(phi);
-      
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
-    }
-    return [positions];
-  }, []);
-
   useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x -= delta / 15;
-      ref.current.rotation.y -= delta / 20;
+    if (meshRef.current) {
+      meshRef.current.rotation.x += delta * 0.1;
+      meshRef.current.rotation.y += delta * 0.15;
       
-      const targetX = (mouse.current.y * Math.PI) / 8;
-      const targetY = (mouse.current.x * Math.PI) / 8;
+      const targetX = mouse.current.y * 0.5;
+      const targetY = mouse.current.x * 0.5;
       
-      ref.current.rotation.x += (targetX - ref.current.rotation.x) * 0.05;
-      ref.current.rotation.y += (targetY - ref.current.rotation.y) * 0.05;
+      meshRef.current.rotation.x += (targetX - meshRef.current.rotation.x) * 0.05;
+      meshRef.current.rotation.y += (targetY - meshRef.current.rotation.y) * 0.05;
     }
   });
 
   return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
-        <PointMaterial
-          transparent
-          color="#a1a1aa" /* zinc-400 */
-          size={0.012}
-          sizeAttenuation={true}
-          depthWrite={false}
-          opacity={0.8}
-          blending={THREE.AdditiveBlending}
-        />
-      </Points>
-    </group>
+    <mesh ref={meshRef} position={[0, 0, 0]} scale={[1.2, 1.2, 1.2]}>
+      <torusKnotGeometry args={[1, 0.3, 256, 32]} />
+      <MeshDistortMaterial
+        color="#000000"
+        emissive="#ffffff"
+        emissiveIntensity={1.5}
+        roughness={0.1}
+        metalness={1}
+        distort={0.3}
+        speed={1.5}
+        wireframe={true}
+      />
+    </mesh>
   );
 }
 
@@ -75,7 +57,7 @@ function CameraController() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.to(camera.position, {
-        z: 1,
+        z: 2.5,
         y: -1.5,
         ease: 'none',
         scrollTrigger: {
@@ -87,7 +69,7 @@ function CameraController() {
       });
       
       gsap.to(camera.rotation, {
-        x: Math.PI / 12,
+        x: Math.PI / 10,
         ease: 'none',
         scrollTrigger: {
           trigger: document.body,
@@ -106,10 +88,14 @@ function CameraController() {
 
 export default function Canvas3D() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full overflow-hidden opacity-50 mix-blend-screen transition-opacity duration-1000 animate-in fade-in">
-      <Canvas camera={{ position: [0, 0, 5], fov: 60 }} dpr={[1, 2]}>
-        <ParticleSwarm />
+    <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full overflow-hidden transition-opacity duration-1000 animate-in fade-in mix-blend-screen opacity-80">
+      <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }} dpr={[1, 2]}>
+        <ambientLight intensity={0.2} />
+        <CenterPiece />
         <CameraController />
+        <EffectComposer>
+          <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.9} intensity={2} />
+        </EffectComposer>
       </Canvas>
     </div>
   );
