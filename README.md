@@ -1,46 +1,39 @@
-# Astro Starter Kit: Basics
+# Shibili Aman - Portfolio
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+The official portfolio of Shibili Aman TK, a Full-Stack Developer and B.Tech CSE student. This project is built using Astro, React, and Tailwind CSS, featuring high-performance rendering and a custom 3D interactive experience.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tech Stack
 
-## 🚀 Project Structure
+- **Framework:** Astro 6
+- **UI Library:** React 19
+- **Styling:** Tailwind CSS 4
+- **Animations:** GSAP & Lenis (Smooth Scroll)
+- **3D Engine:** Three.js / React Three Fiber
+- **Deployment:** Vercel
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📂 Project Structure
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+- `/src/components`: Reusable UI components.
+- `/src/layouts`: Core page wrappers and metadata.
+- `/src/pages`: File-based routing for the website.
+- `/public`: Static assets including icons and metadata.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🛠️ Local Development
 
-## 🧞 Commands
+1. Clone the repository.
+2. Install dependencies: `pnpm install`
+3. Start the dev server: `pnpm dev`
+4. Build for production: `pnpm build`
 
-All commands are run from the root of the project, from a terminal:
+## 🤖 Agent Readiness
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+This site is optimized for AI agent discovery, featuring:
+- `llms.txt` for LLM context.
+- RFC 8288 Link headers for API discovery.
+- WebMCP tool integration for automated contact retrieval.
 
-## 👀 Want to learn more?
+## 📄 License
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This project is proprietary. The source code is provided for **reference and educational purposes only**. You may not reproduce, redistribute, or use this code to host your own portfolio without explicit permission from the author.
+
+Copyright © 2025 Shibili Aman TK.
