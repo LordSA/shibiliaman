@@ -1,10 +1,9 @@
 {
-  "linkset": [
+  "services": [
     {
-      "anchor": "https://www.shibili.tech",
-      "service-doc": [
-        { "href": "https://www.shibili.tech/llms.txt" }
-      ]
+      "name": "Portfolio Metadata",
+      "description": "Information about Shibili Aman's projects and skills",
+      "url": "https://www.shibili.tech"
     }
   ]
 }
