@@ -1,0 +1,9 @@
+{
+  "serverInfo": {
+    "name": "Shibili Portfolio Agent",
+    "version": "1.0.0"
+  },
+  "capabilities": {
+    "tools": true
+  }
+}

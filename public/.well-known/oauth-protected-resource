@@ -1,0 +1,4 @@
+{
+  "resource": "https://www.shibili.tech",
+  "scopes_supported": ["read:profile"]
+}
