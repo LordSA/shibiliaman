@@ -54,10 +54,10 @@ const personStructuredData = {
 <!doctype html>
 <html lang="en">
 	<head>
-		<Analytics/>
+		
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logo.svg?v=2" />
+		<link rel="icon" type="image/svg+xml" href="/logo.svg"/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -66,7 +66,6 @@ const personStructuredData = {
 		<link rel="service-doc" href="/llms.txt" />
 		<link rel="alternate" type="text/markdown" href="/llms.txt" title="Markdown for Agents" />
 		<link rel="help" href="/.well-known/security.txt" />
-
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonicalURL.toString()} />
@@ -89,6 +88,7 @@ const personStructuredData = {
 		<script type="application/ld+json" set:html={JSON.stringify(personStructuredData)}></script>
 	</head>
 	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
+		<Analytics/>
 		<CustomCursor />
 		<Canvas3D client:idle />
 		<div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
