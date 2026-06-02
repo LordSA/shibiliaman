@@ -1,0 +1,20 @@
+# Shibili Aman TK
+Full-Stack Developer & B.Tech CSE Student
+
+Official portfolio of Shibili Aman TK, specializing in building scalable web solutions, developer tools, and automation scripts.
+
+## Core Tech
+- Python (Automation, AI Ops, Bot Development)
+- JavaScript / TypeScript (React, Next.js, Astro)
+- C++ (Systems, Performance)
+- UI/UX (Figma, Prototyping)
+
+## Key Projects
+- Portfolio: High-performance Astro site with custom interactive "cheats".
+- Secret Experiments: Ghost Deploy, PulseMap, HoneyRoute (available via site command).
+
+## Online Presence
+- Website: https://www.shibili.tech
+- GitHub: https://github.com/LordSA
+- LinkedIn: https://www.linkedin.com/in/shibili-aman-tk
+- X: https://x.com/shibiliii_aman
