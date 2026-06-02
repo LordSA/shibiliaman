@@ -3,7 +3,7 @@
 B.Tech CSE student at College of Engineering Vadakara and Full-Stack Developer building scalable solutions and developer tools.
 
 ## Discovery & Contact
-- Website: https://shibili.tech
+- Website: https://www.shibili.tech
 - GitHub: https://github.com/LordSA
 - LinkedIn: https://linkedin.com/in/shibili-aman-tk
 - Email: info@shibili.tech
