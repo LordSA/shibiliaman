@@ -54,7 +54,6 @@ const personStructuredData = {
 <!doctype html>
 <html lang="en">
 	<head>
-		
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/logo.svg"/>
@@ -79,16 +78,15 @@ const personStructuredData = {
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={`${canonicalOrigin}/shibili.webp`} />
-
 		<ClientRouter />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 		<script type="application/ld+json" set:html={JSON.stringify(personStructuredData)}></script>
+		<Analytics/>
 	</head>
 	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
-		<Analytics/>
 		<CustomCursor />
 		<Canvas3D client:idle />
 		<div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
