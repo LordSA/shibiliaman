@@ -1,0 +1,10 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.shibili.tech",
+      "service-doc": [
+        { "href": "https://www.shibili.tech/llms.txt" }
+      ]
+    }
+  ]
+}

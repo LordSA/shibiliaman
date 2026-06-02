@@ -62,6 +62,7 @@ const personStructuredData = {
 
 <!doctype html>
 <html lang="en">
+	<Analytics/>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -70,6 +71,9 @@ const personStructuredData = {
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL.toString()} />
+		<link rel="api-catalog" href="/.well-known/api-catalog" />
+		<link rel="service-doc" href="/llms.txt" />
+		<link rel="alternate" type="text/markdown" href="/llms.txt" title="Markdown for Agents" />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -97,6 +101,43 @@ const personStructuredData = {
 		<Canvas3D client:load />
 		<div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 		<slot />
+		<script is:inline>
+			// WebMCP Agent Discovery
+			if ('modelContext' in navigator) {
+				navigator.modelContext.provideContext({
+					tools: [
+						{
+							name: "get_shibili_contact",
+							description: "Get contact links and social handles for Shibili Aman",
+							inputSchema: { type: "object", properties: {} },
+							execute: async () => {
+								return {
+									content: [
+										{ type: "text", text: "Portfolio: https://shibili.tech\nGitHub: https://github.com/LordSA\nLinkedIn: https://linkedin.com/in/shibili-aman-tk" }
+									]
+								};
+							}
+						},
+						{
+							name: "show_hidden_experiments",
+							description: "Toggles the visibility of the secret projects vault on the portfolio",
+							inputSchema: { type: "object", properties: {} },
+							execute: async () => {
+								const vault = document.getElementById('secret-projects-vault');
+								if (vault) {
+									vault.classList.add('is-open');
+									vault.removeAttribute('aria-hidden');
+									vault.removeAttribute('inert');
+									vault.scrollIntoView({ behavior: 'smooth' });
+									return { content: [{ type: "text", text: "Vault unlocked and visible." }] };
+								}
+								return { content: [{ type: "text", text: "Vault element not found on this page." }] };
+							}
+						}
+					]
+				});
+			}
+		</script>
 		<div id="cheat-menu-overlay" class="cheat-menu-overlay" aria-hidden="true">
 			<div class="cheat-menu-panel" role="dialog" aria-modal="true" aria-labelledby="cheat-menu-title">
 				<div class="cheat-menu-head">
