@@ -6,12 +6,3 @@
       "type": "tool",
       "description": "Get contact links and social handles for Shibili Aman",
       "url": "https://shibili.tech"
-    },
-    {
-      "name": "show_hidden_experiments",
-      "type": "tool",
-      "description": "Toggles the visibility of the secret projects vault on the portfolio",
-      "url": "https://shibili.tech"
-    }
-  ]
-}

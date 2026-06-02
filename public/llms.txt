@@ -15,7 +15,6 @@ B.Tech CSE student at College of Engineering Vadakara and Full-Stack Developer b
 
 ## Available Tools (WebMCP)
 - `get_shibili_contact`: Returns social handles and contact links.
-- `show_hidden_experiments`: Toggles the visibility of the secret projects vault.
 
 ## AI Discovery Metadata
 - API Catalog: https://shibili.tech/.well-known/api-catalog
