@@ -1,5 +1,7 @@
 ---
+// @ts-nocheck
 import { ClientRouter } from 'astro:transitions';
+import Analytics from '@vercel/analytics/astro'
 import '../styles/global.css';
 import '../styles/time-traveler.css';
 import '../styles/architect-theme.css';
@@ -13,9 +15,16 @@ import ArchitectCheat from '../components/cheats/ArchitectCheat.astro';
 
 interface Props {
 	title?: string;
+	description?: string;
+	children?: any;
 }
 
-const { title = "Shibili Aman | Portfolio" } = Astro.props;
+const { 
+	title = "Shibili Aman | Full-Stack Developer & CSE Student Portfolio",
+	description = "Official portfolio of Shibili Aman TK, a Full-Stack Developer and B.Tech CSE student specializing in Astro, React, and building scalable web solutions."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin);
 const canonicalOrigin = Astro.url.origin;
 const personStructuredData = {
 	'@context': 'https://schema.org',
@@ -59,9 +68,26 @@ const personStructuredData = {
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL.toString()} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL.toString()} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={`${canonicalOrigin}/shibili.webp`} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL.toString()} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={`${canonicalOrigin}/shibili.webp`} />
+
 		<ClientRouter />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 		<script type="application/ld+json" set:html={JSON.stringify(personStructuredData)}></script>
