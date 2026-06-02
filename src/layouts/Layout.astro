@@ -1,17 +1,13 @@
 ---
-// @ts-nocheck
 import { ClientRouter } from 'astro:transitions';
 import Analytics from '@vercel/analytics/astro'
 import '../styles/global.css';
-import '../styles/time-traveler.css';
-import '../styles/architect-theme.css';
 import CustomCursor from '../components/CustomCursor.astro';
 import Canvas3D from '../components/Canvas3D.tsx';
 
 interface Props {
 	title?: string;
 	description?: string;
-	children?: any;
 }
 
 const { 
@@ -61,7 +57,7 @@ const personStructuredData = {
 		<Analytics/>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/logo.png" />
+		<link rel="icon" type="image/svg+xml" href="/logo.svg?v=2" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -156,13 +152,6 @@ const personStructuredData = {
 				window.scrollTo(0, 0);
 			});
 
-			const isInputFocused = () => {
-				const active = document.activeElement;
-				return active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName === 'SELECT' || active.tagName === 'BUTTON' || active.isContentEditable);
-			};
-
-			document.addEventListener('astro:after-swap', () => {
-			});
 		</script>
 	</body>
 </html>
