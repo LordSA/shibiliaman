@@ -35,6 +35,16 @@ export const experiences: Experience[] = [
         period: "Apr 2026 - Present",
         description: "Started Connecting",
         tags: ["Community", "IEDC", "Connections"]
+      },
+      {
+        role: "Design Co-Lead",
+        period: "Feb 2025 - Mar 2026",
+        description: "As the Sub Lead of Design at IEDC CEV, I contribute to shaping the creative direction of the community by designing impactful visuals for events, campaigns, and startup initiatives. I collaborate closely with cross-functional teams to translate ideas into engaging designs, ensuring consistency in branding while supporting innovation-driven activities within the ecosystem.",
+        tags: ["Teamwork", "Visual Branding", "Creative Strategy"],
+        achievements: [
+          "Delivered impactful design solutions for events, campaigns, and startup initiatives.",
+          "Collaborated with cross-functional teams to maintain consistent and engaging branding.",
+        ]
       }
     ]
   },
@@ -80,22 +90,6 @@ export const experiences: Experience[] = [
         achievements: [
           "Led and scaled the design team to deliver high-quality creatives across multiple initiatives.",
           "Established consistent visual branding for events and communications.",
-        ]
-      }
-    ]
-  },
-  {
-    slug: "iedccev",
-    company: "IEDC CEV",
-    positions: [
-      {
-        role: "Design Co-Lead",
-        period: "Feb 2025 - Mar 2026",
-        description: "As the Sub Lead of Design at IEDC CEV, I contribute to shaping the creative direction of the community by designing impactful visuals for events, campaigns, and startup initiatives. I collaborate closely with cross-functional teams to translate ideas into engaging designs, ensuring consistency in branding while supporting innovation-driven activities within the ecosystem.",
-        tags: ["Teamwork", "Visual Branding", "Creative Strategy"],
-        achievements: [
-          "Delivered impactful design solutions for events, campaigns, and startup initiatives.",
-          "Collaborated with cross-functional teams to maintain consistent and engaging branding.",
         ]
       }
     ]
