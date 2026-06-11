@@ -56,7 +56,7 @@ export const experiences: Experience[] = [
     positions: [
       {
         role: "Outreach Lead",
-        period: "Jul 2025 - Present",
+        period: "Jul 2025 - Jun 2026",
         description: "As the Outreach Lead at TinkerHub CEV, I drive the chapter’s public presence by blending strategy, storytelling, and design. I lead cross-functional media and design teams to craft cohesive branding and impactful communication across platforms.My role focuses on identifying passionate student innovators and amplifying their work through well-planned outreach campaigns. By translating technical projects into engaging narratives, I ensure that ideas don’t just stay within labs—but reach, resonate with, and inspire a broader audience.",
         tags: ["Community", "Open Source", "Leadership"],
         achievements: [
@@ -74,7 +74,7 @@ export const experiences: Experience[] = [
     positions: [
       {
         role: "Design Lead",
-        period: "May 2025 - Present",
+        period: "May 2025 - May 2026",
         description: "As the Head Design Lead at CSI SB CEV, I lead the creative direction and oversee all design outputs of the chapter. I manage and mentor the design team to produce impactful visuals for events, campaigns, and communications, ensuring consistent branding while enhancing the overall engagement and identity of the community.",
         tags: ["Design Leadership", "Branding", "Creative Direction"],
         achievements: [
