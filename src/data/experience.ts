@@ -27,6 +27,18 @@ export const experiences: Experience[] = [
     ]
   },
   {
+    slug: "iedccev",
+    company: "IEDC CEV",
+    positions: [
+      {
+        role: "Community Lead",
+        period: "Apr 2026 - Present",
+        description: "Started Connecting",
+        tags: ["Community", "IEDC", "Connections"]
+      }
+    ]
+  },
+  {
     slug: "lucidpixl",
     company: "LucidPixl Designs",
     positions: [
