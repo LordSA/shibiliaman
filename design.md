@@ -1,39 +1,43 @@
-# Design System - Luxury Brutalism
+# Design System - Peak Neo-Brutalism
 
-This document outlines the visual system, typography, colors, layout rules, and component styles for the Shibili Aman portfolio.
+This document outlines the visual system, typography, colors, layout rules, and component styles for the Shibili Aman portfolio redesign.
 
-## Aesthetic Theme: Luxury Brutalism
+## Aesthetic Theme: Peak Neo-Brutalism
 
-The design combines raw, blocky layout rules of Brutalism with luxurious colors, clean typography, and elegant, high-contrast layouts.
+Peak Neo-Brutalist design features high-contrast visual structures, thick outlines, flat shapes, unblurred shadows, and structural layouts separated by solid black borders.
 
 ### Core Visual Tokens
 
 1. **Colors**:
-   - **Obsidian / Onyx Base (`#08080A`)**: Ultra-dark charcoal black background setting a premium tone.
-   - **Gold Accent (`#C5A059` / `#DFBA73`)**: Warm metallic luxury gold used for outlines, active states, and focus headings.
-   - **Rich Ivory (`#FAF9F6`)**: Bright off-white for primary readability without high eye strain.
-   - **Emerald Green (`#00E676`)**: Vibrant neon green used exclusively for active system indicators, pulse lights, and verification states.
-   - **Muted Sand (`#8A857A`)**: Charcoal-gold gray for details, captions, and secondary copy.
+   - **Obsidian Black (`#000000`)**: Deep solid background coloring.
+   - **Neon Cyan (`#00FFD1`)**: Vibrant cyan used for active structural boundaries, links, focus tags, and main outlines.
+   - **Cyber Gold (`#C5A059`)**: Muted metallic gold used for auxiliary accents, cards, and warning flags.
+   - **Carbon Card (`#101114`)**: Dark grey background for container divs.
+   - **Pure White (`#FFFFFF`)**: Primary typography reading color.
 
 2. **Typography**:
-   - **Luxury Serif**: `Cinzel` (Google Fonts) for display page titles, hero headers, and section names.
-   - **Tech Monospace**: `JetBrains Mono` (Google Fonts) for navigation elements, stats, meta data, tags, and code blocks.
-   - **Body Sans**: `Inter` (Google Fonts) for descriptions, achievements, and text blocks.
+   - **Display Heading**: `Cinzel` (Google Fonts) for main hero titles, page tags, and section callouts.
+   - **Monospace Text**: `JetBrains Mono` (Google Fonts) for console logs, directory rows, menus, and labels.
+   - **Sans Serif**: `Inter` (Google Fonts) for descriptions, block paragraphs, and details.
 
 3. **Borders & Outlines**:
-   - Outlines are flat, solid, and high-contrast: `2px solid #C5A059` or `1px solid rgba(197, 160, 89, 0.2)`.
-   - Sharp 90-degree square corners: No rounded corners on brutalist panels (`rounded-none`).
+   - Grid dividers and layouts are bordered by solid `3px` to `4px` Cyan boundaries (`border-3 border-[#00ffd1]`).
+   - Sharp 90-degree square corners (`rounded-none`) are applied to all panels and elements.
 
-4. **Shadows & Offsets**:
-   - Shadows are unblurred, hard offsets: `shadow-[4px_4px_0px_#C5A059]` or `shadow-[6px_6px_0px_#08080A]`.
-   - Hover movements shift cards and buttons up and left, compensating with a larger shadow offset.
+4. **Drop Shadows**:
+   - Solid unblurred shadows represent the primary depth layer: `shadow-[8px_8px_0px_#000000]` or `shadow-[8px_8px_0px_#c5a059]`.
+   - Hover states animate elements by shifting them up/left, increasing the shadow offset.
 
 ---
 
-## Moving Frame Overlay
+## Interactivity Features
 
-A screen-wide custom border frame wraps the viewport:
-- **Style**: Solid `1.5px` gold border lining the margins of the window.
-- **Header Block**: Top-left contains dynamic system clock, route name, and latency signal ticker. Top-right holds navigation link callbacks.
-- **Laser Dot**: A small neon emerald pulse dot travels continuously along the frame line paths.
-- **Ticker Tape**: The bottom frame border integrates an infinite scrolling news-ticker layout with collaboration messages and active WhatsApp callouts.
+### 3D rotating Wireframe
+- A rotating dual-wireframe system is fixed to the background.
+- An outer Cyan Torus Knot spins along its axes, wrapping an inner Gold Octahedron.
+- Scales and shifts on mouse motion and page scroll.
+
+### Draggable Physics Canvas
+- A dynamic skills sandbox powered by `matter-js`.
+- Renders tags as rectangular boxes colliding and falling under gravity.
+- Interactive drag constraints let visitors throw skill boxes inside borders.

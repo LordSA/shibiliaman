@@ -17,30 +17,30 @@ const { project } = Astro.props;
 
 <Layout title={`${project.title} | Shibili Aman`}>
   <Navbar />
-  <main class="bg-[#08080a] min-h-screen pt-28 md:pt-40 pb-20 px-6 sm:px-10 md:px-24">
+  <main class="bg-[#000000] min-h-screen pt-28 md:pt-40 pb-20 px-6 sm:px-10 md:px-24">
     <div class="max-w-6xl mx-auto">
       
       <a 
         href="/projects" 
-        class="inline-flex items-center gap-2 border border-[#c5a059]/30 bg-[#08080a] hover:bg-[#c5a059] hover:text-[#08080a] text-[#c5a059] px-4 py-2 font-mono text-[9px] uppercase tracking-widest transition-all mb-12 shadow-[3px_3px_0px_rgba(197,160,89,0.2)] hover:shadow-[3px_3px_0px_#c5a059] hover:translate-x-[-1px] hover:translate-y-[-1px] active:translate-x-0 active:translate-y-0 active:shadow-none"
+        class="inline-flex items-center gap-2 border-3 border-[#00ffd1] bg-[#000000] text-[#00ffd1] px-5 py-2.5 font-mono text-[10px] uppercase tracking-widest transition-all mb-12 shadow-[4px_4px_0px_#c5a059] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#ffffff] active:translate-x-0 active:translate-y-0 active:shadow-none"
       >
-        <ArrowLeft size={12} />
-        <span>Back to Projects</span>
+        <ArrowLeft size={14} />
+        <span>Directory Index</span>
       </a>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
         
         <div class="lg:col-span-7 space-y-8">
-          <div class="border-b border-[#c5a059]/20 pb-6">
-            <span class="text-[#c5a059] text-[9px] font-mono uppercase tracking-[0.3em] mb-3 block">
-              {project.category}
+          <div class="border-b-4 border-[#00ffd1] pb-6">
+            <span class="text-[#00ffd1] text-[10px] font-mono uppercase tracking-widest mb-3 block">
+              Category: {project.category}
             </span>
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white font-display uppercase leading-tight">
               {project.title}
             </h1>
           </div>
 
-          <div class="border-2 border-[#c5a059] p-6 md:p-8 bg-[#08080a] shadow-[6px_6px_0px_#c5a059] font-sans">
+          <div class="border-4 border-[#00ffd1] p-6 md:p-8 bg-[#101114] shadow-[8px_8px_0px_#c5a059] font-sans">
             <p class="text-sm md:text-base text-white/90 leading-relaxed font-light whitespace-pre-line">
               {project.fullDescription || project.description}
             </p>
@@ -51,27 +51,27 @@ const { project } = Astro.props;
               <a 
                 href={project.live} 
                 target="_blank" 
-                class="btn-brutalist text-center"
+                class="btn-neo text-center"
               >
                 <ExternalLink size={14} class="mr-2" />
-                Live Version
+                Live Build
               </a>
             )}
             {project.github && (
               <a 
                 href={`https://${project.github}`} 
                 target="_blank" 
-                class="btn-brutalist-white text-center"
+                class="btn-neo-white text-center"
               >
                 <Github size={14} class="mr-2" />
-                Source Code
+                Repository
               </a>
             )}
           </div>
         </div>
 
         <div class="lg:col-span-5 relative">
-          <div class="border-2 border-[#c5a059] bg-[#08080a] p-3 shadow-[8px_8px_0px_#c5a059]">
+          <div class="border-4 border-[#00ffd1] bg-[#101114] p-3 shadow-[8px_8px_0px_#c5a059] hover:shadow-[12px_12px_0px_#00ffd1] transition-all">
             <img 
               src={project.image || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000"} 
               alt={project.title} 

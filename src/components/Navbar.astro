@@ -2,57 +2,90 @@
 import { Home, Briefcase, User, Mail, Send } from '@lucide/astro';
 ---
 
-<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-50 hidden md:flex px-6 py-3 border border-[#c5a059] bg-[#08080a] shadow-[4px_4px_0px_#c5a059] items-center gap-12 transition-all duration-300 hover:shadow-[6px_6px_0px_#c5a059]">
-  <div class="flex items-center gap-3 pr-4 border-r border-[#c5a059]/20">
-    <a href="/" class="flex items-center gap-2 group">
-      <img src="/logo.svg" alt="Shibili Aman Logo" class="w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all duration-500" />
-      <span class="text-xs font-bold tracking-tighter uppercase whitespace-nowrap font-mono text-[#c5a059]">Shibili Aman</span>
-    </a>
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#000000] border-b-4 border-[#00ffd1] font-mono select-none">
+  <div class="max-w-[100vw] mx-auto flex items-stretch h-16">
+    
+    <div class="flex items-center px-6 border-r-4 border-[#00ffd1] bg-[#000000] hover:bg-[#00ffd1] hover:text-[#000000] transition-colors duration-200 group">
+      <a href="/" class="flex items-center gap-3">
+        <img src="/logo.svg" alt="Logo" class="w-7 h-7 grayscale group-hover:invert transition-all duration-300" />
+        <span class="text-sm font-black tracking-tighter uppercase text-white group-hover:text-black">SHIBILI AMAN</span>
+      </a>
+    </div>
+
+    <div class="hidden md:flex flex-1 items-stretch text-[10px] font-black uppercase tracking-widest text-[#8a909a]">
+      <a href="/" class="flex items-center px-8 border-r-4 border-[#00ffd1] hover:bg-[#00ffd1] hover:text-[#000000] transition-colors text-white">
+        Home
+      </a>
+      <a href="/projects" class="flex items-center px-8 border-r-4 border-[#00ffd1] hover:bg-[#00ffd1] hover:text-[#000000] transition-colors text-white">
+        Work
+      </a>
+      <a href="/experience" class="flex items-center px-8 border-r-4 border-[#00ffd1] hover:bg-[#00ffd1] hover:text-[#000000] transition-colors text-white">
+        Experience
+      </a>
+      <a href="/contact" class="flex items-center px-8 border-r-4 border-[#00ffd1] hover:bg-[#00ffd1] hover:text-[#000000] transition-colors text-white">
+        Contact
+      </a>
+    </div>
+
+    <div class="hidden md:flex items-center px-6 ml-auto">
+      <a 
+        href="https://wa.me/919037619447" 
+        target="_blank" 
+        class="px-5 py-2.5 bg-[#c5a059] text-black font-black uppercase text-[10px] tracking-wider border-2 border-black shadow-[4px_4px_0px_#00ffd1] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#ffffff] transition-all"
+      >
+        Hire Me
+      </a>
+    </div>
+
   </div>
   
-  <div class="flex gap-10 items-center uppercase text-[9px] font-bold tracking-[0.2em] font-mono text-[#8a857a]">
-    <a href="/" class="hover:text-white transition-colors relative group">
-      Home
-      <span class="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#c5a059] transition-all duration-300 group-hover:w-full"></span>
-    </a>
-    <a href="/projects" class="hover:text-white transition-colors relative group">
-      Work
-      <span class="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#c5a059] transition-all duration-300 group-hover:w-full"></span>
-    </a>
-    <a href="/experience" class="hover:text-white transition-colors relative group">
-      Experience
-      <span class="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#c5a059] transition-all duration-300 group-hover:w-full"></span>
-    </a>
-    <a href="/contact" class="hover:text-white transition-colors relative group">
-      Contact
-      <span class="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#c5a059] transition-all duration-300 group-hover:w-full"></span>
-    </a>
+  <div class="w-full bg-[#000000] border-t-2 border-[#00ffd1] py-1 overflow-hidden relative h-6 flex items-center">
+    <div class="marquee-content whitespace-nowrap flex gap-12 items-center text-[#00ffd1] text-[9px] uppercase tracking-widest font-black">
+      <span>• SECURE NODE ONLINE •</span>
+      <span>• DIRECT LINE AT WA.ME/919037619447 •</span>
+      <span>• LCP ENGINE SPEED OPTIMIZED 90%+ •</span>
+      <span>• NEUTRALIZING SPHERE TYPE MODULES •</span>
+      <span>• SECURE NODE ONLINE •</span>
+      <span>• DIRECT LINE AT WA.ME/919037619447 •</span>
+      <span>• LCP ENGINE SPEED OPTIMIZED 90%+ •</span>
+      <span>• NEUTRALIZING SPHERE TYPE MODULES •</span>
+    </div>
   </div>
+</header>
 
-  <div class="pl-4 border-l border-[#c5a059]/20">
-    <a href="https://wa.me/919037619447" target="_blank" class="text-[9px] uppercase tracking-[0.2em] font-mono py-1.5 px-4 bg-[#c5a059] text-[#08080a] font-bold border border-[#c5a059] hover:bg-[#08080a] hover:text-[#c5a059] transition-all duration-200 block whitespace-nowrap">
-      Hire Me
-    </a>
-  </div>
-</nav>
-
-<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden w-[90%] max-w-sm">
-  <div class="flex items-center justify-around bg-[#08080a] px-2 py-2 border-2 border-[#c5a059] shadow-[6px_6px_0px_#c5a059] relative">
-    <a href="/" class="flex flex-col items-center gap-1 p-3 text-[#8a857a] hover:text-white transition-colors">
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden w-[90%] max-w-sm font-mono">
+  <div class="flex items-center justify-around bg-black px-2 py-2 border-3 border-[#00ffd1] shadow-[6px_6px_0px_#c5a059] relative">
+    <a href="/" class="flex flex-col items-center gap-1 p-3 text-[#8a909a] hover:text-white transition-colors">
       <Home size={18} stroke-width={2.5} />
     </a>
-    <a href="/projects" class="flex flex-col items-center gap-1 p-3 text-[#8a857a] hover:text-white transition-colors">
+    <a href="/projects" class="flex flex-col items-center gap-1 p-3 text-[#8a909a] hover:text-white transition-colors">
       <Briefcase size={18} stroke-width={2.5} />
     </a>
-    <a href="/experience" class="flex flex-col items-center gap-1 p-3 text-[#8a857a] hover:text-white transition-colors">
+    <a href="/experience" class="flex flex-col items-center gap-1 p-3 text-[#8a909a] hover:text-white transition-colors">
       <User size={18} stroke-width={2.5} />
     </a>
-    <a href="/contact" class="flex flex-col items-center gap-1 p-3 text-[#8a857a] hover:text-white transition-colors">
+    <a href="/contact" class="flex flex-col items-center gap-1 p-3 text-[#8a909a] hover:text-white transition-colors">
       <Mail size={18} stroke-width={2.5} />
     </a>
-    <div class="w-px h-6 bg-[#c5a059]/20 mx-1"></div>
-    <a href="https://wa.me/919037619447" target="_blank" class="p-3 bg-[#c5a059] text-[#08080a] hover:bg-white hover:text-black transition-colors flex items-center justify-center border border-[#c5a059]">
+    <div class="w-px h-6 bg-[#00ffd1]/30 mx-1"></div>
+    <a href="https://wa.me/919037619447" target="_blank" class="p-3 bg-[#00ffd1] text-black hover:bg-white hover:text-black transition-colors flex items-center justify-center border border-[#00ffd1]">
       <Send size={16} stroke-width={2.5} />
     </a>
   </div>
 </nav>
+
+<style>
+  .marquee-content {
+    display: inline-flex;
+    animation: marquee-nav 30s linear infinite;
+  }
+
+  @keyframes marquee-nav {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

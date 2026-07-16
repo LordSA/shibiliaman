@@ -7,9 +7,11 @@ This document tracks the codebase architecture, file structures, configuration s
 - **Framework**: [Astro v7.1.0](https://astro.build)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com) (integrated via `@tailwindcss/vite` plugin in Vite config)
 - **Interactive Layers**: 
-  - [React v19](https://react.dev) and [React Three Fiber](https://r3f.docs.pmnd.rs/getting-started/introduction) for the interactive 3D particle background (`src/components/Canvas3D.tsx`)
-  - [GSAP (GreenSock)](https://gsap.com) for scroll-triggered page entrance transitions, text scramble animations, and tilt effects
-  - [Lenis](https://lenis.darkroom.engineering/) for smooth scrolling behavior
+  - [React v19](https://react.dev)
+  - [React Three Fiber](https://r3f.docs.pmnd.rs/getting-started/introduction) for the 3D Torus Knot wireframe in `Canvas3D.tsx`.
+  - [Matter.js](https://brm.io/matter-js/) for the interactive gravity sandbox in `PhysicsCanvas.tsx`.
+  - [GSAP (GreenSock)](https://gsap.com) for entrance animations.
+  - [Lenis](https://lenis.darkroom.engineering/) for smooth scrolling.
 - **Hosting Adapter**: `@astrojs/vercel` (Static generation with target platform optimizations)
 - **SEO & Search**:
   - `@astrojs/sitemap` for auto-generating XML sitemaps
@@ -19,29 +21,20 @@ This document tracks the codebase architecture, file structures, configuration s
 
 ## File Structure & Routing
 
-- `src/layouts/Layout.astro`: Parent layout wrapper containing global SEO meta tags, Google Fonts imports, structured schema JSON-LD, smooth scroll initializer, and the screen-wide `MovingFrame.astro` overlay.
-- `src/styles/global.css`: Core design stylesheet containing Tailwind v4 imports, global font overrides, and custom design tokens for Luxury Brutalism.
+- `src/layouts/Layout.astro`: Parent layout wrapper containing global SEO meta tags, Google Fonts imports, structured schema JSON-LD, smooth scroll initializer, and the screen-wide frame overlay.
+- `src/styles/global.css`: Core design stylesheet containing Tailwind v4 imports, global font overrides, and custom design tokens for Peak Neo-Brutalism.
 - `src/components/`:
-  - `Canvas3D.tsx`: React Three Fiber component rendering a mouse-interactive floating particle swarm.
-  - `MovingFrame.astro`: An overlay frame wrapping the screen boundaries with animated borders, dynamic clock/route info, and custom scanning lines.
+  - `Canvas3D.tsx`: React Three Fiber component rendering a rotating Torus Knot wrapping an Octahedron.
+  - `PhysicsCanvas.tsx`: Matter.js physics engine simulating draggable tech tags.
   - `Navbar.astro` & `Footer.astro`: Navigation menu elements with responsive layouts and hover transformations.
-  - `Portfolio.astro`: Standard home landing layout grouping the hero, about bio, tech arsenal grid, and featured work cards.
+  - `Portfolio.astro`: Standard home landing layout grouping the hero, about bio, tech arsenal, and project directories.
 - `src/pages/`:
   - `index.astro`: Main page route (static).
-  - `contact.astro`: Contact links and Whatsapp integration (static).
-  - `experience.astro`: History of positions and achievements.
-  - `projects.astro`: Full catalog listing of projects.
+  - `contact.astro`: Contact links and WhatsApp connection (static).
+  - `experience.astro`: Timeline grid resembling a Git tree ledger.
+  - `projects.astro`: Full catalog listing of projects as a repository spreadsheet.
   - `project/[slug].astro`: Dynamic path detail pages for individual projects.
 - `src/data/`:
   - `contact.ts`: Contains list of social media channels and user handles.
   - `experience.ts`: Details corporate and community roles held.
   - `projects.ts`: Complete data listing for the 14 portfolio projects.
-
----
-
-## Integrations & Custom Features
-
-### AI Discovery & WebMCP Context
-- **Middleware** (`src/middleware.ts`): Intercepts requests for markdown formats on the homepage, returning `llms.txt` directly.
-- **Client Agent context**: `src/layouts/Layout.astro` mounts client-side environment triggers providing custom WebMCP tool context (`get_shibili_contact`) dynamically when analyzed by supportive AI browsers.
-- **AI Agent Directives**: `public/robots.txt` explicitly configures blockings and training indicators (`Content-Signal`).

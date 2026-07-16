@@ -1,14 +1,14 @@
-import React, { useRef, useMemo, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
+import React, { useRef, useEffect } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function ParticleSwarm() {
-  const ref = useRef<THREE.Points>(null);
+function BrutalistMesh() {
+  const outerRef = useRef<THREE.Mesh>(null);
+  const innerRef = useRef<THREE.Mesh>(null);
   const mouse = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -20,95 +20,75 @@ function ParticleSwarm() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const [positions] = useMemo(() => {
-    const count = 6000;
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      const theta = Math.random() * 2 * Math.PI;
-      const phi = Math.acos((Math.random() * 2) - 1);
-      const r = 1.8 + Math.random() * 1.5;
-      
-      const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta);
-      const z = r * Math.cos(phi);
-      
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
-    }
-    return [positions];
-  }, []);
-
   useFrame((_, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x -= delta / 15;
-      ref.current.rotation.y -= delta / 20;
-      
-      const targetX = (mouse.current.y * Math.PI) / 8;
-      const targetY = (mouse.current.x * Math.PI) / 8;
-      
-      ref.current.rotation.x += (targetX - ref.current.rotation.x) * 0.05;
-      ref.current.rotation.y += (targetY - ref.current.rotation.y) * 0.05;
+    if (outerRef.current && innerRef.current) {
+      outerRef.current.rotation.x += delta * 0.15;
+      outerRef.current.rotation.y += delta * 0.2;
+
+      innerRef.current.rotation.x -= delta * 0.25;
+      innerRef.current.rotation.y -= delta * 0.15;
+
+      const targetX = (mouse.current.y * Math.PI) / 6;
+      const targetY = (mouse.current.x * Math.PI) / 6;
+
+      outerRef.current.rotation.x += (targetX - outerRef.current.rotation.x) * 0.05;
+      outerRef.current.rotation.y += (targetY - outerRef.current.rotation.y) * 0.05;
     }
   });
 
   return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
-        <PointMaterial
-          transparent
-          color="#c5a059"
-          size={0.012}
-          sizeAttenuation={true}
-          depthWrite={false}
-          opacity={0.8}
+    <group>
+      <mesh ref={outerRef}>
+        <torusKnotGeometry args={[1.5, 0.35, 120, 10]} />
+        <meshBasicMaterial 
+          color="#00ffd1" 
+          wireframe 
+          transparent 
+          opacity={0.15} 
           blending={THREE.AdditiveBlending}
         />
-      </Points>
+      </mesh>
+      
+      <mesh ref={innerRef}>
+        <octahedronGeometry args={[0.85]} />
+        <meshBasicMaterial 
+          color="#c5a059" 
+          wireframe 
+          transparent 
+          opacity={0.35} 
+          blending={THREE.AdditiveBlending}
+        />
+      </mesh>
     </group>
   );
 }
 
 function CameraController() {
-  const { camera } = useThree();
-
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.to(camera.position, {
-        z: 1,
-        y: -1.5,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1,
-        }
-      });
+      const scrollTriggerConfig = {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1,
+      };
       
-      gsap.to(camera.rotation, {
-        x: Math.PI / 12,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1,
-        }
+      gsap.to(window, {
+        scrollTrigger: scrollTriggerConfig
       });
     });
 
     return () => ctx.revert();
-  }, [camera]);
+  }, []);
 
   return null;
 }
 
 export default function Canvas3D() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full overflow-hidden opacity-50 mix-blend-screen transition-opacity duration-1000 animate-in fade-in">
-      <Canvas camera={{ position: [0, 0, 5], fov: 60 }} dpr={[1, 2]}>
-        <ParticleSwarm />
+    <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full overflow-hidden opacity-60 mix-blend-screen">
+      <Canvas camera={{ position: [0, 0, 4.5], fov: 60 }} dpr={[1, 1.5]}>
+        <BrutalistMesh />
         <CameraController />
       </Canvas>
     </div>
