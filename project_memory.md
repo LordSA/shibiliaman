@@ -38,7 +38,7 @@ This document contains a comprehensive record of the file schemas, tech stack in
   - `projects.astro`: Full index catalog database (integrated with custom glows).
   - `project/[slug].astro`: Dynamic slug routing details.
 - `src/data/`:
-  - `contact.ts`: Exports list of verified links and WhatsApp.
+  - `contact.ts`: Exports list of verified links (including GitHub, LinkedIn, Twitter, Mail, WhatsApp, Telegram, and Instagram).
   - `experience.ts`: Details corporate and community roles.
   - `projects.ts`: Details all 14 project elements.
 

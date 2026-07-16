@@ -9,9 +9,13 @@ All notable changes to the Shibili Aman portfolio project will be documented her
 - Integrated `GlowingEffect` cards on all timeline achievement blocks inside `experience.astro`.
 - Created custom flagship platform mockup component [FlagshipShowcase.tsx](file:///home/LordSA/portfolio/shibiliaman/src/components/FlagshipShowcase.tsx) using `ContainerScroll`.
 - Mounted the flagship showcase directly before the contact form on the home page.
+- Added Instagram connection channel to contact list details in [contact.ts](file:///home/LordSA/portfolio/shibiliaman/src/data/contact.ts).
 
 ### Removed
 - Removed the standalone isolated demo files `HeroScrollDemo.tsx` and `GlowingEffectDemo.tsx`.
 
 ### Changed
 - Overhauled [README.md](file:///home/LordSA/portfolio/shibiliaman/README.md) to serve as a detailed developer reference for the codebase, dependencies, build settings, and animation mechanics.
+- Standardized image dimensions on dynamic project slug pages to widescreen `aspect-video` (16:9 ratio).
+- Refined back button stacking context using `relative z-30` and `data-astro-reload` to bypass client router blocks.
+- Transitioned Vercel Analytics setup to the client side to avoid static compile headers warnings.
