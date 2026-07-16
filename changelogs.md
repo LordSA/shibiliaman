@@ -2,16 +2,16 @@
 
 All notable changes to the Shibili Aman portfolio project will be documented here.
 
-## [3.1.0] - 2026-07-16
+## [3.2.0] - 2026-07-16
 
 ### Added
-- Integrated standard `cn` utility inside `src/lib/utils.ts` supporting Tailwind dynamic combinations.
-- Installed NPM packages: `framer-motion`, `motion`, `clsx`, `tailwind-merge`, and `lucide-react`.
-- Integrated Aceternity UI components: [container-scroll-animation.tsx](file:///home/LordSA/portfolio/shibiliaman/src/components/ui/container-scroll-animation.tsx) and [glowing-effect.tsx](file:///home/LordSA/portfolio/shibiliaman/src/components/ui/glowing-effect.tsx).
-- Created [HeroScrollDemo.tsx](file:///home/LordSA/portfolio/shibiliaman/src/components/HeroScrollDemo.tsx) and [GlowingEffectDemo.tsx](file:///home/LordSA/portfolio/shibiliaman/src/components/GlowingEffectDemo.tsx) demo panels, mounting them at the bottom of the home layout.
-- Created [SkillsOrbit.tsx](file:///home/LordSA/portfolio/shibiliaman/src/components/SkillsOrbit.tsx) using React Three Fiber to display C++, Python, JS, Java, Flutter, and Figma on rotating 3D orbits with progress bars.
+- Integrated cursor-tracking `GlowingEffect` border highlight natively inside all project cards (featured grids in `Portfolio.astro` and comprehensive database lists in `projects.astro`).
+- Integrated `GlowingEffect` cards on all timeline achievement blocks inside `experience.astro`.
+- Created custom flagship platform mockup component [FlagshipShowcase.tsx](file:///home/LordSA/portfolio/shibiliaman/src/components/FlagshipShowcase.tsx) using `ContainerScroll`.
+- Mounted the flagship showcase directly before the contact form on the home page.
+
+### Removed
+- Removed the standalone isolated demo files `HeroScrollDemo.tsx` and `GlowingEffectDemo.tsx`.
 
 ### Changed
-- Replaced the static skill tag badges on the homepage with the new interactive 3D `<SkillsOrbit client:idle />` component.
-- Redesigned dynamic project pages [[slug].astro](file:///home/LordSA/portfolio/shibiliaman/src/pages/project/[slug].astro) with a premium layout, metadata grid, and showcases.
-- Expanded [project_memory.md](file:///home/LordSA/portfolio/shibiliaman/project_memory.md) to document all 14 projects and 8 experience items in detail.
+- Overhauled [README.md](file:///home/LordSA/portfolio/shibiliaman/README.md) to serve as a detailed developer reference for the codebase, dependencies, build settings, and animation mechanics.

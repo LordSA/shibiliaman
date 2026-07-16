@@ -5,8 +5,8 @@ import Footer from './Footer.astro';
 import Loader from './Loader.astro';
 import CustomCursor from './CustomCursor.astro';
 import SkillsOrbit from './SkillsOrbit';
-import { HeroScrollDemo } from './HeroScrollDemo';
-import { GlowingEffectDemo } from './GlowingEffectDemo';
+import { FlagshipShowcase } from './FlagshipShowcase';
+import { GlowingEffect } from './ui/glowing-effect';
 import { projects } from '../data/projects';
 
 const links = [
@@ -161,19 +161,30 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
         {projects.slice(0, 4).map((project) => (
-          <a href={`/project/${project.slug}`} class="group cursor-pointer block gsap-project-card opacity-0 translate-y-12" data-logic-project={inferProjectLogicTags(project)}>
-            <div class="aspect-[16/10] bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden mb-6 md:mb-8 border border-white/5 relative project-img-container">
-              <img src={project.image || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000"} alt={project.title} class="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 md:grayscale md:hover:grayscale-0" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                 <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-white pb-1">View Project Details</span>
+          <a href={`/project/${project.slug}`} class="group relative cursor-pointer block p-4 border border-white/5 hover:border-white/10 rounded-2xl md:rounded-3xl bg-zinc-950/30 transition-all duration-500 gsap-project-card opacity-0 translate-y-12" data-logic-project={inferProjectLogicTags(project)}>
+            <GlowingEffect
+              client:idle
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+              borderWidth={1.5}
+            />
+            <div class="relative z-10">
+              <div class="aspect-[16/10] bg-zinc-900 rounded-xl overflow-hidden mb-6 border border-white/5 relative project-img-container">
+                <img src={project.image || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000"} alt={project.title} class="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 md:grayscale md:hover:grayscale-0" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                   <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-white pb-1">View Project Details</span>
+                </div>
               </div>
-            </div>
-            <div class="flex flex-col sm:flex-row justify-between items-start px-2 gap-4">
-              <div>
-                <h4 class="text-xl md:text-2xl font-bold uppercase tracking-tight mb-2 group-hover:text-zinc-300 transition-colors">{project.title}</h4>
-                <p class="text-zinc-500 text-sm md:text-base font-light max-w-sm">{project.description}</p>
+              <div class="flex flex-col sm:flex-row justify-between items-start px-2 gap-4">
+                <div>
+                  <h4 class="text-xl md:text-2xl font-bold uppercase tracking-tight mb-2 group-hover:text-zinc-300 transition-colors">{project.title}</h4>
+                  <p class="text-zinc-500 text-sm md:text-base font-light max-w-sm">{project.description}</p>
+                </div>
+                <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-zinc-600 bg-zinc-900/50 border border-white/5 px-3 py-1 rounded-full whitespace-nowrap">{project.category}</span>
               </div>
-              <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-zinc-600 bg-zinc-900/50 border border-white/5 px-3 py-1 rounded-full whitespace-nowrap">{project.category}</span>
             </div>
           </a>
         ))}
@@ -188,8 +199,7 @@ const inferProjectLogicTags = (project: (typeof projects)[number]) => {
   </section>
 
   <section class="border-t border-white/5 bg-black py-12 md:py-24">
-    <GlowingEffectDemo client:idle />
-    <HeroScrollDemo client:idle />
+    <FlagshipShowcase client:idle />
   </section>
 
   <section id="contact" class="py-12 md:py-40 px-4 xs:px-6 sm:px-10 md:px-24 relative bg-transparent z-10">

@@ -1,4 +1,4 @@
-# Design System - Dark Minimalist & Widgets
+# Design System - Dark Minimalist & Integrated Widgets
 
 This document outlines the visual system, colors, layout rules, and configurations for interactive widgets on the Shibili Aman portfolio.
 
@@ -32,15 +32,16 @@ The design utilizes a minimalist dark layout with subtle gradients, grayscale im
 - Particle colors: Zinc-400 (`#A1A1AA`).
 - Animates rotation based on mouse coordinate hover and page scroll offsets.
 
-### 3D concentric Orbit (SkillsOrbit)
+### 3D Concentric Orbit (SkillsOrbit)
 - Skill nodes orbit on concentric circles in 3D space using React Three Fiber.
 - Shows skill name and icon within a glassmorphism node.
 - Renders a Gold progress bar inside each badge indicating proficiency levels (1 to 3).
 
-### Perspective Scroll Showcase (ContainerScroll)
-- Skews 3D rotation and scales down mockup images on page scroll using Framer Motion.
+### Perspective Scroll Flagship Showcase (FlagshipShowcase)
+- Skews 3D rotation and scales down mockup blocks on page scroll using Framer Motion.
 - Framed in a border (`#6C6C6C`) with a deep drop shadow.
 
 ### Hover Gradient Glow Card (GlowingEffect)
 - Renders border gradient trails that follow pointer coordinates dynamically using Motion.
 - Configures multi-color radial gradient blends.
+- Integrated natively on all projects and career achievement grid cards.

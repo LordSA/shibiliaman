@@ -25,17 +25,17 @@ This document contains a comprehensive record of the file schemas, tech stack in
 - `src/components/`:
   - `Canvas3D.tsx`: Spins mouse-interactive particle swarms using R3F.
   - `SkillsOrbit.tsx`: R3F concentric circle orbit simulating skill nodes revolving with gold progress bars.
-  - `HeroScrollDemo.tsx` & `GlowingEffectDemo.tsx`: Demonstration components wrapping interactive frames.
+  - `FlagshipShowcase.tsx`: Flagship perspective scroll showcase.
   - `Navbar.astro` & `Footer.astro`: Header and footer elements.
-  - `Portfolio.astro`: Main page wrapper linking Hero, Bio, Tech Orbit, and Featured project grids.
+  - `Portfolio.astro`: Main page wrapper linking Hero, Bio, Tech Orbit, and Featured project grids (integrated with custom glows).
 - `src/components/ui/`:
   - `container-scroll-animation.tsx`: Component using `framer-motion` to skew perspective on page scroll.
   - `glowing-effect.tsx`: Component producing moving gradient highlights around card margins.
 - `src/pages/`:
   - `index.astro`: Main portfolio homepage.
   - `contact.astro`: Contact links and WhatsApp connection (fully static prerendered).
-  - `experience.astro`: Interactive grid log for historical milestones.
-  - `projects.astro`: Full index catalog database.
+  - `experience.astro`: Interactive grid log for historical milestones (integrated with custom glows).
+  - `projects.astro`: Full index catalog database (integrated with custom glows).
   - `project/[slug].astro`: Dynamic slug routing details.
 - `src/data/`:
   - `contact.ts`: Exports list of verified links and WhatsApp.
