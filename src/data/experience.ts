@@ -138,4 +138,22 @@ export const experiences: Experience[] = [
       }
     ]
   }
+
+  // {
+  //   slug: "freelance-developer",
+  //   company: "Freelance",
+  //   positions: [
+  //     {
+  //       role: "Full-Stack Developer",
+  //       period: "2023 - Present",
+  //       description: "Developing custom solutions for clients, ranging from Telegram automation bots to full-scale web applications.",
+  //       tags: ["Python", "React", "Node.js", "Automation"],
+  //       achievements: [
+  //         "Built and deployed high-performance Telegram bots with millions of users.",
+  //         "Developed e-commerce platforms like Sensaflora Online.",
+  //         "Implemented security-focused voter validation systems."
+  //       ]
+  //     }
+  //   ]
+  // }
 ];
