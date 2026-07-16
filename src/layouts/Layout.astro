@@ -1,6 +1,5 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import Analytics from '@vercel/analytics/astro'
 import '../styles/global.css';
 import CustomCursor from '../components/CustomCursor.astro';
 import Canvas3D from '../components/Canvas3D.tsx';
@@ -84,7 +83,10 @@ const personStructuredData = {
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 		<script type="application/ld+json" set:html={JSON.stringify(personStructuredData)}></script>
-		<Analytics/>
+		<script>
+			import { inject } from '@vercel/analytics';
+			inject();
+		</script>
 	</head>
 	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
 		<CustomCursor />

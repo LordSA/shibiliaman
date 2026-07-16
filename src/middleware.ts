@@ -1,7 +1,8 @@
 import { defineMiddleware } from "astro:middleware";
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  const acceptHeader = context.request.headers.get('accept');
+  const isBuild = typeof process !== 'undefined' && process.argv && process.argv.some(arg => arg.includes('build'));
+  const acceptHeader = isBuild ? null : context.request.headers.get('accept');
   
   if (acceptHeader?.includes('text/markdown') && context.url.pathname === '/') {
     try {

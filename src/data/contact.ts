@@ -33,6 +33,12 @@ export const socialLinks: SocialLink[] = [
     handle: 'shibiliamantk@gmail.com' 
   },
   {
+    label: 'WhatsApp',
+    href: 'https://wa.me/919037619447',
+    icon: MessageSquare,
+    handle: '+91 90376 19447'
+  },
+  {
     label: 'Telegram',
     href: 'https://t.me/shibili_offline',
     icon: Send,

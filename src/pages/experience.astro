@@ -4,7 +4,7 @@ import { experiences } from '../data/experience';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { Briefcase, MapPin, Calendar, CheckCircle2 } from '@lucide/astro';
-
+import { GlowingEffect } from '../components/ui/glowing-effect';
 ---
 
 <Layout title="Experience | Shibili Aman">
@@ -77,11 +77,22 @@ import { Briefcase, MapPin, Calendar, CheckCircle2 } from '@lucide/astro';
                               <h4 class="text-[10px] uppercase tracking-[0.5em] text-zinc-600 mb-8 font-bold italic">Core Achievements</h4>
                               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {pos.achievements.map((item) => (
-                                  <div class="flex items-start gap-4 p-5 bg-zinc-950/50 border border-white/5 rounded-2xl hover:border-white/10 transition-all group/item">
-                                    <div class="mt-1 w-5 h-5 rounded-full border border-zinc-800 flex items-center justify-center flex-shrink-0 group-hover/item:border-emerald-500/50 transition-colors">
-                                      <div class="w-1.5 h-1.5 rounded-full bg-zinc-800 group-hover/item:bg-emerald-500 transition-colors"></div>
+                                  <div class="relative flex items-start gap-4 p-5 bg-zinc-950/50 border border-white/5 rounded-2xl hover:border-white/10 transition-all group/item">
+                                    <GlowingEffect
+                                      client:idle
+                                      spread={30}
+                                      glow={true}
+                                      disabled={false}
+                                      proximity={45}
+                                      inactiveZone={0.01}
+                                      borderWidth={1.5}
+                                    />
+                                    <div class="relative z-10 flex items-start gap-4">
+                                      <div class="mt-1 w-5 h-5 rounded-full border border-zinc-800 flex items-center justify-center flex-shrink-0 group-hover/item:border-emerald-500/50 transition-colors">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-zinc-800 group-hover/item:bg-emerald-500 transition-colors"></div>
+                                      </div>
+                                      <span class="text-zinc-500 text-sm md:text-base font-light font-sans group-hover/item:text-zinc-300 transition-colors leading-relaxed">{item}</span>
                                     </div>
-                                    <span class="text-zinc-500 text-sm md:text-base font-light font-sans group-hover/item:text-zinc-300 transition-colors leading-relaxed">{item}</span>
                                   </div>
                                 ))}
                               </div>

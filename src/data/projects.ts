@@ -12,6 +12,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "resume-solutions",
+    title: "Resume Solutions",
+    description: "ATS Resume Builder for free with optimied AI generations and helping, It also gives user full freedom to redesign the resume with design panel.",
+    category: "AI / Utilities",
+    image: "/projects/resume.png",
+    link: "https://resumesolutions.shibili.tech",
+    github: "",
+    live: "https://resumesolutions.shibili.tech",
+    fullDescription: "ATS Resume Builder for free with optimied AI generations and helping, It also gives user full freedom to redesign the resume with design panel."
+  },
+  {
     slug: "eren-yeager-adv",
     title: "Eren Yeager ADV",
     description: "A high-performance Telegram bot for advance group management and instant movie search.",
