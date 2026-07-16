@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, MessageSquare, Send } from '@lucide/astro';
+import { Github, Linkedin, Twitter, Mail, MessageSquare, Send, Instagram } from '@lucide/astro';
 
 export interface SocialLink {
   label: string;
@@ -43,5 +43,11 @@ export const socialLinks: SocialLink[] = [
     href: 'https://t.me/shibili_offline',
     icon: Send,
     handle: 'Shibili [Offline]'
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/__shibiliii._',
+    icon: Instagram,
+    handle: '@__shibiliii._'
   }
 ];
