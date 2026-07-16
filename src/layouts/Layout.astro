@@ -4,6 +4,7 @@ import Analytics from '@vercel/analytics/astro'
 import '../styles/global.css';
 import CustomCursor from '../components/CustomCursor.astro';
 import Canvas3D from '../components/Canvas3D.tsx';
+import MovingFrame from '../components/MovingFrame.astro';
 
 interface Props {
 	title?: string;
@@ -65,14 +66,11 @@ const personStructuredData = {
 		<link rel="service-doc" href="/llms.txt" />
 		<link rel="alternate" type="text/markdown" href="/llms.txt" title="Markdown for Agents" />
 		<link rel="help" href="/.well-known/security.txt" />
-		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonicalURL.toString()} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={`${canonicalOrigin}/shibili.webp`} />
-
-		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={canonicalURL.toString()} />
 		<meta property="twitter:title" content={title} />
@@ -81,15 +79,15 @@ const personStructuredData = {
 		<ClientRouter />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;800&family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 		<script type="application/ld+json" set:html={JSON.stringify(personStructuredData)}></script>
 		<Analytics/>
 	</head>
-	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
+	<body class="bg-[#08080a] text-[#faf9f6] selection:bg-[#c5a059] selection:text-[#08080a] min-h-screen">
 		<CustomCursor />
+		<MovingFrame />
 		<Canvas3D client:idle />
-		<div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+		<div class="fixed inset-0 pointer-events-none z-50 opacity-[0.02]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 		<slot />
 		<script is:inline>
 			if ('modelContext' in navigator) {
@@ -149,7 +147,6 @@ const personStructuredData = {
 				initLenis();
 				window.scrollTo(0, 0);
 			});
-
 		</script>
 	</body>
 </html>
@@ -166,7 +163,7 @@ const personStructuredData = {
 		width: 100%;
 		min-height: 100%;
 		cursor: none !important;
-		background: black;
+		background: #08080a;
 	}
 
 	html.lenis, html.lenis body {

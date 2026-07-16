@@ -39,7 +39,7 @@ function ParticleSwarm() {
     return [positions];
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (ref.current) {
       ref.current.rotation.x -= delta / 15;
       ref.current.rotation.y -= delta / 20;
@@ -57,7 +57,7 @@ function ParticleSwarm() {
       <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#a1a1aa" /* zinc-400 */
+          color="#c5a059"
           size={0.012}
           sizeAttenuation={true}
           depthWrite={false}

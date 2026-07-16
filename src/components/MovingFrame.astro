@@ -1,0 +1,108 @@
+---
+const { pathname } = Astro.url;
+const routeName = pathname === '/' ? 'HOME' : pathname.replace(/^\/|\/$/g, '').toUpperCase();
+---
+
+<div class="fixed inset-4 md:inset-6 pointer-events-none z-40 select-none font-mono text-[9px] uppercase tracking-widest text-[#C5A059] hidden md:block">
+  
+  <div class="absolute inset-0 border border-[#C5A059]/10"></div>
+  
+  <div class="absolute inset-0">
+    <svg class="absolute inset-0 w-full h-full text-[#C5A059]/15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect class="glow-rect" x="0" y="0" width="100%" height="100%" stroke="currentColor" stroke-width="1.5" />
+    </svg>
+  </div>
+
+  <div class="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-[#C5A059]"></div>
+  <div class="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-[#C5A059]"></div>
+  <div class="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-[#C5A059]"></div>
+  <div class="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-[#C5A059]"></div>
+
+  <div class="absolute -top-6 left-0 right-0 flex justify-between items-center px-2">
+    <div class="flex items-center gap-2">
+      <div class="w-1.5 h-1.5 bg-[#00E676] rounded-full animate-pulse shadow-[0_0_8px_#00E676]"></div>
+      <span>SYS_STATUS: <span class="text-white">ACTIVE</span></span>
+      <span class="text-[#C5A059]/40">|</span>
+      <span id="frame-clock" class="text-white">00:00:00 UTC</span>
+    </div>
+    
+    <div>
+      <span>SECTOR: <span class="text-white">{routeName}</span></span>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <span>LOC: <span class="text-white">11.25N 75.78E [KERALA, IN]</span></span>
+    </div>
+  </div>
+
+  <div class="absolute -bottom-6 left-0 right-0 flex justify-between items-center px-2">
+    <div>
+      <span>SIGNAL: <span class="text-[#00E676] font-bold">SECURE_NODE</span></span>
+    </div>
+    
+    <div class="w-1/2 overflow-hidden relative h-4 flex items-center bg-black border border-[#C5A059]/10">
+      <div class="marquee-content whitespace-nowrap flex gap-8 items-center text-[#C5A059]/80">
+        <span>• DIRECT WHATSAPP LINE: WA.ME/919037619447 •</span>
+        <span>SYSTEM LOG: REDESIGN OPTIMIZED •</span>
+        <span>SEO SCORE 90%+ •</span>
+        <span>FULL-STACK DEVELOPMENT •</span>
+        <span>• DIRECT WHATSAPP LINE: WA.ME/919037619447 •</span>
+        <span>SYSTEM LOG: REDESIGN OPTIMIZED •</span>
+        <span>SEO SCORE 90%+ •</span>
+        <span>FULL-STACK DEVELOPMENT •</span>
+      </div>
+    </div>
+
+    <div>
+      <span>REF_ID: <span class="text-white font-medium">SHIBILI.TECH</span></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const updateClock = () => {
+    const clockEl = document.getElementById('frame-clock');
+    if (clockEl) {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour12: false }) + ' LCL';
+      clockEl.textContent = timeStr;
+    }
+  };
+
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  document.addEventListener('astro:after-swap', () => {
+    updateClock();
+  });
+</script>
+
+<style>
+  .glow-rect {
+    stroke-dasharray: 100 600;
+    animation: border-laser 12s linear infinite;
+  }
+
+  @keyframes border-laser {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -2000;
+    }
+  }
+
+  .marquee-content {
+    display: inline-flex;
+    animation: marquee 25s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

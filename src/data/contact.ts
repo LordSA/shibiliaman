@@ -18,7 +18,13 @@ export const socialLinks: SocialLink[] = [
     label: 'LinkedIn', 
     href: 'https://www.linkedin.com/in/shibili-aman-tk', 
     icon: Linkedin, 
-    handle: 'Shibili Aman TK' 
+    handle: 'Shibili Aman' 
+  },
+  { 
+    label: 'WhatsApp', 
+    href: 'https://wa.me/919037619447', 
+    icon: MessageSquare, 
+    handle: '+91 90376 19447' 
   },
   { 
     label: 'Twitter', 
@@ -28,7 +34,7 @@ export const socialLinks: SocialLink[] = [
   },
   { 
     label: 'Mail', 
-    href: 'mailto:shibiiliamantk@gmail.com', 
+    href: 'mailto:shibiliamantk@gmail.com', 
     icon: Mail, 
     handle: 'shibiliamantk@gmail.com' 
   },
