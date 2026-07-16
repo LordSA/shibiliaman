@@ -8,9 +8,8 @@ This document tracks the codebase architecture, file structures, configuration s
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com) (integrated via `@tailwindcss/vite` plugin in Vite config)
 - **Interactive Layers**: 
   - [React v19](https://react.dev)
-  - [React Three Fiber](https://r3f.docs.pmnd.rs/getting-started/introduction) for the 3D Torus Knot wireframe in `Canvas3D.tsx`.
-  - [Matter.js](https://brm.io/matter-js/) for the interactive gravity sandbox in `PhysicsCanvas.tsx`.
-  - [GSAP (GreenSock)](https://gsap.com) for entrance animations.
+  - [React Three Fiber](https://r3f.docs.pmnd.rs/getting-started/introduction) for the 3D particle background in `Canvas3D.tsx`.
+  - [GSAP (GreenSock)](https://gsap.com) for scroll-triggered page entrance transitions, text scramble animations, and tilt effects.
   - [Lenis](https://lenis.darkroom.engineering/) for smooth scrolling.
 - **Hosting Adapter**: `@astrojs/vercel` (Static generation with target platform optimizations)
 - **SEO & Search**:
@@ -21,18 +20,17 @@ This document tracks the codebase architecture, file structures, configuration s
 
 ## File Structure & Routing
 
-- `src/layouts/Layout.astro`: Parent layout wrapper containing global SEO meta tags, Google Fonts imports, structured schema JSON-LD, smooth scroll initializer, and the screen-wide frame overlay.
-- `src/styles/global.css`: Core design stylesheet containing Tailwind v4 imports, global font overrides, and custom design tokens for Peak Neo-Brutalism.
+- `src/layouts/Layout.astro`: Parent layout wrapper containing global SEO meta tags, Google Fonts imports, structured schema JSON-LD, and smooth scroll initializer.
+- `src/styles/global.css`: Core design stylesheet containing Tailwind v4 imports, global font overrides, and dark color tokens.
 - `src/components/`:
-  - `Canvas3D.tsx`: React Three Fiber component rendering a rotating Torus Knot wrapping an Octahedron.
-  - `PhysicsCanvas.tsx`: Matter.js physics engine simulating draggable tech tags.
-  - `Navbar.astro` & `Footer.astro`: Navigation menu elements with responsive layouts and hover transformations.
-  - `Portfolio.astro`: Standard home landing layout grouping the hero, about bio, tech arsenal, and project directories.
+  - `Canvas3D.tsx`: React Three Fiber component rendering a mouse-interactive floating particle swarm.
+  - `Navbar.astro` & `Footer.astro`: Navigation menu elements with responsive layouts.
+  - `Portfolio.astro`: Standard home landing layout grouping the hero, about bio, tech arsenal, and featured work cards.
 - `src/pages/`:
   - `index.astro`: Main page route (static).
   - `contact.astro`: Contact links and WhatsApp connection (static).
-  - `experience.astro`: Timeline grid resembling a Git tree ledger.
-  - `projects.astro`: Full catalog listing of projects as a repository spreadsheet.
+  - `experience.astro`: History of positions and achievements.
+  - `projects.astro`: Full catalog listing of projects.
   - `project/[slug].astro`: Dynamic path detail pages for individual projects.
 - `src/data/`:
   - `contact.ts`: Contains list of social media channels and user handles.

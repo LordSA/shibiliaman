@@ -1,43 +1,33 @@
-# Design System - Peak Neo-Brutalism
+# Design System - Dark Minimalist
 
-This document outlines the visual system, typography, colors, layout rules, and component styles for the Shibili Aman portfolio redesign.
+This document outlines the visual system, typography, colors, layout rules, and component styles for the Shibili Aman portfolio.
 
-## Aesthetic Theme: Peak Neo-Brutalism
+## Aesthetic Theme: Dark Minimalist
 
-Peak Neo-Brutalist design features high-contrast visual structures, thick outlines, flat shapes, unblurred shadows, and structural layouts separated by solid black borders.
+The design utilizes a minimalist dark layout with subtle gradients, grayscale image filtering, and fine typographic rules.
 
 ### Core Visual Tokens
 
 1. **Colors**:
-   - **Obsidian Black (`#000000`)**: Deep solid background coloring.
-   - **Neon Cyan (`#00FFD1`)**: Vibrant cyan used for active structural boundaries, links, focus tags, and main outlines.
-   - **Cyber Gold (`#C5A059`)**: Muted metallic gold used for auxiliary accents, cards, and warning flags.
-   - **Carbon Card (`#101114`)**: Dark grey background for container divs.
-   - **Pure White (`#FFFFFF`)**: Primary typography reading color.
+   - **Main Background (`#050505`)**: Flat pitch dark background.
+   - **Primary Text (`#FAFAFA`)**: Crisp off-white.
+   - **Accent Gray (`#1A1A1A` / `#27272A`)**: Base border color and card background overlays.
+   - **Tech Highlights (`#10B981` / Emerald)**: Tech proficiency indicator colors.
 
 2. **Typography**:
-   - **Display Heading**: `Cinzel` (Google Fonts) for main hero titles, page tags, and section callouts.
-   - **Monospace Text**: `JetBrains Mono` (Google Fonts) for console logs, directory rows, menus, and labels.
-   - **Sans Serif**: `Inter` (Google Fonts) for descriptions, block paragraphs, and details.
+   - **Sans Serif**: `Inter` (Google Fonts) for main copy, descriptions, titles, and headers.
+   - **Monospace Text**: `JetBrains Mono` (Google Fonts) for navigation options, indicators, and metadata lines.
 
-3. **Borders & Outlines**:
-   - Grid dividers and layouts are bordered by solid `3px` to `4px` Cyan boundaries (`border-3 border-[#00ffd1]`).
-   - Sharp 90-degree square corners (`rounded-none`) are applied to all panels and elements.
-
-4. **Drop Shadows**:
-   - Solid unblurred shadows represent the primary depth layer: `shadow-[8px_8px_0px_#000000]` or `shadow-[8px_8px_0px_#c5a059]`.
-   - Hover states animate elements by shifting them up/left, increasing the shadow offset.
+3. **Borders & Shadows**:
+   - Outlines use thin boundaries (`border border-white/5` or `border border-white/10`).
+   - Cards are styled with rounded corners (`rounded-2xl` / `rounded-3xl` or `rounded-full` for badges).
+   - Drop shadows are smooth and blurred, leveraging black overlays: `shadow-[0_8px_32px_0_rgba(0,0,0,0.8)]`.
 
 ---
 
 ## Interactivity Features
 
-### 3D rotating Wireframe
-- A rotating dual-wireframe system is fixed to the background.
-- An outer Cyan Torus Knot spins along its axes, wrapping an inner Gold Octahedron.
-- Scales and shifts on mouse motion and page scroll.
-
-### Draggable Physics Canvas
-- A dynamic skills sandbox powered by `matter-js`.
-- Renders tags as rectangular boxes colliding and falling under gravity.
-- Interactive drag constraints let visitors throw skill boxes inside borders.
+### 3D Canvas Background
+- An interactive background rendering a floating point cloud of particles using React Three Fiber.
+- Particle colors: Zinc-400 (`#A1A1AA`).
+- Animates rotation based on mouse coordinate hover and page scroll offsets.
