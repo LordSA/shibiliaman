@@ -2,6 +2,12 @@
 
 All notable changes to the Shibili Aman portfolio project will be documented here.
 
+## [3.2.1] - 2026-07-19
+
+### Fixed
+- Resolved button rendering on project details pages (`src/pages/project/[slug].astro`). The system now dynamically parses `project.link` to display appropriate "Source Code" or "Live Build"/"View Project" buttons if specific `github` or `live` properties are absent.
+- Customized LinkedIn external buttons to dynamically display "View Project" instead of generic "Live Build" text.
+
 ## [3.2.0] - 2026-07-16
 
 ### Added
