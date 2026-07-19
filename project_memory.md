@@ -36,7 +36,7 @@ This document contains a comprehensive record of the file schemas, tech stack in
   - `contact.astro`: Contact links and WhatsApp connection (fully static prerendered).
   - `experience.astro`: Interactive grid log for historical milestones (integrated with custom glows).
   - `projects.astro`: Full index catalog database (integrated with custom glows).
-  - `project/[slug].astro`: Dynamic slug routing details.
+  - `project/[slug].astro`: Dynamic slug routing details (resolves Source Code and Live Build buttons dynamically from custom project links with fallbacks).
 - `src/data/`:
   - `contact.ts`: Exports list of verified links (including GitHub, LinkedIn, Twitter, Mail, WhatsApp, Telegram, and Instagram).
   - `experience.ts`: Details corporate and community roles.
