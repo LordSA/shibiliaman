@@ -8,7 +8,8 @@
     "dist"
   ],
   "compilerOptions": {
-    "jsx": "preserve",
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "lib": ["esnext", "dom", "dom.iterable"]
