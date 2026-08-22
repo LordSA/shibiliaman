@@ -1,51 +1,55 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import '../styles/global.css';
-import CustomCursor from '../components/CustomCursor.astro';
-import Canvas3D from '../components/Canvas3D.tsx';
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+import CustomCursor from "../components/CustomCursor.astro";
+import Canvas3D from "../components/Canvas3D.tsx";
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
-const { 
+const {
 	title = "Shibili Aman | Full-Stack Developer & CSE Student Portfolio",
-	description = "Official portfolio of Shibili Aman TK, a Full-Stack Developer and B.Tech CSE student specializing in Astro, React, and building scalable web solutions."
+	description = "Official portfolio of Shibili Aman TK, a Full-Stack Developer and B.Tech CSE student specializing in Astro, React, and building scalable web solutions.",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin);
+const canonicalURL = new URL(
+	Astro.url.pathname,
+	Astro.site || Astro.url.origin,
+);
 const canonicalOrigin = Astro.url.origin;
 const personStructuredData = {
-	'@context': 'https://schema.org',
-	'@type': 'Person',
-	name: 'Shibili Aman TK',
-	alternateName: 'Shibili Aman',
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Shibili Aman TK",
+	alternateName: "Shibili Aman",
 	url: canonicalOrigin,
 	image: `${canonicalOrigin}/shibili.webp`,
-	description: 'B.Tech CSE student at College of Engineering Vadakara and Full-Stack Developer building scalable solutions and developer tools.',
-	jobTitle: 'B.Tech CSE Student and Full-Stack Developer',
+	description:
+		"B.Tech CSE student at College of Engineering Vadakara and Full-Stack Developer building scalable solutions and developer tools.",
+	jobTitle: "B.Tech CSE Student and Full-Stack Developer",
 	sameAs: [
-		'https://github.com/LordSA',
-		'https://www.linkedin.com/in/shibili-aman-tk',
-		'https://x.com/shibiliii_aman',
-		'https://tinkerhub.org/@shibiliamantk',
-		'https://instagram.com/__shibiliii._',
-		'https://www.wikidata.org/wiki/Q139373740',
+		"https://github.com/LordSA",
+		"https://www.linkedin.com/in/shibili-aman-tk",
+		"https://x.com/shibiliii_aman",
+		"https://tinkerhub.org/@shibiliamantk",
+		"https://instagram.com/__shibiliii._",
+		"https://www.wikidata.org/wiki/Q139373740",
 	],
 	affiliation: {
-		'@type': 'CollegeOrUniversity',
-		name: 'College of Engineering Vadakara',
+		"@type": "CollegeOrUniversity",
+		name: "College of Engineering Vadakara",
 	},
 	knowsAbout: [
-		'Python',
-		'JavaScript',
-		'TypeScript',
-		'Astro',
-		'UI/UX',
-		'Automation',
-		'Bot Development',
-		'Web Performance',
+		"Python",
+		"JavaScript",
+		"TypeScript",
+		"Astro",
+		"UI/UX",
+		"Automation",
+		"Bot Development",
+		"Web Performance",
 	],
 };
 ---
@@ -55,14 +59,19 @@ const personStructuredData = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logo.svg"/>
+		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL.toString()} />
 		<link rel="api-catalog" href="/.well-known/api-catalog" />
 		<link rel="service-doc" href="/llms.txt" />
-		<link rel="alternate" type="text/markdown" href="/llms.txt" title="Markdown for Agents" />
+		<link
+			rel="alternate"
+			type="text/markdown"
+			href="/llms.txt"
+			title="Markdown for Agents"
+		/>
 		<link rel="help" href="/.well-known/security.txt" />
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -76,46 +85,72 @@ const personStructuredData = {
 		<meta property="twitter:url" content={canonicalURL.toString()} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={`${canonicalOrigin}/shibili.webp`} />
+		<meta
+			property="twitter:image"
+			content={`${canonicalOrigin}/shibili.webp`}
+		/>
 		<ClientRouter />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-		<script type="application/ld+json" set:html={JSON.stringify(personStructuredData)}></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin="anonymous"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(personStructuredData)}
+		/>
 		<script>
-			import { inject } from '@vercel/analytics';
+			import { inject } from "@vercel/analytics";
 			inject();
 		</script>
 	</head>
-	<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen">
+	<body
+		class="bg-black text-white selection:bg-white selection:text-black min-h-screen"
+	>
 		<CustomCursor />
 		<Canvas3D client:idle />
-		<div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+		<div
+			class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03]"
+			style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"
+		>
+		</div>
 		<slot />
 		<script is:inline>
-			if ('modelContext' in navigator) {
+			if ("modelContext" in navigator) {
 				navigator.modelContext.provideContext({
 					tools: [
 						{
 							name: "get_shibili_contact",
-							description: "Get contact links and social handles for Shibili Aman",
+							description:
+								"Get contact links and social handles for Shibili Aman",
 							inputSchema: { type: "object", properties: {} },
 							execute: async () => {
 								return {
 									content: [
-										{ type: "text", text: "Portfolio: https://shibili.tech\nGitHub: https://github.com/LordSA\nLinkedIn: https://linkedin.com/in/shibili-aman-tk" }
-									]
+										{
+											type: "text",
+											text: "Portfolio: https://shibili.xyz\nGitHub: https://github.com/LordSA\nLinkedIn: https://linkedin.com/in/shibili-aman-tk",
+										},
+									],
 								};
-							}
-						}
-					]
+							},
+						},
+					],
 				});
 			}
 		</script>
 		<script>
-			import Lenis from 'lenis';
-			import 'lenis/dist/lenis.css';
+			import Lenis from "lenis";
+			import "lenis/dist/lenis.css";
 
 			let lenis: Lenis | null = null;
 
@@ -127,8 +162,8 @@ const personStructuredData = {
 				lenis = new Lenis({
 					duration: 1.2,
 					easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-					orientation: 'vertical',
-					gestureOrientation: 'vertical',
+					orientation: "vertical",
+					gestureOrientation: "vertical",
 					smoothWheel: true,
 					touchMultiplier: 2,
 					infinite: false,
@@ -141,17 +176,16 @@ const personStructuredData = {
 				}
 
 				requestAnimationFrame(raf);
-				
+
 				lenis.start();
 			};
 
 			initLenis();
 
-			document.addEventListener('astro:after-swap', () => {
+			document.addEventListener("astro:after-swap", () => {
 				initLenis();
 				window.scrollTo(0, 0);
 			});
-
 		</script>
 	</body>
 </html>
@@ -171,7 +205,8 @@ const personStructuredData = {
 		background: black;
 	}
 
-	html.lenis, html.lenis body {
+	html.lenis,
+	html.lenis body {
 		height: auto;
 	}
 
@@ -192,13 +227,22 @@ const personStructuredData = {
 	}
 
 	@media (hover: hover) {
-		a, button, [role="button"], input, textarea, select {
+		a,
+		button,
+		[role="button"],
+		input,
+		textarea,
+		select {
 			cursor: none !important;
 		}
 	}
 
 	@media (hover: none) and (pointer: coarse) {
-		html, body, *, a, button {
+		html,
+		body,
+		*,
+		a,
+		button {
 			cursor: auto !important;
 		}
 	}
