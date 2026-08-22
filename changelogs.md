@@ -7,6 +7,9 @@ All notable changes to the Shibili Aman portfolio project will be documented her
 ### Changed
 - Migrated primary domain and all subdomain links from `shibili.tech` to `shibili.xyz` across `astro.config.mjs`, public metadata (`robots.txt`, `llms.txt`, `.well-known/*`), project data (`projects.ts`), component mockups (`FlagshipShowcase.tsx`), and documentation.
 
+### Security
+- Added dependency `overrides` and `resolutions` in [package.json](file:///home/LordSA/portfolio/shibiliaman/package.json) to resolve security vulnerabilities for `tar` (patched `>=7.5.19`), `nanoid` (patched `>=3.3.18`), `fast-uri` (patched `>=3.0.0`), `brace-expansion` (patched `>=2.0.1`), and `path-to-regexp` (`6.3.0`). Updated `@astrojs/vercel` adapter to `v11.0.7`.
+
 ## [3.2.1] - 2026-07-19
 
 ### Fixed
