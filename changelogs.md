@@ -11,6 +11,7 @@ All notable changes to the Shibili Aman portfolio project will be documented her
 - Added dependency `overrides` and `resolutions` in [package.json](file:///home/LordSA/portfolio/shibiliaman/package.json) to resolve security vulnerabilities for `tar` (patched `>=7.5.19`), `nanoid` (patched `>=3.3.18`), `fast-uri` (patched `>=3.0.0`), `brace-expansion` (patched `>=2.0.1`), and `path-to-regexp` (`6.3.0`). Updated `@astrojs/vercel` adapter to `v11.0.7`.
 
 ### Fixed
+- Updated `compilerOptions` in [tsconfig.json](file:///home/LordSA/portfolio/shibiliaman/tsconfig.json) to set `"jsx": "react-jsx"` and `"jsxImportSource": "react"` to resolve TypeScript module resolution errors (`Cannot find module 'react'`) for TSX components.
 - Synchronized `overrides` section in [pnpm-lock.yaml](file:///home/LordSA/portfolio/shibiliaman/pnpm-lock.yaml) to prevent `ERR_PNPM_LOCKFILE_CONFIG_MISMATCH` errors during Vercel CI/CD frozen installation builds.
 - Added [.npmrc](file:///home/LordSA/portfolio/shibiliaman/.npmrc) with `legacy-peer-deps=true` and updated `@astrojs/react` to `^6.0.4` and `lucide-react` to `^1.33.0` in [package.json](file:///home/LordSA/portfolio/shibiliaman/package.json) to resolve build conflicts.
 
