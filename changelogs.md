@@ -12,7 +12,7 @@ All notable changes to the Shibili Aman portfolio project will be documented her
 
 ### Fixed
 - Updated `compilerOptions` in [tsconfig.json](file:///home/LordSA/portfolio/shibiliaman/tsconfig.json) to set `"jsx": "react-jsx"` and `"jsxImportSource": "react"` to resolve TypeScript module resolution errors (`Cannot find module 'react'`) for TSX components.
-- Synchronized `overrides` section in [pnpm-lock.yaml](file:///home/LordSA/portfolio/shibiliaman/pnpm-lock.yaml) to prevent `ERR_PNPM_LOCKFILE_CONFIG_MISMATCH` errors during Vercel CI/CD frozen installation builds.
+- Added explicit `"packageManager": "pnpm@10.5.2"` in [package.json](file:///home/LordSA/portfolio/shibiliaman/package.json) and synchronized `overrides:` header in [pnpm-lock.yaml](file:///home/LordSA/portfolio/shibiliaman/pnpm-lock.yaml) to resolve `ERR_PNPM_LOCKFILE_CONFIG_MISMATCH` errors during Vercel frozen installation builds.
 - Added [.npmrc](file:///home/LordSA/portfolio/shibiliaman/.npmrc) with `legacy-peer-deps=true` and updated `@astrojs/react` to `^6.0.4` and `lucide-react` to `^1.33.0` in [package.json](file:///home/LordSA/portfolio/shibiliaman/package.json) to resolve build conflicts.
 
 ## [3.2.1] - 2026-07-19
