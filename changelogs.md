@@ -12,6 +12,7 @@ All notable changes to the Shibili Aman portfolio project will be documented her
 
 ### Fixed
 - Synchronized `overrides` section in [pnpm-lock.yaml](file:///home/LordSA/portfolio/shibiliaman/pnpm-lock.yaml) to prevent `ERR_PNPM_LOCKFILE_CONFIG_MISMATCH` errors during Vercel CI/CD frozen installation builds.
+- Added [.npmrc](file:///home/LordSA/portfolio/shibiliaman/.npmrc) with `legacy-peer-deps=true` and updated `@astrojs/react` to `^6.0.4` and `lucide-react` to `^1.33.0` in [package.json](file:///home/LordSA/portfolio/shibiliaman/package.json) to resolve build conflicts.
 
 ## [3.2.1] - 2026-07-19
 
