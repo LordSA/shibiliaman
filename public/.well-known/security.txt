@@ -1,4 +1,4 @@
-Contact: mailto:admin@shibili.tech
+Contact: mailto:admin@shibili.xyz
 Expires: 2026-12-31T23:59:59.000Z
 Preferred-Languages: en
-Canonical: https://shibili.tech/.well-known/security.txt
+Canonical: https://shibili.xyz/.well-known/security.txt

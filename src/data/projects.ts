@@ -17,9 +17,9 @@ export const projects: Project[] = [
     description: "ATS Resume Builder for free with optimied AI generations and helping, It also gives user full freedom to redesign the resume with design panel.",
     category: "AI / Utilities",
     image: "/projects/resume.png",
-    link: "https://resumesolutions.shibili.tech",
+    link: "https://resumesolutions.shibili.xyz",
     github: "",
-    live: "https://resumesolutions.shibili.tech",
+    live: "https://resumesolutions.shibili.xyz",
     fullDescription: "ATS Resume Builder for free with optimied AI generations and helping, It also gives user full freedom to redesign the resume with design panel."
   },
   {
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     image: "/projects/wcev.webp",
     link: "https://github.com/LordSA/event-manager",
     github: "github.com/LordSA/event-manager",
-    live: "https://whatsatcev.shibili.tech",
+    live: "https://whatsatcev.shibili.xyz",
     fullDescription: "An AI-powered web platform designed to provide real-time information about events happening at CEV and streamline event management processes. The system aims to centralize event updates, announcements, schedules, and coordination tools into a single accessible interface.It enhances communication between organizers and participants while simplifying event planning, tracking, and engagement through intelligent automation and structured data management."
   },
   {
@@ -115,7 +115,7 @@ export const projects: Project[] = [
     description:"an e-commerce web",
     category: "E-commerce / Jwellery",
     image: "",
-    link: "https://sensaflora.shibili.tech"
+    link: "https://sensaflora.shibili.xyz"
   },
   {
     slug: "qr-g",
@@ -123,9 +123,9 @@ export const projects: Project[] = [
     description: "A Free Qr generating website",
     category: "Qr / Open Source",
     image: "/projects/qr.webp",
-    link: "https://qr.shibili.tech",
+    link: "https://qr.shibili.xyz",
     github: "github.com/LordSA/qr-generator",
-    live: "https://qr.shibili.tech",
+    live: "https://qr.shibili.xyz",
     fullDescription: "Developed a simple and user-friendly QR Code Generator using a clean web interface and a Python backend. The application allows users to instantly generate QR codes for text, links, and other inputs in a fast and accessible way.Focused on minimal design, smooth user experience, and efficient backend processing. Implemented QR generation logic in Python and connected it with a lightweight frontend to ensure seamless interaction."
   },
   {

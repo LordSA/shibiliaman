@@ -3,10 +3,10 @@
 B.Tech CSE student at College of Engineering Vadakara and Full-Stack Developer building scalable solutions and developer tools.
 
 ## Discovery & Contact
-- Website: https://www.shibili.tech
+- Website: https://www.shibili.xyz
 - GitHub: https://github.com/LordSA
 - LinkedIn: https://linkedin.com/in/shibili-aman-tk
-- Email: info@shibili.tech
+- Email: info@shibili.xyz
 
 ## Expertise
 - Python, JavaScript, TypeScript, Astro
@@ -17,6 +17,6 @@ B.Tech CSE student at College of Engineering Vadakara and Full-Stack Developer b
 - `get_shibili_contact`: Returns social handles and contact links.
 
 ## AI Discovery Metadata
-- API Catalog: https://shibili.tech/.well-known/api-catalog
-- Skills Index: https://shibili.tech/.well-known/agent-skills/index.json
-- Security Policy: https://shibili.tech/.well-known/security.txt
+- API Catalog: https://shibili.xyz/.well-known/api-catalog
+- Skills Index: https://shibili.xyz/.well-known/agent-skills/index.json
+- Security Policy: https://shibili.xyz/.well-known/security.txt

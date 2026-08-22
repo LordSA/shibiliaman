@@ -2,6 +2,11 @@
 
 All notable changes to the Shibili Aman portfolio project will be documented here.
 
+## [3.2.2] - 2026-08-22
+
+### Changed
+- Migrated primary domain and all subdomain links from `shibili.tech` to `shibili.xyz` across `astro.config.mjs`, public metadata (`robots.txt`, `llms.txt`, `.well-known/*`), project data (`projects.ts`), component mockups (`FlagshipShowcase.tsx`), and documentation.
+
 ## [3.2.1] - 2026-07-19
 
 ### Fixed

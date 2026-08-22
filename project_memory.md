@@ -49,7 +49,7 @@ This document contains a comprehensive record of the file schemas, tech stack in
 ### 1. Resume Solutions
 - **Category**: AI / Utilities
 - **Description**: ATS Resume Builder supporting AI generation and a detailed design panel.
-- **Access**: https://resumesolutions.shibili.tech
+- **Access**: https://resumesolutions.shibili.xyz
 
 ### 2. Eren Yeager ADV
 - **Category**: Python / Automation
@@ -96,18 +96,18 @@ This document contains a comprehensive record of the file schemas, tech stack in
 - **Category**: AI / Management
 - **Description**: AI event coordinator streamlining real-time event updates at CEV.
 - **GitHub**: github.com/LordSA/event-manager
-- **Live**: https://whatsatcev.shibili.tech
+- **Live**: https://whatsatcev.shibili.xyz
 
 ### 11. Sensaflora Online
 - **Category**: E-commerce / Jewelry
 - **Description**: E-commerce jewelry web platform.
-- **Live**: https://sensaflora.shibili.tech
+- **Live**: https://sensaflora.shibili.xyz
 
 ### 12. QR Generator
 - **Category**: QR / Open Source
 - **Description**: Free QR generation backend and interface.
 - **GitHub**: github.com/LordSA/qr-generator
-- **Live**: https://qr.shibili.tech
+- **Live**: https://qr.shibili.xyz
 
 ### 13. EasyGrip | Stride
 - **Category**: 3D Printing / PenGrip
